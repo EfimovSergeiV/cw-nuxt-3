@@ -2,6 +2,20 @@
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
+# CONFIG
+touch conf.ts
+
+```typescript
+const cfg = {
+    "BASE_URL": 'http://127.0.0.1:8000/', //'http://127.0.0.1:8000'
+    "gtmId": '',
+    "yandexMetrika": '',
+    "googleAnalyticsId": '',
+  }
+  
+  export default cfg
+```
+
 ## Setup
 
 Make sure to install the dependencies:
