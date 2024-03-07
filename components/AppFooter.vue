@@ -13,31 +13,39 @@
     <div class="bg-gray-100 dark:bg-gray-800 rounded-t-md border-t border-x border-gray-200 dark:border-gray-700 px-4 py-2 relative">
 
 
-      <div class="">
+      <div class="hidden md:block">
+        <p class="text-lg text-gray-700 dark:text-gray-300 py-2">Категории</p>
         <div class="">
-            <div class="flex flex-wrap gap-4">
-              <div v-for="ct in cts" :key="ct.id" class="">
-                <p class="text-sm text-gray-700 dark:text-gray-300">{{ ct.name }}</p>
+            <div class="columns-2 lg:columns-3 gap-4">
+              <div v-for="ct in cts" :key="ct.id" class="break-inside-avoid-column">
+                <nuxt-link :to="{ name: 'prods', query: { ct: ct.id } }" class="text-sm text-gray-700 dark:text-gray-300">{{ ct.name }}</nuxt-link>
+
+                <div class="columns-2 gap-x-2 gap-y-0.5 py-2 border-t border-gray-700">
+                  <div v-for="sct in ct.inserted" :key="sct.id" class="flex items-center gap-2">
+                    <nuxt-link :to="{ name: 'prods', query: { ct: ct.id } }" class="text-xs text-gray-600 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">{{ sct.name }}</nuxt-link>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
       </div>
 
 
-      <div class="md:flex md:justify-between items-end py-2">
+      <div class="md:flex md:justify-between items-start">
 
 
         <div class="grid grid-cols-1">
 
           <div class="">
-            <div class="flex items-center py-4">
+            <div class="flex items-center">
               <img src="/images/vk-logo.webp" alt="vk-logo" class="w-5" />
               <a href="https://vk.com/glsvar" target="_blank" class="font-bold text-base mx-2">МЫ ВКОНТАКТЕ</a>
             </div> 
           </div>
 
-          <div class="">
-            <ul class="flex justify-start gap-8 text-xs md:text-sm mt-3 sm:mt-0 md:order-last py-2 ">
+          <div class="py-4">
+            <ul class="flex justify-start gap-8 text-xs md:text-sm mt-3 sm:mt-0 md:order-last">
               <li>
                 <button @click="notificationsStore.pushToast({id: 1, type: 'error', text:' Раздел временно не доступен'})" class="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100">Доставка</button>
               </li>
@@ -54,11 +62,11 @@
 
         </div>
 
-        
+
 
         <div class="w-full h-full md:w-1/2 md:order-1">
           
-          <p class="text-[10px] md:text-xs py-6 select-none text-gray-700 dark:text-gray-300">
+          <p class="text-[10px] md:text-xs py-2 select-none text-gray-600 dark:text-gray-400">
             Все цены и материаллы, указанные на сайте www.glsvar.ru, приведены как справочная информация и не являются публичной офертой и могут быть изменены в любое время без предупреждения. 
             Для получения подробной информации о стоимости, сроках и условиях поставки просьба обращаться по указанным на сайте телефонам.
           </p>  
