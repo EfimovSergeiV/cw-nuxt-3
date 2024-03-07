@@ -11,17 +11,23 @@
   <div class="container mx-auto px-4 max-w-6xl lg:px-8 pt-2">
     <div class="bg-gray-100 dark:bg-gray-800 rounded-t-md border-t border-x border-gray-200 dark:border-gray-700 px-4 py-2 relative">
 
+
+      <div class="">
+        <div class="">
+            <div class="flex flex-wrap gap-4">
+              <div v-for="ct in cts" :key="ct.id" class="">
+                <p class="text-sm text-gray-700 dark:text-gray-300">{{ ct.name }}</p>
+              </div>
+            </div>
+          </div>
+      </div>
+
+
       <div class="md:flex md:justify-between items-center py-2">
 
 
         <div class="grid grid-cols-1">
-          <div class="">
-            <div class="grid grid-cols-3 gap-4">
-              <div v-for="ct in cts" :key="ct.id" class="">
-                <p class="text-xs text-gray-700 dark:text-gray-300">{{ ct.name }}</p>
-              </div>
-            </div>
-          </div>
+
           <div class="">
             <div class="flex items-center py-4">
               <img src="/images/vk-logo.webp" alt="vk-logo" class="w-5" />

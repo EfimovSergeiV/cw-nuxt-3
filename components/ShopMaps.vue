@@ -113,7 +113,7 @@
                 <div v-for="shop in getShops(selectedCity)" :key="shop.id" :id="shop.id" class="">
                   <button @click="selectShop(shop)" class="text-left bg-white dark:bg-gray-800 px-4 py-0.5 rounded-md border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-6000">
                     <p class="text-base"> {{ shop.adress.replace(`${selectedCity},`, '') }}</p>
-                    <p class="text-xs text-gray-600 dark:text-gray-400">тел. {{ shop.phone }}</p>
+                    <a :href="`tel:${shop.phone.replace('(', '').replace(')', '').replace(/ /ig, '')}`" class="text-xs text-gray-600 dark:text-gray-400">тел. {{ shop.phone }}</a>
                     <p class="text-xs text-gray-600 dark:text-gray-400">{{ shop.wday }}</p>
                     <p class="text-xs text-gray-600 dark:text-gray-400">{{ shop.wend }}</p>
                   </button>
