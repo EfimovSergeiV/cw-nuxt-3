@@ -93,35 +93,37 @@
       </div> -->
 
       <div class="grid grid-cols-1 py-2">
-        <div class="flex flex-wrap gap-x-6">
+        <div class="flex flex-wrap gap-x-4 gap-y-2">
           <div v-for="city, pk in uniqueCities(shopStore.shops)" :key="pk" class="break-inside-avoid-column">
             <div class="flex items-center">
-              <button @click="selectedCity = city" class="group">
-                
+              <button @click="selectedCity = city" class="group bg-gray-800 px-4 py-0.5 rounded-md border border-gray-700 hover:border-gray-600">
                 <div class="flex items-center gap-1">
-                  <div class="mdi mdi-city-variant group-hover:text-blue-600 dark:group-hover:text-blue-500 transition-all duration-700"></div>
+                  <div class="mdi mdi-city-variant"></div>
                   <p class="text-lg">{{ city }}</p>
                 </div>
-
               </button>
             </div>
-
           </div>
         </div>
 
         <div class="min-h-[5rem] mt-2">
-          <div v-if="selectedCity" class="">
-            <transition-group name="list" tag="div" class="flex flex-wrap items-center gap-8">
-              <div v-for="shop in getShops(selectedCity)" :key="shop.id" :id="shop.id" class="">
-                <button @click="selectShop(shop)" class="text-left">
-                  <p class="text-base"> {{ shop.adress.replace(`${selectedCity},`, '') }}</p>
-                  <p class="text-xs">тел. {{ shop.phone }}</p>
-                  <p class="text-xs">{{ shop.wday }}</p>
-                  <p class="text-xs">{{ shop.wend }}</p>
-                </button>
-              </div>
-            </transition-group>
-          </div>        
+          <transition name="fade" mode="out-in">
+            <div v-if="selectedCity" class="">
+              <transition-group name="list" tag="div" class="flex flex-wrap items-center gap-2">
+                <div v-for="shop in getShops(selectedCity)" :key="shop.id" :id="shop.id" class="">
+                  <button @click="selectShop(shop)" class="text-left bg-gray-800 px-4 py-0.5 rounded-md border border-gray-700 hover:border-gray-600">
+                    <p class="text-base"> {{ shop.adress.replace(`${selectedCity},`, '') }}</p>
+                    <p class="text-xs text-gray-400">тел. {{ shop.phone }}</p>
+                    <p class="text-xs text-gray-400">{{ shop.wday }}</p>
+                    <p class="text-xs text-gray-400">{{ shop.wend }}</p>
+                  </button>
+                </div>
+              </transition-group>
+            </div>
+            <div v-else class="flex items-center justify-center h-full bg-gray-800 px-4 py-0.5 rounded-md border border-gray-700">
+              <p class="text-sm text-gray-400">Выберите город</p>
+            </div>
+          </transition>
         </div>
       </div>
 
