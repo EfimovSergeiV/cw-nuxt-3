@@ -96,7 +96,7 @@
         <div class="flex flex-wrap gap-x-4 gap-y-2">
           <div v-for="city, pk in uniqueCities(shopStore.shops)" :key="pk" class="break-inside-avoid-column">
             <div class="flex items-center">
-              <button @click="selectedCity = city" class="group bg-gray-800 px-4 py-0.5 rounded-md border border-gray-700 hover:border-gray-600">
+              <button @click="selectedCity = city" class="group bg-white dark:bg-gray-800 px-4 py-0.5 rounded-md border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600">
                 <div class="flex items-center gap-1">
                   <div class="mdi mdi-city-variant"></div>
                   <p class="text-lg">{{ city }}</p>
@@ -111,11 +111,11 @@
             <div v-if="selectedCity" class="">
               <transition-group name="list" tag="div" class="flex flex-wrap items-center gap-2">
                 <div v-for="shop in getShops(selectedCity)" :key="shop.id" :id="shop.id" class="">
-                  <button @click="selectShop(shop)" class="text-left bg-gray-800 px-4 py-0.5 rounded-md border border-gray-700 hover:border-gray-600">
+                  <button @click="selectShop(shop)" class="text-left bg-white dark:bg-gray-800 px-4 py-0.5 rounded-md border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-6000">
                     <p class="text-base"> {{ shop.adress.replace(`${selectedCity},`, '') }}</p>
-                    <p class="text-xs text-gray-400">тел. {{ shop.phone }}</p>
-                    <p class="text-xs text-gray-400">{{ shop.wday }}</p>
-                    <p class="text-xs text-gray-400">{{ shop.wend }}</p>
+                    <p class="text-xs text-gray-600 dark:text-gray-400">тел. {{ shop.phone }}</p>
+                    <p class="text-xs text-gray-600 dark:text-gray-400">{{ shop.wday }}</p>
+                    <p class="text-xs text-gray-600 dark:text-gray-400">{{ shop.wend }}</p>
                   </button>
                 </div>
               </transition-group>
