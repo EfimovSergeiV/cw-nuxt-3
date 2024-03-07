@@ -3,17 +3,6 @@
   const config = useRuntimeConfig()
   const shopStore = useShopStore()
 
-  /// Получаем список городов в которых есть магазины
-  // const uniqueCities = ref([])
-  // watch(() => shopStore.shops, (shops) => {
-  //   if (shops.length > 0) {
-  //     shops.forEach(shop => {
-  //       if (!uniqueCities.value.includes(shop.city)) {
-  //         uniqueCities.value.push(shop.city)
-  //       }
-  //     })
-  //   }
-  // })
 
   const uniqueCities = (shops) => {
     let cities = []
@@ -41,58 +30,10 @@
 
 
 <template>
-  <div class="container mx-auto px-4 max-w-6xl lg:px-8">
+  <div class="container mx-auto px-4 max-w-6xl lg:px-8 py-2">
     <div v-if="shopStore.shops.length > 0" class="">
 
-
-      <!-- <div class="grid grid-cols-1 py-2">
-        <div class=" columns-4 gap-x-6 pb-2">
-          <div v-for="city, pk in uniqueCities(shopStore.shops)" :key="pk" class="break-inside-avoid-column my-2">
-            <div class="flex items-center">
-              <button @click="getShops(city)" class="group">
-                <div class="flex items-center gap-1">
-                  <div class="mdi mdi-city-variant group-hover:text-blue-600 dark:group-hover:text-blue-500 transition-all duration-700"></div>
-                  <p class="text-lg">{{ city }}</p>
-                </div>
-              </button>
-            </div>
-            <div class="mt-0.5 grid grid-cols-1 gap-1">
-              <div v-for="shop in getShops(city)" :key="shop.id" class="">
-                <button @click="selectShop(shop)" class="text-left">
-                  <p class="text-sm"> {{ shop.adress.replace(`${city},`, '') }}</p>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class=""></div>
-      </div> -->
-
-
-      <!-- <div class="overflow-x-auto w-full my-2">
-        <div class="flex flex-nowrap gap-2 py-2">
-          <div v-for="shop in shopStore.shops" :key="shop.id" class="">
-            <div class="bg-gray-100 py-2 px-2 min-w-[300px] h-full rounded-md border border-gray-200 hover:border-gray-300 dark:border-gray-600 dark:hover:border-gray-500 dark:bg-gray-700 transition-all shadow-md">
-              
-              <div class="">
-                <p class="text-sm py-2">{{ shop.adress }}</p>
-                <div class=" grid grid-cols-1 gap-2">
-                  <div>
-                    <p class="text-xs">тел. 8 (911) 123-4567</p>            
-                  </div>
-                  <div>
-                    <div class="text-xs"><p class="">пн-пт: 8:00 - 17:00</p></div>
-                    <div class="text-xs"><p class="">сб-вс: 8:00 - 17:00</p></div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>      
-      </div> -->
-
-      <div class="grid grid-cols-1 py-2">
+      <div class="grid grid-cols-1">
         <div class="flex flex-wrap gap-x-4 gap-y-2">
           <div v-for="city, pk in uniqueCities(shopStore.shops)" :key="pk" class="break-inside-avoid-column">
             <div class="flex items-center">
@@ -106,7 +47,7 @@
           </div>
         </div>
 
-        <div class="min-h-[5rem] mt-2">
+        <div class="min-h-[5rem] py-2">
           <transition name="fade" mode="out-in">
             <div v-if="selectedCity" class="">
               <transition-group name="list" tag="div" class="flex flex-wrap items-center gap-2">

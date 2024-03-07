@@ -1,5 +1,6 @@
 <script setup>
   const config = useRuntimeConfig()
+  const notificationsStore = useNotificationsStore()
   
   const { data: brands } = await useFetch(`${ config.public.baseURL }c/brands/`)
   const { data: cts } = await useFetch(`${ config.public.baseURL }c/ct/`)
@@ -23,7 +24,7 @@
       </div>
 
 
-      <div class="md:flex md:justify-between items-center py-2">
+      <div class="md:flex md:justify-between items-end py-2">
 
 
         <div class="grid grid-cols-1">
@@ -34,28 +35,15 @@
               <a href="https://vk.com/glsvar" target="_blank" class="font-bold text-base mx-2">МЫ ВКОНТАКТЕ</a>
             </div> 
           </div>
-        </div>
 
-
-
-
-
-
-
-        <div class="w-full h-full md:w-1/2 md:order-1">
-          
-          <p class="text-[10px] md:text-xs py-6 select-none text-gray-700 dark:text-gray-300">
-            Все цены и материаллы, указанные на сайте www.glsvar.ru, приведены как справочная информация и не являются публичной офертой и могут быть изменены в любое время без предупреждения. 
-            Для получения подробной информации о стоимости, сроках и условиях поставки просьба обращаться по указанным на сайте телефонам.
-          </p>  
           <div class="">
             <ul class="flex justify-start gap-8 text-xs md:text-sm mt-3 sm:mt-0 md:order-last py-2 ">
               <li>
-                <button @click="showAllert()" class="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100">Доставка</button>
+                <button @click="notificationsStore.pushToast({id: 1, type: 'error', text:' Раздел временно не доступен'})" class="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100">Доставка</button>
               </li>
               
               <li>
-                <button @click="showAllert()" class=" text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100">Способы оплаты</button>
+                <button @click="notificationsStore.pushToast({id: 10, type: 'error', text:' Раздел временно не доступен'})" class=" text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100">Способы оплаты</button>
               </li>
 
               <li>
@@ -63,7 +51,18 @@
               </li>
             </ul>
           </div>
+
+        </div>
+
         
+
+        <div class="w-full h-full md:w-1/2 md:order-1">
+          
+          <p class="text-[10px] md:text-xs py-6 select-none text-gray-700 dark:text-gray-300">
+            Все цены и материаллы, указанные на сайте www.glsvar.ru, приведены как справочная информация и не являются публичной офертой и могут быть изменены в любое время без предупреждения. 
+            Для получения подробной информации о стоимости, сроках и условиях поставки просьба обращаться по указанным на сайте телефонам.
+          </p>  
+
         </div>
       </div>
 

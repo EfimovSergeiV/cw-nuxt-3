@@ -86,48 +86,6 @@
                   </div>
 
                 </div>
-
-                <div class="py-6">
-                  <div class="grid grid-cols-1 md:flex gap-4">
-
-
-                    <div class="relative w-full">
-                      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9607.746256144887!2d63.1143089!3d52.9855424!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x43cd03eb0088f70d%3A0xfaaebd2d312ed8f7!2z0JPQu9Cw0LLQvdGL0Lkg0KHQstCw0YDRidC40Lo!5e0!3m2!1sru!2sru!4v1695649108350!5m2!1sru!2sru" width="100%" height="280" frameborder="0" loading="lazy" class="rounded-md border-blue-600/50"></iframe>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 gap-4 md:min-w-[480px]">
-
-
-                      <div v-if="shopStore.shops.length > 0" class="">
-
-
-                        <div class="">
-                          <div class="grid grid-cols-1">
-                            <div v-for="city, pk in uniqueCities(shopStore.shops)" :key="pk" class="flex items-center justify-between py-2">
-                              <div class="flex items-center">
-                                <button @click="getShops(city)" class="">
-                                  <div class="flex items-center gap-2">
-                                    <div class="mdi mdi-map-marker-radius"></div>
-                                    <p class="">{{ city }}</p>
-                                  </div>
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                          <div class=""></div>
-
-                        </div>
-                      </div>
-
-                    </div>
-
-
-
-
-
-
-                  </div>
-                </div>
       
               </div>
             </div>
@@ -182,124 +140,10 @@
 
         </div>
       </div>
-
-
-
-
-      <!-- <div class="bg-white dark:bg-gray-800 rounded-md border border-gray-200 dark:border-gray-700 my-2">
-        <div class="">
-          <div class="flex flex-col items-center justify-center px-4 py-2">
-
-            <div class="py-1">
-              <p class="text-xl">{{ descriptionData }}</p>  
-            </div>
-            <div class="py-1 max-w-3xl">
-              <p class="text-lg text-gray-600 dark:text-gray-400 text-center">
-                Наши магазины – это место, где профессионалы и энтузиасты приходят за лучшими решениями для сварочных работ. Сварка - это искусство, и мы знаем, как сделать его доступным и эффективным для каждого.
-              </p>
-            </div>
-
-          </div>
-
-          <div class="py-2 px-4">
-            <div class="flex gap-8">
-
-
-              <div class="relative w-full">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9607.746256144887!2d63.1143089!3d52.9855424!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x43cd03eb0088f70d%3A0xfaaebd2d312ed8f7!2z0JPQu9Cw0LLQvdGL0Lkg0KHQstCw0YDRidC40Lo!5e0!3m2!1sru!2sru!4v1695649108350!5m2!1sru!2sru" width="100%" height="280" frameborder="0" loading="lazy" class="rounded-md border-blue-600/50"></iframe>
-              </div>
-              
-              <div class="grid grid-cols-1 gap-4 min-w-[460px]">
-                <div class="">
-                  <p class="py-2 text-base text-gray-600 dark:text-gray-400">Мы открыты для посетителей:</p>
-                  <div class="flex gap-10">
-                    <div class="grid grid-cols-1">
-                      <div class="">
-                        <div class="grid grid-cols-2 gap-6 border-b border-gray-200 dark:border-gray-700">
-                          <p class="text-xs md:text-sm">понедельник</p>
-                          <p class="text-xs md:text-sm">08:30 – 17:30</p>
-                        </div>                      
-                      </div>
-                      <div class="">
-                        <div class="grid grid-cols-2 gap-6 border-b border-gray-200 dark:border-gray-700">
-                          <p class="text-xs md:text-sm">вторник</p>
-                          <p class="text-xs md:text-sm">08:30 – 17:30</p>
-                        </div>                      
-                      </div>
-                      <div class="">
-                        <div class="grid grid-cols-2 gap-6 border-b border-gray-200 dark:border-gray-700">
-                          <p class="text-xs md:text-sm">среда</p>
-                          <p class="text-xs md:text-sm">08:30 – 17:30</p>
-                        </div>                          
-                      </div>
-                    </div>
-                    <div class="grid grid-cols-1">
-                      <div class="">
-                        <div class="grid grid-cols-2 gap-6 border-b border-gray-200 dark:border-gray-700">
-                          <p class="text-xs md:text-sm">четверг</p>
-                          <p class="text-xs md:text-sm">08:30 – 17:30</p>
-                        </div>                      
-                      </div>
-                      <div class="">
-                        <div class="grid grid-cols-2 gap-6 border-b border-gray-200 dark:border-gray-700">
-                          <p class="text-xs md:text-sm">пятница</p>
-                          <p class="text-xs md:text-sm">08:30 – 17:30</p>
-                        </div>                      
-                      </div>
-                      <div class="">
-                        <div class="grid grid-cols-2 gap-6 border-b border-gray-200 dark:border-gray-700">
-                          <p class="text-xs md:text-sm">суббота</p>
-                          <p class="text-xs md:text-sm">09:00 - 15:00</p>
-                        </div>                      
-                      </div>
-                      <div class="">
-                        <div class="grid grid-cols-2 gap-6 border-b border-gray-200 dark:border-gray-700">
-                          <p class="text-xs md:text-sm">воскресенье</p>
-                          <p class="text-xs md:text-sm">Закрыто</p>
-                        </div>                          
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="">
-                  <div class="flex items-end md:justify-center">
-                    <div class="text-gray-700 dark:text-gray-300">
-                      <div class="flex gap-4 items-center">
-                        <p class="mdi mdi-36px mdi-map-marker-outline"></p>
-                        <div class="">
-                          <p class="text-xl">Казахстан</p>
-                          <p class="text-base">Рудный, ул. Топоркова 35, 111500</p>
-                        </div>
-                      </div>
-                      <div class="py-2">
-                        <div class="grid grid-cols-1">
-                          <a href="tel:+77084238070" class="text-4xl">+7 (708) 423-80-70</a>
-                          <a href="mailto:zakaz@glsvar.ru" target="_blank" class="text-base text-right">zakaz@glsvar.ru</a>                      
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-
-
-
-
-
-            </div>
-          </div>
- 
-        </div>
-      </div> -->
-
-
     </div>
 
     <CorouselBrands />
-
+    <ShopMaps />
     <AppFooter />
     
   </div>
