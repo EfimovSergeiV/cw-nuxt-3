@@ -72,17 +72,38 @@
 
 
 /* Исчезновение уведомлений*/
+.right-emergence-enter-from,
+.right-emergence-leave-to {
+  transform: translateX(12em);
+  opacity: 0;
+}
 .right-emergence-enter-active {
   transition: all 0.3s ease-out;
 }
 .right-emergence-leave-active {
   transition: all 0.2s ease-out;
 }
-.right-emergence-enter-from,
-.right-emergence-leave-to {
-  transform: translateX(12em);
-  opacity: 0;
+
+
+/* FIX правильная анимация, с пофикшенным проскакивающим скролом по горизонтали DOM */
+.list-move, /* apply transition to moving elements */
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
 }
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+/* ensure leaving items are taken out of layout flow so that moving
+   animations can be calculated correctly. */
+.list-leave-active {
+  position: absolute;
+}
+
 
 
 
