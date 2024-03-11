@@ -174,40 +174,37 @@
                               <div class="">
                                 <div class="bg-white border border-gray-200 rounded-md py-2 px-2">
                                   <div class="grid grid-cols-1 gap-4">
-                                    
+
                                     <nuxt-link :to="{ name: 'prods', query: { ct: ct.id } }">
                                       <div class="flex justify-center">
-                                        <img v-if="ct.icon" :src="`/${ct.icon}`" class="h-16" />
+                                        <img v-if="ct.image" :src="`${ct.image}`" class="h-16" />
                                       </div>
                                       
                                       <div class="flex justify-center mt-4">
-                                        <p class=" text-gray-700 text-base transition-all">{{ ct.name }}</p>              
+                                        <p class="text-center text-gray-700 text-base transition-all">{{ ct.name }}</p>              
                                       </div>                                    
                                     </nuxt-link>
 
-
-                                  </div>
-                                <!-- 
-                                  <div>
-                                    <ul>
-                                      <li v-for="sct in ct.inserted" :key="sct.id" class="inline-block ">
-                                        <nuxt-link :to="{ name: 'prods', query: { ct: sct.id } }" class="text-gray-700 mr-3 text-sm hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100 transition-all">{{ sct.name }}</nuxt-link>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                -->
-                                  
+                                  </div>                                  
                                 </div>
                               </div>
                             </div>
                           </div>
+
+                          <div class="">
+                            <div class="bg-white border border-gray-200 rounded-md py-2 px-2 h-full">
+                              <nuxt-link :to="{ name: 'cts' }">
+                                <div class="grid grid-cols-1 gap-4  h-full">
+                                  <div class="flex items-center justify-center h-full">
+                                    <p class=" text-gray-600">Перейти в категории</p>
+                                  </div>
+                                </div>                              
+                              </nuxt-link>
+                            </div>
+                          </div>
+
                         </div>
 
-                        <div class="flex items-center justify-end px-6 pt-2">
-                          <nuxt-link :to="{ name: 'cts' }">
-                            <p class="text-base text-gray-700">Перейти в категории</p>
-                          </nuxt-link>
-                        </div>
 
                       </div>
                     </div>  

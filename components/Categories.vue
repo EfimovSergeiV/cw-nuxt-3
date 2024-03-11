@@ -8,7 +8,7 @@
 
 
 <template>
-  <div class="container mx-auto px-4 py-2 max-w-6xl lg:px-8">
+  <div class="container mx-auto py-2 px-4 max-w-6xl lg:px-8">
     <div class="">
 
 
@@ -23,56 +23,31 @@
 
       <div v-else  class="">
 
-        <div class="">
-          <div class="">
-            
+        <div class="bg-white rounded-md px-4">
+          <div class="hidden md:block">
             <div class="">
-              
-              <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
-                <div v-for="ct in cts" :key="ct.id" class="break-inside-avoid-column">
-                  <div class="">
-
-
-                    <div class="">
-                      
-                      <div class="bg-white border border-gray-200 dark:border-gray-700 rounded-md py-2 px-2">
-                        <div class="grid grid-cols-1 gap-4">
-                          <nuxt-link :to="{ name: 'prods', query: { ct: ct.id } }">
-                            <div class="flex justify-center">
-                              <img v-if="ct.icon" :src="`/${ct.icon}`" class="h-16" />
-                            </div>
-                            
-                            <div class="flex justify-center mt-4">
-                              <nuxt-link :to="{ name: 'prods', query: { ct: ct.id } }" class=" text-gray-700 text-base md:text-xl transition-all">{{ ct.name }}</nuxt-link>              
-                            </div>                          
-                          </nuxt-link>
-                        </div>
-                      <!-- 
-                        <div>
-                          <ul>
-                            <li v-for="sct in ct.inserted" :key="sct.id" class="inline-block ">
-                              <nuxt-link :to="{ name: 'prods', query: { ct: sct.id } }" class="text-gray-700 mr-3 text-sm hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100 transition-all">{{ sct.name }}</nuxt-link>
-                            </li>
-                          </ul>
-                        </div>
-                      -->
+                <div class="columns-1 md:columns-2 gap-4">
+                  <div v-for="ct in cts" :key="ct.id" class="break-inside-avoid-column py-2">
+                    
+                    <div class="flex items-center px-2 py-4 gap-4 bg-white rounded-t-md">
+                      <div class="">
+                        <img :src="ct.image" class="h-14" />
                       </div>
-
-
-
-
-
+                      <div class="">
+                        <nuxt-link :to="{ name: 'prods', query: { ct: ct.id } }" class="text-base text-gray-700 dark:text-gray-700">{{ ct.name }}</nuxt-link>
+                      </div>
                     </div>
 
+                    <div class="columns-2 gap-x-2 gap-y-4 px-2 py-2 bg-white border-t border-gray-300 dark:border-gray-300 rounded-b-md">
+                      <div v-for="sct in ct.inserted" :key="sct.id" class="flex items-center gap-2 py-0.5">
+                        <nuxt-link :to="{ name: 'prods', query: { ct: ct.id } }" class="text-sm text-gray-600 hover:text-gray-700 dark:text-gray-600 dark:hover:text-gray-700">{{ sct.name }}</nuxt-link>
+                      </div>
+                    </div>
 
                   </div>
                 </div>
               </div>
-              
-            </div>
-
-            
-          </div>  
+          </div>
         </div>
 
       </div>

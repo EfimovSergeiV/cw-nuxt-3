@@ -61,8 +61,8 @@
                 </div>
               </transition-group>
             </div>
-            <div v-else class="flex items-center justify-center h-full bg-gray-800 px-4 py-0.5 rounded-md border border-gray-700">
-              <p class="text-sm text-gray-400">Выберите город</p>
+            <div v-else class="flex items-center justify-center h-full bg-white dark:bg-gray-800 px-4 py-0.5 rounded-md border border-gray-100 dark:border-gray-700">
+              <p class="text-sm text-gray-500 dark:text-gray-400">Выберите город</p>
             </div>
           </transition>
         </div>
@@ -78,8 +78,8 @@
 
           <div v-else class="relative rounded-md">
             <img src="/mapshops.webp" class="rounded-md object-cover min-h-[350px]" />
-            <div class="absolute inset-0 bg-black/50 hover:bg-black/60 transition-all duration-700 flex items-center justify-center rounded-md">
-              <p class="text-center text-sm text-gray-100 ">Для отображения карты выберите магазин</p>
+            <div class="absolute inset-0 bg-white/50 hover:bg-white/60 dark:bg-black/50 dark:hover:bg-black/60 transition-all duration-700 flex items-center justify-center rounded-md">
+              <p class="text-center text-sm text-gray-700 dark:text-gray-100">Для отображения карты выберите магазин</p>
             </div>
           </div>
 

@@ -14,13 +14,13 @@
 
 
       <div class="hidden md:block">
-        <p class="text-lg text-gray-700 dark:text-gray-300 py-2">Категории</p>
+        <!-- <p class="text-base text-gray-700 dark:text-gray-300 py-1">Категории</p> -->
         <div class="">
             <div class="columns-2 lg:columns-3 gap-4">
               <div v-for="ct in cts" :key="ct.id" class="break-inside-avoid-column">
                 <nuxt-link :to="{ name: 'prods', query: { ct: ct.id } }" class="text-sm text-gray-700 dark:text-gray-300">{{ ct.name }}</nuxt-link>
 
-                <div class="columns-2 gap-x-2 gap-y-0.5 py-2 border-t border-gray-700">
+                <div class="columns-2 gap-x-2 gap-y-0.5 py-2 border-t border-gray-300 dark:border-gray-700">
                   <div v-for="sct in ct.inserted" :key="sct.id" class="flex items-center gap-2">
                     <nuxt-link :to="{ name: 'prods', query: { ct: ct.id } }" class="text-xs text-gray-600 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">{{ sct.name }}</nuxt-link>
                   </div>
@@ -32,7 +32,7 @@
       </div>
 
 
-      <div class="md:flex md:justify-between items-start">
+      <div class="md:flex md:justify-between items-start md:mt-6">
 
 
         <div class="grid grid-cols-1">
@@ -45,23 +45,22 @@
           </div>
 
           <div class="py-4">
-            <ul class="flex justify-start gap-8 text-xs md:text-sm mt-3 sm:mt-0 md:order-last">
+            <ul class="flex justify-start gap-4 text-xs md:text-sm mt-3 sm:mt-0 md:order-last">
               <li>
-                <button @click="notificationsStore.pushToast({id: 1, type: 'error', text:' Раздел временно не доступен'})" class="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100">Доставка</button>
+                <button @click="notificationsStore.pushToast({id: 1, type: 'error', text:' Раздел временно не доступен'})" class="text-xs text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100">Доставка</button>
               </li>
               
               <li>
-                <button @click="notificationsStore.pushToast({id: 10, type: 'error', text:' Раздел временно не доступен'})" class=" text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100">Способы оплаты</button>
+                <button @click="notificationsStore.pushToast({id: 10, type: 'error', text:' Раздел временно не доступен'})" class="text-xs text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100">Способы оплаты</button>
               </li>
 
               <li>
-                <nuxt-link :to="{ name: 'policy'}" class=" text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100 text-xs md:text-sm">Политика обработки данных</nuxt-link>
+                <nuxt-link :to="{ name: 'policy'}" class="text-xs text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100">Политика обработки данных</nuxt-link>
               </li>
             </ul>
           </div>
 
         </div>
-
 
 
         <div class="w-full h-full md:w-1/2 md:order-1">
