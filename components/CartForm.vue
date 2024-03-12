@@ -353,12 +353,15 @@
               </div>
 
             </div>
-            <div class="h-[300px]">
+            <div class="h-[350px]">
               <div v-if="selectedShop" class="">
-                <iframe :src="selectedShop.google_maps" width="100%" height="300" frameborder="0" loading="lazy" class="rounded-md"></iframe>
+                <iframe :src="selectedShop.google_maps" width="100%" height="350" frameborder="0" loading="lazy" class="rounded-md"></iframe>
               </div>
-              <div v-else class="flex items-center justify-center h-full">
-                <p class="text-sm text-gray-400 dark:text-gray-500">После выбора магазина тут будет карта</p>
+              <div v-else class="flex items-center justify-center h-full relative">
+                <img src="/mapshops.webp" class="rounded-md object-cover min-h-[350px]" />
+                <div class="absolute inset-0 bg-white/50 hover:bg-white/60 dark:bg-black/50 dark:hover:bg-black/60 transition-all duration-700 flex items-center justify-center rounded-md">
+                  <p class="text-center text-sm text-gray-700 dark:text-gray-100">Для отображения карты выберите магазин</p>
+                </div>
               </div>
             </div>
           </div>

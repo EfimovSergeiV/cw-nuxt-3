@@ -1,7 +1,8 @@
 <script setup>
-  import cities from '~/cities.ts';
+  // import cities from '~/cities.ts';
   import debounce from "lodash.debounce";
 
+  const cities = await import('~/cities.ts')
   const config = useRuntimeConfig()
   const route = useRoute()
   const colorMode = useColorMode()
