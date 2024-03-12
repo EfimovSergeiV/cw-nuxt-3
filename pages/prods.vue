@@ -159,7 +159,7 @@
 
 
     <div class="mx-auto px-4 my-2 max-w-6xl lg:px-8">
-      <div v-if="products.count > 0" class="flex items-center justify-end">
+      <div v-if="products.count > 0" class="flex items-center justify-start md:justify-end">
         <Pagination :count="products.count" />
       </div>
     </div>
