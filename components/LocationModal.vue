@@ -101,7 +101,7 @@
                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                       <p class="text-gray-700 dark:text-gray-400 mdi mdi-map-marker-radius"></p>
                     </div>
-                    <input v-model="searchTerm" type="search" id="search-city" class="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-600 dark:border-gray-700 dark:placeholder-gray-400 dark:text-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Например - Алматы">
+                    <input v-model="searchTerm" type="search" id="search-city" class="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-600 dark:border-gray-700 dark:placeholder-gray-400 dark:text-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Москва">
                   </div> 
                 </div>
 

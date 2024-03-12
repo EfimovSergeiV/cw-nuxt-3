@@ -47,7 +47,7 @@
           </div>
         </div>
 
-        <div class="min-h-[5rem] py-2">
+        <div class="min-h-[6rem] py-2">
           <transition name="fade" mode="out-in">
             <div v-if="selectedCity" class="">
               <transition-group name="list" tag="div" class="flex flex-wrap items-center gap-2">
