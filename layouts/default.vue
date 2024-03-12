@@ -58,8 +58,8 @@
         /* Определяем местоположение по координатам */
         navigator.geolocation.getCurrentPosition(position => {
           let location = {
-            "lat": position.coords.latitude, 
-            "long": position.coords.longitude 
+            "latitude": position.coords.latitude, 
+            "longitude": position.coords.longitude 
           }
 
           clientStore.sendCoordinates(location)
@@ -69,7 +69,7 @@
       } else {
         /* Местоположение не доступно */
       }
-    }, 15000)
+    }, 7500) // 15000
 
   })
 

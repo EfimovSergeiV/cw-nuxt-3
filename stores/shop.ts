@@ -50,16 +50,16 @@ export const useShopStore = defineStore('ShopStore', {
   state: () => ({
     shop: null,
     shops: [],
-    city: 'Псков',
+    selectedCity: null, /// Для того чтоб в ShopMaps не скидывался выбранный город при смене роута
     writeUsModal: false
   }),
   actions: {
     selectShop(shop: any) {
       this.shop = shop
     },
-    selectCityMaps(city: any) {
-      this.city = city
-    },
+    // selectCityMaps(city: any) {
+    //   this.city = city
+    // },
     writeShops(shops: any) {
       this.shops = shops
       this.shop = shops.value[0]
@@ -201,9 +201,8 @@ export const useClientStore = defineStore('ClientStore', {
       delivery: false,
       adress: null,
 
-      city: 'Москва', /// Custom city
-      contact: null,  /// Custom contact
-    
+      city: 'Москва',
+      contact: null,
       entity: false,
       company: null,
       legaladress: null,
@@ -229,14 +228,14 @@ export const useClientStore = defineStore('ClientStore', {
       this.client.comment = null
     },
     async sendCoordinates(coordinates: any) {
-      // const config = useRuntimeConfig()
-      // const { data }: any = await useFetch(`${ config.public.baseURL }coordinates/`, {
-      //   method: 'POST',
-      //   body: coordinates
-      // });
-      // if ( data.value ) {
-      //   this.client.city = data.value.at(0)
-      // }
+      const config = useRuntimeConfig()
+      const { data }: any = await useFetch(`${ config.public.baseURL }coordinates/`, {
+        method: 'POST',
+        body: coordinates
+      });
+      if ( data.value ) {
+        this.client.city = data.value.at(1)
+      }
     },
     async getLocateFromIP() {
       // const config = useRuntimeConfig()

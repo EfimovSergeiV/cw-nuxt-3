@@ -78,7 +78,7 @@
                   <div class="flex items-center justify-end">
                     
                     <div class="flex flex-col">
-                      <p class="text-right">Псков</p>
+                      <p class="text-right">{{ clientStore.client.city }}</p>
                       <!-- <a href="tel:+77084238070" class="text-xl font-semibold text-end py-0.5">+7 (708) 423-80-70</a> -->
                       <a href="tel:+77084238070" class="text-xl font-semibold text-end py-0.5">+7 (708) 423-80-70</a>
                       <a href="mailto:zakaz@glsvar.ru" target="_blank" class="text-sm text-right">zakaz@glsvar.ru</a>

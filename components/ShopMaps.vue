@@ -2,8 +2,9 @@
 
   const config = useRuntimeConfig()
   const shopStore = useShopStore()
+  const clientStore = useClientStore()
 
-
+  const uCities = ref([ "Москва", "Санкт-Петербург", "Псков", "Смоленск", "Петрозаводск", "Великие Луки" ])
   const uniqueCities = (shops) => {
     let cities = []
     shops.forEach(shop => {
@@ -14,7 +15,7 @@
     return cities
   }
 
-  const selectedCity = ref(null)
+  // const selectedCity = ref(null)
   const selectedShop = ref(null)
   const cityShops = ref([])
 
@@ -25,6 +26,13 @@
   const selectShop = (shop) => {
     selectedShop.value = shop
   }
+
+  watch(clientStore.client, () => {
+    /// Проверяем есть ли clientStore.client.city в uCities
+    if (uCities.value.includes(clientStore.client.city)) {
+      shopStore.selectedCity = clientStore.client.city
+    }
+  })
 
 </script>
 
@@ -37,7 +45,7 @@
         <div class="flex flex-wrap gap-x-4 gap-y-2">
           <div v-for="city, pk in uniqueCities(shopStore.shops)" :key="pk" class="break-inside-avoid-column">
             <div class="flex items-center">
-              <button @click="selectedCity = city" class="group bg-white dark:bg-gray-800 px-4 py-0.5 rounded-md border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600">
+              <button @click="shopStore.selectedCity = city" class="group bg-white dark:bg-gray-800 px-4 py-0.5 rounded-md border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600">
                 <div class="flex items-center gap-1">
                   <div class="mdi mdi-city-variant"></div>
                   <p class="text-lg">{{ city }}</p>
@@ -46,14 +54,13 @@
             </div>
           </div>
         </div>
-
         <div class="min-h-[6rem] py-2">
           <transition name="fade" mode="out-in">
-            <div v-if="selectedCity" class="">
+            <div v-if="shopStore.selectedCity" class="">
               <transition-group name="list" tag="div" class="flex flex-wrap items-center gap-2">
-                <div v-for="shop in getShops(selectedCity)" :key="shop.id" :id="shop.id" class="">
+                <div v-for="shop in getShops(shopStore.selectedCity)" :key="shop.id" :id="shop.id" class="">
                   <button @click="selectShop(shop)" class="text-left bg-white dark:bg-gray-800 px-4 py-0.5 rounded-md border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-6000">
-                    <p class="text-base"> {{ shop.adress.replace(`${selectedCity},`, '') }}</p>
+                    <p class="text-base"> {{ shop.adress.replace(`${shopStore.selectedCity},`, '') }}</p>
                     <a :href="`tel:${shop.phone.replace('(', '').replace(')', '').replace(/ /ig, '')}`" class="text-xs text-gray-600 dark:text-gray-400">тел. {{ shop.phone }}</a>
                     <p class="text-xs text-gray-600 dark:text-gray-400">{{ shop.wday }}</p>
                     <p class="text-xs text-gray-600 dark:text-gray-400">{{ shop.wend }}</p>

@@ -22,7 +22,7 @@
 
                 <div class="columns-2 gap-x-2 gap-y-0.5 py-2 border-t border-gray-300 dark:border-gray-700">
                   <div v-for="sct in ct.inserted" :key="sct.id" class="flex items-center gap-2">
-                    <nuxt-link :to="{ name: 'prods', query: { ct: ct.id } }" class="text-xs text-gray-600 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">{{ sct.name }}</nuxt-link>
+                    <nuxt-link :to="{ name: 'prods', query: { ct: sct.id } }" class="text-xs text-gray-600 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">{{ sct.name }}</nuxt-link>
                   </div>
                 </div>
 
