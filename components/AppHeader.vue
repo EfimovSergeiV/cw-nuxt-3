@@ -9,7 +9,7 @@
 
   const productsStore = useProductsStore()
   const clientStore = useClientStore()
-  // const route = useRoute()
+  // const shopStore = useShopStore()
 
   const { signIn, signOut, token, data, status, lastRefreshedAt } = useAuth()
   const { data: cts } = await useFetch(`${ config.public.baseURL }c/ct/`)
@@ -56,12 +56,15 @@
 
   })
 
+  // const getShopContact = () => {
+  //   return shopStore.shops.filter(shop => shop.city === clientStore.client.city)
+  // }
+
 </script>
 
 
 <template>
   <div class="container mx-auto max-w-6xl px-4 lg:px-8 ">
-
 
     <div class="relative mb-1">
       <div class="grid grid-cols-1 md:flex gap-4">

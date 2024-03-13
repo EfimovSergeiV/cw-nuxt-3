@@ -31,8 +31,8 @@
                 </div>
               </div>
               <div v-if="props.product.brand" class="absolute top-0 right-0">
-                <div class="px-4 py-2">
-                  <img :src="props.product.brand.image" class="h-24" />
+                <div class="py-1 px-1">
+                  <img :src="props.product.brand.image" class="h-12" />
                 </div>
               </div>
             </div>
