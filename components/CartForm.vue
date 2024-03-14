@@ -310,8 +310,8 @@
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-1 py-2">
             <div class="">
-              <div v-if="selectedShop" class="">
-                <div class="flex items-start gap-6 py-2">
+              <div class="justify-self-center mx-2 my-2" v-if="selectedShop">
+                <!-- <div class="flex items-start gap-6 py-2">
                   <div class="grid grid-cols-1 gap-1">
                     <p class="text-sm text-right"><span class="text-xs">График работы:</span> {{ selectedShop.wday }}</p>
                     <p class="text-sm text-right">{{ selectedShop.wend }}</p>
@@ -320,7 +320,21 @@
                     <a :href="`tel:${selectedShop.phone.replace('(', '').replace(')', '').replace(/ /ig, '')}`" class="text-sm text-right"><span class="text-xs">тел:</span> {{ selectedShop.phone }} </a>
                     <a v-if="selectedShop.mobile" :href="`tel:${selectedShop.mobile.replace('(', '').replace(')', '').replace(/ /ig, '')}`" class="text-sm text-right">{{ selectedShop.mobile }}</a>
                   </div>
-                </div>
+                </div> -->
+
+                
+     
+                    <div class="flex items-center">
+                      <div class="border-r">
+                        <a class="text-base md:text-2xl mx-2" :href="'tel:' + selectedShop.phone.replace(/[^+\d]/g, '')">{{ selectedShop.phone }}</a>
+                      </div>
+                      <div class="mx-2">
+                        <p class="text-xs font-bold mt-1">{{ selectedShop.wday }}</p>
+                        <p class="text-xs font-bold">{{ selectedShop.wend }}</p>
+                      </div>
+                    </div>
+
+
               </div>
             </div>
 
@@ -334,9 +348,8 @@
 
 
           <div class="border dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-700">
-            <div class="">
+            <!-- <div class="">
               <div class="grid lg:grid-cols-2 justify-items-stretch items-center ">
-
                 <div class="justify-self-center mx-2 my-2" v-if="clientStore.client.adress">
                   <div class="" v-if="clientStore.client.adress.phone">
                     <div class="flex items-center">
@@ -351,8 +364,8 @@
                   </div>
                 </div>
               </div>
+            </div> -->
 
-            </div>
             <div class="h-[350px]">
               <div v-if="selectedShop" class="">
                 <iframe :src="selectedShop.google_maps" width="100%" height="350" frameborder="0" loading="lazy" class="rounded-md"></iframe>

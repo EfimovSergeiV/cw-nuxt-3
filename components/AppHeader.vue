@@ -81,10 +81,10 @@
                 <div class="flex flex-col py-2">
                   <div class="flex items-center justify-end">
                     
-                    <div class="flex flex-col px-3 ">
+                    <div class="px-3 ">
                       <!-- <a href="tel:+77084238070" class="text-2xl font-semibold text-end py-0.5">+7 (708) 423-80-70</a> -->
                       <a href="mailto:zakaz@glsvar.ru" target="_blank" class="text-2xl font-semibold text-right">zakaz<span class="italic uppercase">@glsvar.ru</span></a>
-                      <p style="transform: scaleY(-0.8);" class="text-2xl font-semibold text-right opacity-10 select-none">zakaz<span class="italic uppercase">@glsvar.ru</span></p>
+                      <p style="transform: scaleY(-0.8);" class="-mt-2 text-2xl font-semibold text-right opacity-10 select-none">zakaz<span class="italic uppercase">@glsvar.ru</span></p>
                     </div>
 
                   </div>
@@ -125,12 +125,13 @@
                 </div>
 
                 <div class="">
-                  <nuxt-link :to="{ name: 'lk'}"  v-if="status === 'authenticated'" class=" bg-gray-100  shadow-lg shadow-black/30 border border-gray-100/10 dark:border-white/20 rounded-lg transition-all duration-500 w-full h-full flex items-center">
+                  <!-- Сделать личный кабинет -->
+                  <div :to="{ name: 'lk'}" v-if="status === 'authenticated'" class=" bg-gray-100  shadow-lg shadow-black/30 border border-gray-100/10 dark:border-white/20 rounded-lg transition-all duration-500 w-full h-full flex items-center">
                     <div class="flex items-center gap-2 text-gray-700 h-full w-full">
                       <span class="px-2 mdi mdi-account border-r border-gray-300"></span>
                       <p class="text-sm "> Личный кабинет</p>
                     </div>
-                  </nuxt-link>
+                  </div>
                   <button  v-else @click="clientStore.registerModal = true" class=" bg-gray-100 shadow-lg shadow-black/30 border border-gray-100/10 dark:border-white/20 rounded-lg transition-all duration-500 w-full h-full flex items-center">
                     <div class="flex items-center gap-2 text-gray-700 h-full w-full">
                       <span class="px-2 mdi mdi-account border-r border-gray-300"></span>
