@@ -81,12 +81,12 @@
                 <div class="flex flex-col py-2">
                   <div class="flex items-center justify-end">
                     
-                    <div class="flex flex-col">
-                      <p class="text-right">{{ clientStore.client.city }}</p>
-                      <!-- <a href="tel:+77084238070" class="text-xl font-semibold text-end py-0.5">+7 (708) 423-80-70</a> -->
-                      <a href="tel:+77084238070" class="text-xl font-semibold text-end py-0.5">+7 (708) 423-80-70</a>
-                      <a href="mailto:zakaz@glsvar.ru" target="_blank" class="text-sm text-right">zakaz@glsvar.ru</a>
+                    <div class="flex flex-col px-3 ">
+                      <!-- <a href="tel:+77084238070" class="text-2xl font-semibold text-end py-0.5">+7 (708) 423-80-70</a> -->
+                      <a href="mailto:zakaz@glsvar.ru" target="_blank" class="text-2xl font-semibold text-right">zakaz<span class="italic uppercase">@glsvar.ru</span></a>
+                      <p style="transform: scaleY(-0.8);" class="text-2xl font-semibold text-right opacity-10 select-none">zakaz<span class="italic uppercase">@glsvar.ru</span></p>
                     </div>
+
                   </div>
                 </div>
               </div>
