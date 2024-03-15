@@ -17,7 +17,7 @@
 
   // const selectedCity = ref(null)
   const selectedShop = ref(null)
-  const cityShops = ref([])
+  // const cityShops = ref([])
 
   const getShops = (city) => {
     return shopStore.shops.filter(shop => shop.city === city)
@@ -45,21 +45,32 @@
         <div class="flex flex-wrap gap-x-4 gap-y-2">
           <div v-for="city, pk in uniqueCities(shopStore.shops)" :key="pk" class="break-inside-avoid-column">
             <div class="flex items-center">
-              <button @click="shopStore.selectedCity = city" class="group bg-white dark:bg-gray-800 px-4 py-0.5 rounded-md border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600">
-                <div class="flex items-center gap-1">
-                  <div class="mdi mdi-city-variant"></div>
-                  <p class="text-lg">{{ city }}</p>
-                </div>
-              </button>
+              <div v-if="shopStore.selectedCity === city">
+                <button @click="shopStore.selectedCity = city" class="group bg-gray-100 dark:bg-gray-700 px-4 py-0 rounded-md border border-gray-200 dark:border-gray-600 hover:border-gray-200 dark:hover:border-gray-600">
+                  <div class="flex items-center gap-1">
+                    <div class="mdi mdi-city-variant"></div>
+                    <p class="text-lg">{{ city }}</p>
+                  </div>
+                </button>
+              </div>
+              <div v-else>
+                <button @click="shopStore.selectedCity = city" class="group bg-white dark:bg-gray-800 px-4 py-0 rounded-md border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600">
+                  <div class="flex items-center gap-1">
+                    <div class="mdi mdi-city-variant"></div>
+                    <p class="text-lg">{{ city }}</p>
+                  </div>
+                </button>
+              </div>
+
             </div>
           </div>
         </div>
-        <div class="min-h-[6rem] py-2">
+        <div class="min-h-[7rem] py-2">
           <transition name="fade" mode="out-in">
             <div v-if="shopStore.selectedCity" class="">
               <transition-group name="list" tag="div" class="flex flex-wrap items-center gap-2">
                 <div v-for="shop in getShops(shopStore.selectedCity)" :key="shop.id" :id="shop.id" class="">
-                  <button @click="selectShop(shop)" class="text-left bg-white dark:bg-gray-800 px-4 py-0.5 rounded-md border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-6000">
+                  <button @click="selectShop(shop)" class="text-left bg-white dark:bg-gray-800 px-4 py-2 rounded-md border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-6000">
                     <p class="text-base"> {{ shop.adress.replace(`${shopStore.selectedCity},`, '') }}</p>
                     
                     <div class="flex gap-1">
