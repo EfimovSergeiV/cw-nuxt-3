@@ -79,8 +79,8 @@
                   <div class="">
                     <p class="text-xl text-center">{{ descriptionData }}</p>  
                   </div>
-                  <div class="py-1 max-w-3xl">
-                    <p class="text-lg text-gray-600 dark:text-gray-400 text-center">
+                  <div class="py-1 max-w-4xl">
+                    <p class="text-base text-gray-600 dark:text-gray-400 text-center">
                       Наши магазины – это место, где профессионалы и энтузиасты приходят за лучшими решениями для сварочных работ. Сварка - это искусство, и мы знаем, как сделать его доступным и эффективным для каждого.
                     </p>
                   </div>
@@ -137,14 +137,14 @@
             </div>
 
 
-            <div class="">
-              <p class="">Наши сертификаты</p>
-              <p class="">
+            <div class="py-4">
+              <p class="text-xl py-2">Наши сертификаты</p>
+              <p class="text-base text-gray-600 dark:text-gray-400">
                 Мы являемся официальным дистрибьютором ведущих брендов сварочного оборудования, и всегда готовы предложить вам широкий выбор продуктов, которые обеспечат вашу эффективную и качественную работу. Наши специалисты всегда готовы проконсультировать вас и помочь выбрать именно то, что вам нужно.
               </p>
             </div>
-            <div class="flex gap-4 py-4">
-              <div class="grid grid-cols-3 gap-4">
+            <div class="">
+              <div class="flex flex-wrap gap-4 py-4">
                 <div class=""><img src="/certs/aurora-2.webp" class="w-36" /></div>
                 <div class=""><img src="/certs/aurora-3.webp" class="w-36" /></div>
                 <div class=""><img src="/certs/aurora.webp" class="w-36" /></div>
@@ -158,11 +158,11 @@
               </div>
 
             </div>
-            <div class="">
-              <p class="">
-                Если вы не нашли то, что Вам нужно - свяжитесь с нами и мы найдем этот товар специально для Вас!
+            <div class="py-8 grid grid-cols-1 gap-2">
+              <p class="text-center">
+                Если вы не нашли то, что Вам нужно - <a href="mailto:zakaz@glsvar.ru" target="_blank" class="font-semibold text-gray-800 dark:text-gray-200 border-b border-gray-800 dark:border-gray-200">свяжитесь с нами</a> и мы найдем этот товар специально для Вас!
               </p>
-              <p class="">
+              <p class="text-center">
                 Покупайте современное сварочное оборудование у нас и помните, качественное оборудование - залог успешной работы!
               </p>
             </div>
