@@ -12,6 +12,7 @@
     { "id": 6, "url": "/shops/6.webp"},
   ]
 
+  const activeCert = ref(null)
   const descriptionData = 'С 2009 года Главный сварщик – ваш надежный партнер в мире сварочного оборудования! '
 
   useSeoMeta({
@@ -145,13 +146,9 @@
             </div>
             <div class="">
               <div class="flex flex-wrap gap-4 py-4">
-                <div class=""><img src="/certs/aurora-2.webp" class="w-36" /></div>
-                <div class=""><img src="/certs/aurora-3.webp" class="w-36" /></div>
-                <div class=""><img src="/certs/aurora.webp" class="w-36" /></div>
-                <div class=""><img src="/certs/cert-redius.webp" class="w-36" /></div>
-                <div class=""><img src="/certs/cert-svarog.webp" class="w-36" /></div>
-                <div class=""><img src="/certs/esab-cert.webp" class="w-36" /></div>
-                <div class=""><img src="/certs/svarog-2.webp" class="w-36" /></div>
+                <div class="" v-for="cert in ['/certs/aurora-2.webp', '/certs/aurora-3.webp', '/certs/cert-redius.webp', '/certs/cert-svarog.webp', '/certs/esab-cert.webp', '/certs/svarog-2.webp']">
+                  <img @click="activeCert = cert" :src="cert" class="w-36 cursor-pointer" />
+                </div>
               </div>
               <div class="">
                 
@@ -173,6 +170,23 @@
         </div>
       </div>
     </div>
+
+    <transition name="fade">
+      <div v-if="activeCert" class="fixed inset-0 overflow-y-hidden overscroll-y-none z-50 my-10">
+        <div class="flex min-h-full justify-center text-center items-center">
+
+          <div class="relative rounded-sm px-10">
+            <div class="overflow-y-auto h-screen">
+              <div class="flex min-h-full justify-center text-center items-center">
+                <img @click="activeCert = null" :src="activeCert" class="rounded-sm cursor-zoom-out w-[80%]" fluid/>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </transition>
 
     <CorouselBrands />
     <ShopMaps />
