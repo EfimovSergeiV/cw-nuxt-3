@@ -29,7 +29,7 @@
             "id": product.value.vcode,
             "name": product.value.name,
             "image": product.value.preview_image,
-            "description": product.value.clean_desc,
+            "description": product.value.description,
             "mpn": product.value.vcode,
             "brand": {
               "@type": 'Brand',
@@ -55,11 +55,11 @@
 
   useSeoMeta({
     title: `${ product.value.name } - Главный Сварщик`,
-    description: `${ product.value.clean_desc }`,
+    description: `${ product.value.description }`,
     keywords: `${ product.value.name }, Главный Сварщик - сварочное оборудование, оборудование для сварки, купить электроды, купить проволоку, купить источник, купить сварочный инвертор`,
     ogLocale: 'ru_RU',
     ogTitle: `${ product.value.name }`,
-    ogDescription: `${ product.value.clean_desc }`,
+    ogDescription: `${ product.value.description }`,
     ogImage: `${ product.value.preview_image }`,
     twitterCard: `${ product.value.preview_image }`,
   })

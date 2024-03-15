@@ -24,7 +24,7 @@
       <div v-else  class="">
 
         <div class="bg-white dark:bg-gray-800 rounded-md border border-gray-200 dark:border-gray-700 px-4">
-          <div class="hidden md:block">
+          <div class="">
             <div class="">
                 <div class="columns-1 md:columns-2 gap-4">
                   <div v-for="ct in cts" :key="ct.id" class="break-inside-avoid-column py-2">
