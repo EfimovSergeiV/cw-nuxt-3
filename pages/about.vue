@@ -136,6 +136,38 @@
               </div>              
             </div>
 
+
+            <div class="">
+              <p class="">Наши сертификаты</p>
+              <p class="">
+                Мы являемся официальным дистрибьютором ведущих брендов сварочного оборудования, и всегда готовы предложить вам широкий выбор продуктов, которые обеспечат вашу эффективную и качественную работу. Наши специалисты всегда готовы проконсультировать вас и помочь выбрать именно то, что вам нужно.
+              </p>
+            </div>
+            <div class="flex gap-4 py-4">
+              <div class="grid grid-cols-3 gap-4">
+                <div class=""><img src="/certs/aurora-2.webp" class="w-36" /></div>
+                <div class=""><img src="/certs/aurora-3.webp" class="w-36" /></div>
+                <div class=""><img src="/certs/aurora.webp" class="w-36" /></div>
+                <div class=""><img src="/certs/cert-redius.webp" class="w-36" /></div>
+                <div class=""><img src="/certs/cert-svarog.webp" class="w-36" /></div>
+                <div class=""><img src="/certs/esab-cert.webp" class="w-36" /></div>
+                <div class=""><img src="/certs/svarog-2.webp" class="w-36" /></div>
+              </div>
+              <div class="">
+                
+              </div>
+
+            </div>
+            <div class="">
+              <p class="">
+                Если вы не нашли то, что Вам нужно - свяжитесь с нами и мы найдем этот товар специально для Вас!
+              </p>
+              <p class="">
+                Покупайте современное сварочное оборудование у нас и помните, качественное оборудование - залог успешной работы!
+              </p>
+            </div>
+
+
           </div>
 
         </div>
