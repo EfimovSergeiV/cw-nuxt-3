@@ -63,6 +63,7 @@
             <nuxt-link :to="slide.link">
               <img
                 :src="slide.image"
+                :alt="slide.id"
                 class="rounded-md w-full h-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
               />             
             </nuxt-link>

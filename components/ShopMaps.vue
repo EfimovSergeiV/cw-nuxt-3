@@ -100,7 +100,7 @@
           </div>
 
           <div v-else class="relative rounded-md">
-            <img src="/mapshops.webp" class="rounded-md object-cover min-h-[350px]" />
+            <img src="/mapshops.webp" alt="maps-template" class="rounded-md object-cover min-h-[350px]" />
             <div class="absolute inset-0 bg-white/50 hover:bg-white/60 dark:bg-black/50 dark:hover:bg-black/60 transition-all duration-700 flex items-center justify-center rounded-md">
               <p class="text-center text-sm text-gray-700 dark:text-gray-100">Для отображения карты выберите магазин</p>
             </div>

@@ -51,6 +51,7 @@
           <nuxt-link :to="{ name: 'prods', query: { brnd: brand.id, page: 1 }}" class="flex items-center justify-center bg-gray-100 h-12 md:h-20 rounded-md shadow-md shadow-black/50 my-2">
             <img
               :src="brand.image"
+              :alt="brand.brand"
               class=" w-[142px]"
             />                 
           </nuxt-link>
