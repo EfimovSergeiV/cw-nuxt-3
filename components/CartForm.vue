@@ -42,10 +42,7 @@
   const errorMsg = ref(null)
   const selectedShop = ref(null)
 
-
-
-
-
+  const emit = defineEmits(['30996406'])
   const sendOrder = async () => {
     if ( (phoneValidate.value || emailValidate.value) ) {
       const { data: response } = await useFetch(`${ config.public.baseURL }o/order/`, {
@@ -80,6 +77,7 @@
 
       if ( productsStore.cartTotalPrice > 30000 ) {
         clientStore.order = response.value.order
+        emit('30996406', 'reachGoal', 'EXPENSIVE_ORDER')
       } else {
         await router.push({ name: 'order', hash: `#${ response.value.order }` })
       }
