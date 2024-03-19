@@ -1,16 +1,13 @@
 <script setup>
-  import mitt from 'mitt'
-
-  const { emitter } = mitt()
   const config = useRuntimeConfig()
   const notificationsStore = useNotificationsStore()
   
+  const emit = defineEmits(['onOrder'])
   const { data: brands } = await useFetch(`${ config.public.baseURL }c/brands/`)
   const { data: cts } = await useFetch(`${ config.public.baseURL }c/ct/`)
 
   const eventSend = () => {
-    console.log('eventSend')
-    emitter.emit('30996406', 'reachGoal', 'EXPENSIVE_ORDER')
+    emit('onOrder', '30996406', 'reachGoal', 'EXPENSIVE_ORDER')
   }
 
 </script>
@@ -23,9 +20,6 @@
       <div class="py-8">
         <button @click="eventSend()" class="text-lg text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100">Событие</button>
       </div>
-      <!-- <div class="py-8">
-        <button @click="$emit('30996406', 'reachGoal', 'EXPENSIVE_ORDER')" class="text-lg text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100">Событие</button>
-      </div> -->
 
       <div class="hidden md:block">
         <!-- <p class="text-base text-gray-700 dark:text-gray-300 py-1">Категории</p> -->
@@ -81,7 +75,7 @@
           
           <p class="text-[10px] md:text-xs py-2 select-none text-gray-600 dark:text-gray-400">
             Все цены и материаллы, указанные на сайте www.glsvar.ru, приведены как справочная информация и не являются публичной офертой и могут быть изменены в любое время без предупреждения. 
-            Для получения подробной информации о стоимости, сроках и условиях поставки просьба обращаться по указанным на сайте телефонам.
+            Для получения подробной информации о стоимости, сроках и условиях поставки просьба обращаться по указанным на сайте телефонам<span @click="eventSend()" class="cursor-pointer">.</span>
           </p>  
 
         </div>
