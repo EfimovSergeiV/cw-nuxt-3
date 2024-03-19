@@ -80,8 +80,6 @@
 
       if ( productsStore.cartTotalPrice > 30000 ) {
         clientStore.order = response.value.order
-        console.log(config.public.yandexMetrikaId, ' reachGoal', ' EXPENSIVE_ORDER')
-        ym(config.public.yandexMetrikaId, 'reachGoal', 'EXPENSIVE_ORDER')
       } else {
         await router.push({ name: 'order', hash: `#${ response.value.order }` })
       }
