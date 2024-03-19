@@ -2,12 +2,12 @@
   const config = useRuntimeConfig()
   const notificationsStore = useNotificationsStore()
   
-  const emit = defineEmits(['onOrder'])
+  const emit = defineEmits(['30996406'])
   const { data: brands } = await useFetch(`${ config.public.baseURL }c/brands/`)
   const { data: cts } = await useFetch(`${ config.public.baseURL }c/ct/`)
 
   const eventSend = () => {
-    emit('onOrder', '30996406', 'reachGoal', 'EXPENSIVE_ORDER')
+    emit('30996406', 'reachGoal', 'EXPENSIVE_ORDER')
   }
 
 </script>
