@@ -43,6 +43,7 @@
   const errorMsg = ref(null)
   const selectedShop = ref(null)
 
+  
   const sendOrder = async () => {
     if ( (phoneValidate.value || emailValidate.value) ) {
       const { data: response } = await useFetch(`${ config.public.baseURL }o/order/`, {
