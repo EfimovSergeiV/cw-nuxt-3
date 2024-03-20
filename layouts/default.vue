@@ -81,6 +81,12 @@
 
   })
 
+  const onClick = (messenger) => {
+    if (process.client) {
+      ctx.$metrika.reachGoal(messenger)
+    }
+  }
+
 </script>
 
 <template>
@@ -187,13 +193,13 @@
                   <div class="flex items-center justify-center">
                     <div class="grid grid-cols-4 items-center gap-4 px-1">
                       <p class="mdi mdi-24px mdi-cellphone-link text-gray-200 pl-0.5"></p>
-                      <a class="" title="WhatsApp" href="shopStore.shop.whatsapp" target="_blank">
+                      <a class="" title="WhatsApp" href="https://wa.me/79116965424" @click="onClick('ONCLICK_WHATSAPP')" target="_blank">
                         <img src="/WhatsApp-logo.webp" class="w-5" />
                       </a>
-                      <a class="" title="Telegramm" href="shopStore.shop.telegram" target="_blank">
+                      <a class="" title="Telegramm" href="https://t.me/s2nullnullachtundfunfzig" @click="onClick('ONCLICK_TELEGRAMM')" target="_blank">
                         <img src="/telegr-logo.webp" class="w-5" />
                       </a>
-                      <a class="" title="Viber" href="shopStore.shop.viber" target="_blank">
+                      <a class="" title="Viber" href="viber://chat?number=79116965424" @click="onClick('ONCLICK_VIBER')" target="_blank">
                         <img src="/viber-logo.webp" class="w-5" />
                       </a>
                     </div>

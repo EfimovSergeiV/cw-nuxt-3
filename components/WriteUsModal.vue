@@ -1,4 +1,5 @@
 <script setup>
+  const ctx = useNuxtApp()
   const config = useRuntimeConfig()
   // const router = useRouter()
 
@@ -26,6 +27,9 @@
       notificationsStore.pushToast({ id: 1, type: 'success', text: 'Ваше сообщение отправлено!' })
       shopStore.showWriteUsModal()
 
+      if (process.client) {
+        ctx.$metrika.reachGoal('SEND_MESSAGE')
+      }
 
       // order.value = await response.value
       // productsStore.clearCartProducts()

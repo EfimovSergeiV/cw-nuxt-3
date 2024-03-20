@@ -1,7 +1,7 @@
 <script setup>
   // import cities from '~/cities.ts';
   import debounce from "lodash.debounce";
-
+  const ctx = useNuxtApp()
   const cities = await import('~/cities.ts')
   const config = useRuntimeConfig()
   const route = useRoute()
@@ -27,7 +27,7 @@
       }
     })
     
-    products.value = ( await prods.value )    
+    products.value = ( await prods.value )
 
   }, 300);
 
@@ -56,9 +56,11 @@
 
   })
 
-  // const getShopContact = () => {
-  //   return shopStore.shops.filter(shop => shop.city === clientStore.client.city)
-  // }
+  const succesSearch = () => {
+    if (process.client) {
+      ctx.$metrika.reachGoal('SUCCESS_SEARCH')
+    }
+  }
 
 </script>
 
@@ -277,7 +279,7 @@
                       </div>
                       <transition-group name="fade">
                         <div class="px-2 py-0.5 my-1 bg-gray-100  border border-gray-200 hover:border-gray-300 rounded-md transition-all" v-for="product in products" :key="product.id">
-                          <nuxt-link :to="{ name: 'product-id', params: { id: product.id }}" class="">
+                          <nuxt-link :to="{ name: 'product-id', params: { id: product.id }}" @click="succesSearch()" class="">
                             <div class="flex gap-4">
                               <div class="">
                                 <img class="bg-white w-20 p-1 rounded-md" :src="product.preview_image" />
