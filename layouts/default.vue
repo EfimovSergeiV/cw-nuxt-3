@@ -19,6 +19,7 @@
   const { signIn, signOut, token, data, status, lastRefreshedAt } = useAuth()
 
   const cookiesModal = ref(false)
+  const clientIP = await $fetch(`${ config.public.baseURL }myip/`).catch((error) => error.data)
 
   onMounted( async () => {
 
@@ -33,9 +34,11 @@
         method: 'PUT', body: { "tmp_id": tmp_id.value }
       }).catch((error) => error.data)
 
-
-      if (process.client) {
-        ctx.$metrika.reachGoal('REPEAT_VISIT')
+      //INFO: сжать IF
+      if (clientIP !== '5.187.6.178' && clientIP !== '89.23.6.175') {
+        if (process.client) {
+          ctx.$metrika.reachGoal('REPEAT_VISIT')
+        }
       }
 
       /// Если tmp_id найден, обновляем его (???)
