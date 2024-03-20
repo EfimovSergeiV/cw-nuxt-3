@@ -286,7 +286,7 @@
                               </div>
                               <div class="">
                                 <p class="text-sm text-gray-800">{{ product.name }}</p>
-                                <p v-if="product.only_price > 0" class="text-gray-700">{{ product.only_price.toLocaleString() }} <span class="text-xs">тг</span></p>
+                                <p v-if="product.only_price > 0" class="text-gray-700">{{ product.only_price.toLocaleString() }} <span class="text-xs">руб.</span></p>
                                 <p v-else class="text-xs text-gray-700">Стоимость по запросу</p>
                               </div>
                             </div>
