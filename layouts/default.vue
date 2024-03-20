@@ -1,8 +1,10 @@
 <script setup>
   import { onMounted } from 'vue'
 
-  const config = useRuntimeConfig()
+  const ctx = useNuxtApp()
   const route = useRoute()
+  const config = useRuntimeConfig()
+  
   const tmp_id = useCookie('tmp_id', {
     sameSite: 'strict',
     // default: () => 'no',
@@ -31,6 +33,12 @@
         method: 'PUT', body: { "tmp_id": tmp_id.value }
       }).catch((error) => error.data)
 
+
+      if (process.client) {
+        ctx.$metrika.reachGoal('REPEAT_VISIT')
+      }
+
+      /// Если tmp_id найден, обновляем его (???)
       if ( watcher.tmp_id ) {
         tmp_id.value = watcher.tmp_id
       }

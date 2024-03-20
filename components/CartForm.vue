@@ -77,10 +77,12 @@
 
 
       if ( productsStore.cartTotalPrice > 30000 ) {
+        
         clientStore.order = response.value.order
-        // emit('30996406', 'reachGoal', 'EXPENSIVE_ORDER')
-        if (process.client)
+        if (process.client) {
           ctx.$metrika.reachGoal('EXPENSIVE_ORDER')
+        }
+        
       } else {
         await router.push({ name: 'order', hash: `#${ response.value.order }` })
       }
@@ -93,22 +95,16 @@
     }
   }
 
-
 </script>
-
 
 
 <template>
   <div class="container mx-auto px-4 py-2 max-w-6xl lg:px-8">
-
     <div id="cart-set" class="">
-
-
+      
       <div v-if="(productsStore.cart.length > 0)" class="bg-white border-gray-200 border dark:border-gray-700 dark:bg-gray-800 rounded-md p-1">
-
         <div class="overflow-x-auto w-full">
           <div class="">
-
             <div class="grid gap-2 px-2 py-4">
               <div class="flex lg:items-center lg:gap-2">
                 <div class="flex justify-center w-24"><p class="text-sm">Изображение</p></div>
@@ -119,7 +115,6 @@
                 <div class="flex justify-center w-20"><p class="text-sm">Удалить</p></div>
               </div>
             </div>
-
             <div class="grid gap-2 px-1">
               <transition-group tag="div" name="left-emergence">
                 <div v-for="product in productsStore.cart" :key="product.id" class="my-4">
@@ -138,25 +133,20 @@
                     <div class="flex justify-center w-32">
                       <p v-if="product.status === 'order'" class="text-sm text-right font-medium text-gray-900 dark:text-gray-200">под заказ</p>
                       <p v-else class="text-sm text-right font-medium text-gray-900 dark:text-gray-200">в наличии</p>
-                      
                     </div>
                     <div class="flex justify-center w-32"><p class="text-sm">{{ product.only_price.toLocaleString() }} руб.</p></div>
                     <div class="flex justify-center w-20">
                       <button @click="productsStore.addProduct('cart', product)" class="mdi mdi-24px mdi-close cursor-pointer"></button>
                     </div>
-                    
                   </div>
-                  
                 </div>
               </transition-group>
             </div>
           </div>         
         </div>
-
         <div class="py-2 px-2">
           <p class="">Итог: <span class="font-semibold pl-2">{{ productsStore.cartTotalPrice.toLocaleString() }}</span> <span>руб.</span></p>
         </div>
-
       </div>
 
       <div v-else class="flex justify-center bg-white border-gray-200 border dark:border-gray-700 dark:bg-gray-800 rounded-md">
@@ -177,24 +167,20 @@
           </div>          
         </div>
         <div class="flex items-center justify-center min-h-[50vh]">
-              <p class="text-xl"> Ваша корзина пуста</p>
-            </div>
+          <p class="text-xl"> Ваша корзина пуста</p>
+        </div>
       </div>
-
-
     </div>
 
 
     <div id="client-info" class="">
       <div class="mt-4">
         <div class="bg-white border-gray-200 border dark:border-gray-700 dark:bg-gray-800 p-4 rounded-md">
-
           <div class="flex items-center justify-between">
             <div class="">
               1. Данные покупателя
             </div>
             <div class="flex justify-end gap-4">
-
               <ul class="grid gap-6 w-full md:grid-cols-2">
                 <li>
                   <input type="radio" id="hosting-small" name="person" v-model="clientStore.client.entity" :value="false" class="hidden peer" required>
@@ -215,10 +201,7 @@
               </ul>
             </div>
           </div>
-
-
           <div class="grid md:grid-cols-2 gap-4">
-
             <div class="">
               <label for="message" class="block mt-2 mb-1 text-xs font-medium text-gray-900 dark:text-gray-400">Имя (необязательно)</label>
               <div class="relative">
@@ -246,10 +229,7 @@
                 <input v-model="clientStore.client.phone" type="text" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-700 dark:placeholder-gray-400 dark:text-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="+7 (987) 654 32 10">
               </div> 
             </div>
-
           </div>
-
-
         </div>
       </div>
 
@@ -268,18 +248,14 @@
               </div> 
             </div>
           </div>
-
         </div>
       </div>
-
     </div>
 
 
     <div id="selected-shop" class="">
-
       <div class="mt-4">
         <div class="bg-white border-gray-200 border dark:border-gray-700 dark:bg-gray-800 p-4 rounded-md">
-
           <div class="flex items-center justify-between">
             <div class="">
               2. Способ получения
@@ -304,41 +280,22 @@
                 </li>
               </ul>
             </div>
-
           </div>
-
-
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-1 py-2">
             <div class="">
               <div class="justify-self-center mx-2 my-2" v-if="selectedShop">
-                <!-- <div class="flex items-start gap-6 py-2">
-                  <div class="grid grid-cols-1 gap-1">
-                    <p class="text-sm text-right"><span class="text-xs">График работы:</span> {{ selectedShop.wday }}</p>
-                    <p class="text-sm text-right">{{ selectedShop.wend }}</p>
+                <div class="flex items-center">
+                  <div class="border-r">
+                    <a class="text-base md:text-2xl mx-2" :href="'tel:' + selectedShop.phone.replace(/[^+\d]/g, '')">{{ selectedShop.phone }}</a>
                   </div>
-                  <div class="grid grid-cols-1">
-                    <a :href="`tel:${selectedShop.phone.replace('(', '').replace(')', '').replace(/ /ig, '')}`" class="text-sm text-right"><span class="text-xs">тел:</span> {{ selectedShop.phone }} </a>
-                    <a v-if="selectedShop.mobile" :href="`tel:${selectedShop.mobile.replace('(', '').replace(')', '').replace(/ /ig, '')}`" class="text-sm text-right">{{ selectedShop.mobile }}</a>
+                  <div class="mx-2">
+                    <p class="text-xs font-bold mt-1">{{ selectedShop.wday }}</p>
+                    <p class="text-xs font-bold">{{ selectedShop.wend }}</p>
                   </div>
-                </div> -->
-
-                
-     
-                    <div class="flex items-center">
-                      <div class="border-r">
-                        <a class="text-base md:text-2xl mx-2" :href="'tel:' + selectedShop.phone.replace(/[^+\d]/g, '')">{{ selectedShop.phone }}</a>
-                      </div>
-                      <div class="mx-2">
-                        <p class="text-xs font-bold mt-1">{{ selectedShop.wday }}</p>
-                        <p class="text-xs font-bold">{{ selectedShop.wend }}</p>
-                      </div>
-                    </div>
-
-
+                </div>
               </div>
             </div>
-
             <div class="">
               <select v-model="selectedShop" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option disabled value="null">Выберие магазин</option>
@@ -346,27 +303,7 @@
               </select>                    
             </div>            
           </div>
-
-
           <div class="border dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-700">
-            <!-- <div class="">
-              <div class="grid lg:grid-cols-2 justify-items-stretch items-center ">
-                <div class="justify-self-center mx-2 my-2" v-if="clientStore.client.adress">
-                  <div class="" v-if="clientStore.client.adress.phone">
-                    <div class="flex items-center">
-                      <div class="border-r">
-                        <a class="text-base md:text-2xl mx-2" :href="'tel:' + clientStore.client.adress.phone.replace(/[^+\d]/g, '')">{{ clientStore.client.adress.phone }}</a>
-                      </div>
-                      <div class="mx-2">
-                        <p class="text-xs font-bold mt-1">{{ clientStore.client.adress.wday }}</p>
-                        <p class="text-xs font-bold">{{ clientStore.client.adress.wend }}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-
             <div class="h-[350px]">
               <div v-if="selectedShop" class="">
                 <iframe :src="selectedShop.google_maps" width="100%" height="350" frameborder="0" loading="lazy" class="rounded-md"></iframe>
@@ -396,12 +333,8 @@
               </div>
             </button>              
           </div>
-
         </div>
       </div>
-
     </div>
-
-
   </div>
 </template>

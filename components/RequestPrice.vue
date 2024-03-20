@@ -1,4 +1,6 @@
 <script setup>
+
+  const ctx = useNuxtApp()
   const config = useRuntimeConfig()
   // const router = useRouter()
 
@@ -26,6 +28,10 @@
       // order.value = await response.value
       // productsStore.clearCartProducts()
       // clientStore.saveClientData(clientData)
+
+      if (process.client) {
+        ctx.$metrika.reachGoal('REQUEST_PRICE')
+      }
 
     } else {
       errorMsg.value = 'Ошибка: Для отправки запроса заполните все поля.'
