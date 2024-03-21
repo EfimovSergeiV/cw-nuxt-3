@@ -119,7 +119,7 @@
               </div>
               <div class="flex items-center gap-2 bg-gray-100 dark:bg-gray-700 px-1 py-1 rounded-md border border-white/20 shadow-md shadow-black/50">
                 <img src="/bnr/schweisszusatzwerkstoffe.webp" class=" rounded-full w-24 border border-white/20"/>
-                <nuxt-link :to="{ name: 'prods', query: { ct: 5 }}" class="">
+                <nuxt-link :to="{ name: 'prods', query: { ct: 4 }}" class="">
                   <p class="">Сварочные электроды, проволока и присадочные материалы</p>
                 </nuxt-link>
               </div>
