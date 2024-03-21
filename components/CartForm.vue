@@ -85,6 +85,9 @@
         
       } else {
         await router.push({ name: 'order', hash: `#${ response.value.order }` })
+        if (process.client) {
+          ctx.$metrika.reachGoal('SEND_ORDER')
+        }
       }
       
       productsStore.clearCartProducts()
