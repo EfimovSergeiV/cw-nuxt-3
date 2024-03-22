@@ -44,7 +44,7 @@
           </div>
 
           <div class="py-4">
-            <ul class="flex justify-start gap-4 text-xs md:text-sm mt-3 sm:mt-0 md:order-last">
+            <ul class="flex justify-start gap-2 md:gap-4 text-xs md:text-sm mt-3 sm:mt-0 md:order-last">
               <li>
                 <button @click="notificationsStore.pushToast({id: 1, type: 'error', text:' Раздел временно не доступен'})" class="text-xs text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100">Доставка</button>
               </li>
