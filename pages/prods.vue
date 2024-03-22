@@ -162,125 +162,127 @@
     <div class="">
       <div class="container mx-auto px-4 max-w-6xl lg:px-8">
 
-        <div v-if="products.results.length > 0" id="products" class="">
+        <transition name="fade">
+          <div v-if="products.results.length > 0" id="products" class="">
 
-          <transition name="fade" mode="out-in">
-            <div v-if="clientStore.viewport === 'grid'" class="grid grid-cols-1 gap-y-4 gap-x-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
-              <transition-group name="fade">
-                  <div class="" v-for="product in products.results" :key="product.id">
-                    <ProductCard :product="product" />
-                  </div>                
-              </transition-group>
-            </div>
-
-            <div v-else class="grid grid-cols-1 gap-4">
-              <transition-group name="fade">
-                  <div class="" v-for="product in products.results" :key="product.id">
-                    <ProductCardLS :product="product" />
-                  </div>                
-              </transition-group>
-            </div>            
-          </transition>
-
-
-        </div>
-
-
-        <div class="" v-else>
-
-          <div class="bg-white dark:bg-gray-800 rounded-md border border-gray-200 dark:border-gray-700 p-4 min-h-[50vh]">
-            <div class="flex items-center justify-center py-8 lg:py-16">
-              <p class=""> По вашему запросу товаров не найдено...</p>
-            </div>
-
-
-            <div class="grid grid-cols-1 gap-0.5 py-8">
-              <p class="text-4xl uppercase px-0.5">Не нашли что искали?</p>
-              <div class="flex">
-                <p class="text-sm md:text-base border-t text-gray-600 dark:text-gray-400 border-gray-200 dark:border-gray-700 px-0.5">Отправьте заявку на товар, который вам нужен, и мы постараемся его найти</p>
-
+            <transition name="fade" mode="out-in">
+              <div v-if="clientStore.viewport === 'grid'" class="grid grid-cols-1 gap-y-4 gap-x-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+                <transition-group name="fade">
+                    <div class="" v-for="product in products.results" :key="product.id">
+                      <ProductCard :product="product" />
+                    </div>                
+                </transition-group>
               </div>
-            </div>
 
-
-            <div class="grid grid-cols-1 md:flex md:flex-wrap gap-4">
-              <div class="">
-                <label for="person" class="block mt-2 mb-1 text-xs font-medium text-gray-900 dark:text-gray-400">Как к вам обращаться?</label>
-                <div class="relative">
-                  <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                    <p class="mdi mdi-account text-gray-700 dark:text-gray-300"></p>
-                  </div>
-                  <input v-model="clientStore.client.person" type="text" id="person" :readonly="successSending" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full md:w-[320px] pl-10 p-2.5  dark:bg-gray-600 dark:border-gray-700 dark:placeholder-gray-400 dark:text-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Иван Иванов">
-                </div>                
-              </div>
-              <div class="">
-                <label for="email" class="block mt-2 mb-1 text-xs font-medium text-gray-900 dark:text-gray-400">Как с вами связаться?</label>
-                <div class="relative">
-                  <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                    <p class="mdi mdi-email text-gray-700 dark:text-gray-300"></p>
-                  </div>
-                  <input v-model="clientStore.client.contact" type="text" id="email" :readonly="successSending" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full md:w-[320px] pl-10 p-2.5  dark:bg-gray-600 dark:border-gray-700 dark:placeholder-gray-400 dark:text-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="e-mail или номер телефона">
-                </div>                 
-              </div>
-              <div class="">
-                <label for="city" class="block mt-2 mb-1 text-xs font-medium text-gray-900 dark:text-gray-400">Где вы находитесь?</label>
-                <div class="relative cursor-pointer" @click="clientStore.locationModal = true">
-                  <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                    <p class="mdi mdi-map-marker-radius text-gray-700 dark:text-gray-300"></p>
-                  </div>
-                  <input v-model="clientStore.client.city" type="text" id="city" readonly class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full md:w-[320px] pl-10 p-2.5  dark:bg-gray-600 dark:border-gray-700 dark:placeholder-gray-400 dark:text-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Москва">
-                </div>                 
-              </div>
-            </div>
-
-
-            <div class="">
-              <label for="message" class="block mt-2 mb-1 text-xs font-medium text-gray-900 dark:text-gray-400">Опишите что вы ищете</label>
-              <textarea v-model="messText" id="message" rows="4" :readonly="successSending" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Опишите что вы искали и не смогли найти..."></textarea>
-            </div>
-
-             
-            <transition name="fade">
-              <div v-if="successSending" class="grid grid-cols-1 gap-2 py-4">
-                <p class="">Ваша заявка успешно отправлена!</p>
-                <p class="">Мы свяжемся с вами в ближайшее время.</p>
-
-                <div class="">
-                  <button @click="clearFilter()" class="py-4">
-                    <div class=" text-sm text-gray-100 rounded-lg bg-blue-600 hover:bg-blue-700 border border-gray-300/50 dark:border-gray-500/50 transition-all duration-1000">
-                      <div class=" bg-gradient-to-br from-gray-100/20 to-gray-900/40 rounded-lg">
-                        <p class="px-5 py-2">Очистить фильтр</p>
-                      </div>
-                    </div>
-                  </button>                  
-                </div>
-
-              </div>
-              <div v-else class="flex gap-4">
-                <div class="">
-                  <button @click="clearFilter()" class="py-4">
-                    <div class=" text-sm text-gray-100 rounded-lg bg-blue-600 hover:bg-blue-700 border border-gray-300/50 dark:border-gray-500/50 transition-all duration-1000">
-                      <div class=" bg-gradient-to-br from-gray-100/20 to-gray-900/40 rounded-lg">
-                        <p class="px-5 py-2">Очистить фильтр</p>
-                      </div>
-                    </div>
-                  </button>                  
-                </div>
-                <button @click="sendMessage" class="py-4">
-                  <div class=" text-sm text-gray-100 rounded-lg bg-blue-600 hover:bg-blue-700 border border-gray-300/50 dark:border-gray-500/50 transition-all duration-1000">
-                    <div class=" bg-gradient-to-br from-gray-100/20 to-gray-900/40 rounded-lg">
-                      <p class="px-5 py-2">Отправить</p>
-                    </div>
-                  </div>
-                </button>
-              </div>
+              <div v-else class="grid grid-cols-1 gap-4">
+                <transition-group name="fade">
+                    <div class="" v-for="product in products.results" :key="product.id">
+                      <ProductCardLS :product="product" />
+                    </div>                
+                </transition-group>
+              </div>            
             </transition>
 
 
-
           </div>
-          
-        </div>
+
+
+          <div class="" v-else>
+
+            <div class="bg-white dark:bg-gray-800 rounded-md border border-gray-200 dark:border-gray-700 p-4 min-h-[50vh]">
+              <div class="flex items-center justify-center py-8 lg:py-16">
+                <p class=""> По вашему запросу товаров не найдено...</p>
+              </div>
+
+
+              <div class="grid grid-cols-1 gap-0.5 py-8">
+                <p class="text-4xl uppercase px-0.5">Не нашли что искали?</p>
+                <div class="flex">
+                  <p class="text-sm md:text-base border-t text-gray-600 dark:text-gray-400 border-gray-200 dark:border-gray-700 px-0.5">Отправьте заявку на товар, который вам нужен, и мы постараемся его найти</p>
+
+                </div>
+              </div>
+
+
+              <div class="grid grid-cols-1 md:flex md:flex-wrap gap-4">
+                <div class="">
+                  <label for="person" class="block mt-2 mb-1 text-xs font-medium text-gray-900 dark:text-gray-400">Как к вам обращаться?</label>
+                  <div class="relative">
+                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                      <p class="mdi mdi-account text-gray-700 dark:text-gray-300"></p>
+                    </div>
+                    <input v-model="clientStore.client.person" type="text" id="person" :readonly="successSending" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full md:w-[320px] pl-10 p-2.5  dark:bg-gray-600 dark:border-gray-700 dark:placeholder-gray-400 dark:text-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Иван Иванов">
+                  </div>                
+                </div>
+                <div class="">
+                  <label for="email" class="block mt-2 mb-1 text-xs font-medium text-gray-900 dark:text-gray-400">Как с вами связаться?</label>
+                  <div class="relative">
+                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                      <p class="mdi mdi-email text-gray-700 dark:text-gray-300"></p>
+                    </div>
+                    <input v-model="clientStore.client.contact" type="text" id="email" :readonly="successSending" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full md:w-[320px] pl-10 p-2.5  dark:bg-gray-600 dark:border-gray-700 dark:placeholder-gray-400 dark:text-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="e-mail или номер телефона">
+                  </div>                 
+                </div>
+                <div class="">
+                  <label for="city" class="block mt-2 mb-1 text-xs font-medium text-gray-900 dark:text-gray-400">Где вы находитесь?</label>
+                  <div class="relative cursor-pointer" @click="clientStore.locationModal = true">
+                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                      <p class="mdi mdi-map-marker-radius text-gray-700 dark:text-gray-300"></p>
+                    </div>
+                    <input v-model="clientStore.client.city" type="text" id="city" readonly class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full md:w-[320px] pl-10 p-2.5  dark:bg-gray-600 dark:border-gray-700 dark:placeholder-gray-400 dark:text-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Москва">
+                  </div>                 
+                </div>
+              </div>
+
+
+              <div class="">
+                <label for="message" class="block mt-2 mb-1 text-xs font-medium text-gray-900 dark:text-gray-400">Опишите что вы ищете</label>
+                <textarea v-model="messText" id="message" rows="4" :readonly="successSending" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Опишите что вы искали и не смогли найти..."></textarea>
+              </div>
+
+              
+              <transition name="fade">
+                <div v-if="successSending" class="grid grid-cols-1 gap-2 py-4">
+                  <p class="">Ваша заявка успешно отправлена!</p>
+                  <p class="">Мы свяжемся с вами в ближайшее время.</p>
+
+                  <div class="">
+                    <button @click="clearFilter()" class="py-4">
+                      <div class=" text-sm text-gray-100 rounded-lg bg-blue-600 hover:bg-blue-700 border border-gray-300/50 dark:border-gray-500/50 transition-all duration-1000">
+                        <div class=" bg-gradient-to-br from-gray-100/20 to-gray-900/40 rounded-lg">
+                          <p class="px-5 py-2">Очистить фильтр</p>
+                        </div>
+                      </div>
+                    </button>                  
+                  </div>
+
+                </div>
+                <div v-else class="flex gap-4">
+                  <div class="">
+                    <button @click="clearFilter()" class="py-4">
+                      <div class=" text-sm text-gray-100 rounded-lg bg-blue-600 hover:bg-blue-700 border border-gray-300/50 dark:border-gray-500/50 transition-all duration-1000">
+                        <div class=" bg-gradient-to-br from-gray-100/20 to-gray-900/40 rounded-lg">
+                          <p class="px-5 py-2">Очистить фильтр</p>
+                        </div>
+                      </div>
+                    </button>                  
+                  </div>
+                  <button @click="sendMessage" class="py-4">
+                    <div class=" text-sm text-gray-100 rounded-lg bg-blue-600 hover:bg-blue-700 border border-gray-300/50 dark:border-gray-500/50 transition-all duration-1000">
+                      <div class=" bg-gradient-to-br from-gray-100/20 to-gray-900/40 rounded-lg">
+                        <p class="px-5 py-2">Отправить</p>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+              </transition>
+
+
+
+            </div>
+            
+          </div>
+        </transition>
 
 
 
