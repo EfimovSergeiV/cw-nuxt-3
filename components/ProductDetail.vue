@@ -149,16 +149,15 @@
       <div v-if="props.related.length > 0" class="pb-4">
         <div class="bg-white rounded-md border dark:border-gray-700 dark:bg-gray-800 shadow-md p-2">
           <p class="my-2">Сопутствующие товары</p>
-          <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">
-            <div v-for="prod_related in related" :key="prod_related.id" class="">
+          <div class="flex overflow-x-scroll gap-2 py-1">
+            <div v-for="prod_related in related" :key="prod_related.id" class="min-w-[260px]">
               <ProductSmall :product="prod_related" />
             </div>
           </div>
         </div>
       </div>
+
       <div class="">
-
-
         <div class="grid grid-cols-1 md:flex gap-4">
           <div class="md:w-[400px] bg-white rounded-md border dark:border-gray-700 dark:bg-gray-800 shadow-md p-2">
             <div class="">
