@@ -49,7 +49,7 @@
       </div>
 
 
-      <div class="grid grid-cols-1 lg:flex items-end justify-between gap-2">
+      <div class="flex items-end justify-between gap-2">
 
         <div class="flex lg:grid lg:grid-cols-1 gap-2">
           <div class="flex items-center gap-2">

@@ -130,8 +130,8 @@
                         </div>
                         <div class="">
                           <div v-if="product.only_price" class="flex gap-1 justify-end">
-                            <p class="text-base font-bold dark:text-gray-300">{{ product.only_price.toLocaleString() }}</p>
-                            <p class="text-base font-bold dark:text-gray-300">руб.</p>
+                            <p class="text-sm md:text-base font-bold dark:text-gray-300">{{ product.only_price.toLocaleString() }}</p>
+                            <p class="text-xs font-bold dark:text-gray-300">руб.</p>
                           </div>        
                           <p v-else class="text-xs text-right dark:text-gray-300">Стоим. по запросу</p>
                         </div>
