@@ -9,7 +9,8 @@
 
 <template>
   <div class="container py-2 mx-auto px-4 max-w-6xl lg:px-8">
-    <div class="p-2 bg-white rounded-md border dark:border-gray-700 dark:bg-gray-800 shadow-sm relative">
+    <div class="p-2 bg-white rounded-md border dark:border-gray-700 dark:bg-gray-800 shadow-sm relative">    
+      
       <div class="">
         <blockquote class="text-xs md:text-2xl font-semibold italic text-center text-gray-700 dark:text-gray-300">
           
@@ -22,6 +23,8 @@
           
         </blockquote>
       </div>
+
+
 
       <div class="mb-1">
         <p class="">Рекомендуем:</p>
