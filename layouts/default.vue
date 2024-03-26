@@ -96,7 +96,7 @@
   const googleUser = ref({} as any);
 
   useOneTap({
-    onSuccess: (response: CredentialResponse) => {
+    onSuccess: (response) => {
       const { credential } = response
       const decodedCredential = decodeCredential(credential as string);
       let uuid = null
