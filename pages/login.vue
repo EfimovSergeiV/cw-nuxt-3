@@ -2,17 +2,67 @@
 // import { ref } from 'vue'
 // import { definePageMeta, useAuth } from '#imports'
 
-const { signIn, token, data, status, lastRefreshedAt } = useAuth()
+// const { signIn, token, data, status, lastRefreshedAt } = useAuth()
 
-const username = ref('')
-const password = ref('')
+// const username = ref('')
+// const password = ref('')
 
-definePageMeta({
-  auth: {
-    unauthenticatedOnly: true,
-    navigateAuthenticatedTo: '/'
-  }
-})
+  // definePageMeta({
+  //   auth: {
+  //     unauthenticatedOnly: true,
+  //     navigateAuthenticatedTo: '/'
+  //   }
+  // })
+
+
+  // import {
+  //   GoogleSignInButton,
+  //   type CredentialResponse,
+  // } from "vue3-google-signin";
+
+  // // handle success event
+  // const handleLoginSuccess = (response: CredentialResponse) => {
+  //   const { credential } = response;
+  //   console.log("Access Token", credential);
+  // };
+
+  // // handle an error event
+  // const handleLoginError = () => {
+  //   console.error("Login failed");
+  // };
+
+
+  import { useOneTap, type CredentialResponse, decodeCredential } from "vue3-google-signin";
+  const config = useRuntimeConfig()
+
+  const googleUser = ref({} as any);
+
+  useOneTap({
+    onSuccess: (response: CredentialResponse) => {
+      const { credential } = response
+      const decodedCredential = decodeCredential(credential as string);
+
+      googleUser.value = decodedCredential
+
+      const user = $fetch(`${ config.public.baseURL }u/google-user/`, {
+        method: 'POST', body: {
+          "email": googleUser.value.email,
+          "email_verified": googleUser.value.email_verified,
+          "family_name": googleUser.value.family_name,
+          "given_name": googleUser.value.given_name,
+          "id": googleUser.value.id,
+          "name": googleUser.value.name,
+          "picture": googleUser.value.picture,
+        }
+      }).catch((error) => error.data)
+
+
+    },
+    onError: () => {
+      console.error("Login failed");
+    },
+  });
+
 </script>
 
 
@@ -21,58 +71,30 @@ definePageMeta({
 
 
 
-    <div class="grid grid-cols-2 gap-4">
+    <div class="">
       <div class="bg-white border-gray-200 border dark:border-gray-700 dark:bg-gray-800 py-12 px-8 rounded-md">
+        
+        <p class="">GOOGLE AUTH</p>
+        <div class="text-sm py-4">
+          <p class="">{{ googleUser.email }}</p>
+          <p class="">{{ googleUser.email_verified }}</p>
+          <p class="">{{ googleUser.family_name }}</p>
+          <p class="">{{ googleUser.given_name }}</p>
+          <p class="">{{ googleUser.id }}</p>
+          <p class="">{{ googleUser.name }}</p>
+          <p class="">{{ googleUser.picture }}</p>
 
-        <div class="flex items-center justify-start">
-          <p>Авторизоваться</p>
-        </div>
-
-        <div class="">
-
-          <div class="py-2">
-
-            <div class="relative py-2">
-              <input type="text" id="login" v-model="username" class="block px-2.5 py-1 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-700 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-              <label for="login" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] bg-white dark:bg-gray-800 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-gray-300 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-4 peer-focus:scale-75 peer-focus:-translate-y-4 left-2 mdi mdi-form-textbox"> Логин</label>
-            </div>
-
-            <div class="relative py-2">
-              <input type="password" id="password" v-model="password" class="block px-2.5 py-1 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-700 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-              <label for="showPassword" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] bg-white dark:bg-gray-800 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-gray-300 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-4 peer-focus:scale-75 peer-focus:-translate-y-4 left-2 mdi mdi-form-textbox-password"> Пароль</label>
-            </div>
+          <div class=" bg-white rounded-full flex items-center px-1 py-1 gap-4 my-4">
+            <img :src="googleUser.picture" alt="" class="w-20 h-20 rounded-full" />
+            <p class="text-lg text-gray-700 font-semibold">{{ googleUser.name }}</p>
           </div>
-
-
-          <div class="flex items-start justify-between py-2">
-            <div class="flex items-center">
-              <input id="link-checkbox" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-700">
-              <label for="link-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Отображать пароль</label>
-            </div>
-
-            <div class="flex items-center justify-end py-2">
-              <button @click="signIn({ username, password })" class="">
-                <div class=" text-sm text-gray-100 rounded-lg bg-blue-600 hover:bg-blue-700 border border-gray-300/50 dark:border-gray-500/50 transition-all duration-1000">
-                  <div class=" bg-gradient-to-br from-gray-100/20 to-gray-900/40 rounded-lg">
-                    <p class="text-white text-base w-52 py-1.5">Авторизоваться</p>
-                  </div>
-                </div>
-              </button>
-            </div>
-
-          </div>
+          
         </div>
+        
+
+
       </div>
     </div>
-
-
-
-
-    <h1 class="mt-8">Login Page</h1>
-    <pre>Status: {{ status }}</pre>
-    <pre>Data: {{ data || 'no session data present, are you logged in?' }}</pre>
-    <pre>Last refreshed at: {{ lastRefreshedAt || 'no refresh happened' }}</pre>
-    <pre>JWT token: {{ token || 'no token present, are you logged in?' }}</pre>
 
   </div>
 </template>

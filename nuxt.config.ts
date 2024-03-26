@@ -49,6 +49,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode',
     '@sidebase/nuxt-auth',
+    'nuxt-vue3-google-signin',
     'nuxt-lodash',
     'nuxt-gtag',
     '@artmizu/yandex-metrika-nuxt',
@@ -91,6 +92,10 @@ export default defineNuxtConfig({
     globalAppMiddleware: {
       isEnabled: false
     }
+  },
+
+  googleSignIn: {
+    clientId: cfg.googleSignIn,
   },
 
 

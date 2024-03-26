@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
   import { onMounted } from 'vue'
 
   const ctx = useNuxtApp()
@@ -89,6 +89,44 @@
       ctx.$metrika.reachGoal(messenger)
     }
   }
+
+
+  import { useOneTap, CredentialResponse, decodeCredential } from "vue3-google-signin";
+
+  const googleUser = ref({} as any);
+
+  useOneTap({
+    onSuccess: (response: CredentialResponse) => {
+      const { credential } = response
+      const decodedCredential = decodeCredential(credential as string);
+      let uuid = null
+
+      if (tmp_id.value) {
+        uuid = tmp_id.value
+      }
+
+      googleUser.value = decodedCredential
+
+      
+
+      const user = $fetch(`${ config.public.baseURL }u/google-user/`, {
+        method: 'POST', body: {
+          "uuid": uuid,
+          "email": googleUser.value.email,
+          "email_verified": googleUser.value.email_verified,
+          "family_name": googleUser.value.family_name,
+          "given_name": googleUser.value.given_name,
+          "id": googleUser.value.id,
+          "name": googleUser.value.name,
+          "picture": googleUser.value.picture,
+        }
+      }).catch((error) => error.data)
+
+    },
+    onError: () => {
+      console.error("Login failed");
+    },
+  });
 
 </script>
 
