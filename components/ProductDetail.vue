@@ -149,11 +149,36 @@
       <div v-if="props.related.length > 0" class="pb-4">
         <div class="bg-white rounded-md border dark:border-gray-700 dark:bg-gray-800 shadow-md p-2">
           <p class="my-2">Сопутствующие товары</p>
-          <div class="flex overflow-x-scroll gap-2 py-1">
-            <div v-for="prod_related in related" :key="prod_related.id" class="min-w-[260px]">
+          
+
+          
+          <div class=" py-1">
+            <!-- <div v-for="prod_related in related" :key="prod_related.id" class="min-w-[260px]">
               <ProductSmall :product="prod_related" />
+            </div> -->
+            <div class="">
+              <Swiper
+                class=""
+                :modules="[]"
+                :slidesPerView="'auto'"
+                :loop="true"
+                :spaceBetween="10"
+              >
+              
+                <SwiperSlide v-for="prod_related in props.related" :key="prod_related.id">
+                  <ProductSmall :product="prod_related" />
+                </SwiperSlide>
+
+                <div class="lg:hidden absolute bottom-0 right-0 py-1 px-1 z-40">
+                  <SwiperControls class="bg-gray-100 rounded-full border border-gray-200 hover:border-gray-300 dark:border-gray-600 dark:hover:border-gray-500 dark:bg-gray-700 transition-all duration-500 px-1" />
+                </div>
+
+              </Swiper>
             </div>
           </div>
+
+
+
         </div>
       </div>
 
@@ -205,7 +230,11 @@
   </div>
 </template>
 
+
 <style scoped>
+  .swiper-slide {
+    width: 260px;
+  }
   .description-style ::v-deep(p) {
     margin-bottom: 15px;
   }
@@ -217,4 +246,5 @@
     padding-left:  4px;
     padding-top: 2px;
   }
+  
 </style>
