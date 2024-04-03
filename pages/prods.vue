@@ -13,7 +13,7 @@
   const { data: breadcrumbs } = await useFetch(`${ config.public.baseURL }c/breadcrumb/`, { params: route.query })
 
   useSeoMeta({
-    title: `${ products.value.meta.title }`,
+    title: `${ products.value.meta.title } - купить онлайн в Главный Сварщик`,
     description: `${ products.value.meta.title }, большой выбор, купить по низким ценам. Гарантия качества.`,
     keywords: `${ products.value.meta.title }, сварочное оборудование, оборудование для сварки, купить электроды, купить проволоку, купить источник, купить сварочный инвертор`,
     ogLocale: 'ru_RU',

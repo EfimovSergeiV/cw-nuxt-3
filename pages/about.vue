@@ -78,12 +78,12 @@
                 <div class="flex flex-col items-center justify-center py-2">
 
                   <div class="">
-                    <p class="text-xl text-center">{{ descriptionData }}</p>  
+                    <h1 class="text-xl text-center">{{ descriptionData }}</h1>  
                   </div>
                   <div class="py-1 max-w-4xl">
-                    <p class="text-base text-gray-600 dark:text-gray-400 text-center">
+                    <h2 class="text-base text-gray-600 dark:text-gray-400 text-center">
                       Наши магазины – это место, где профессионалы и энтузиасты приходят за лучшими решениями для сварочных работ. Сварка - это искусство, и мы знаем, как сделать его доступным и эффективным для каждого.
-                    </p>
+                    </h2>
                   </div>
 
                 </div>

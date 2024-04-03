@@ -109,7 +109,7 @@
                 <nuxt-link :to="{ name: 'index' }" class="relative text-xs md:text-base">Главная</nuxt-link>
               </div>
               <div class="before:block before:absolute before:-inset-2 before:-skew-y-3 transition-all duration-0 relative inline-block my-2">
-                <nuxt-link :to="{ name: 'lk' }" class="relative text-xs md:text-base">Избранное</nuxt-link>
+                <nuxt-link :to="{ name: 'like' }" class="relative text-xs md:text-base">Избранное</nuxt-link>
               </div>
               <div class="before:block before:absolute before:-inset-2 before:-skew-y-3 transition-all duration-0 relative inline-block my-2">
                 <nuxt-link :to="{ name: 'compare' }" class="relative text-xs md:text-base">В сравнении</nuxt-link>
@@ -173,7 +173,7 @@
             <div class="relative">
               <div class="absolute z-40">
                 <div class="-rotate-90 bg-blue-600 px-4 pb-12 group rounded-md w-44 cursor-pointer" @click="shopStore.showWriteUsModal">
-                  <div class="flex items-center justify-center group-hover:text-gray-100 text-gray-300 font-bold transition-all duration-500">
+                  <div class="flex items-center justify-center group-hover:text-gray-100 text-gray-100 font-bold transition-all duration-500">
                     <div class="">
                       <p class="text-sm mx-2">Напишите нам</p>
                     </div>
@@ -195,7 +195,7 @@
                 <div class=" bg-blue-600 group rounded-l-md cursor-pointer transition-all duration-500">
                   <div class="flex items-center justify-center">
                     <div class="grid grid-cols-4 items-center gap-4 px-1">
-                      <p class="mdi mdi-24px mdi-cellphone-link text-gray-200 pl-0.5"></p>
+                      <p class="mdi mdi-24px mdi-cellphone-link text-gray-100 pl-0.5"></p>
                       <a class="" title="WhatsApp" href="https://wa.me/79116965424" @click="onClick('ONCLICK_WHATSAPP')" target="_blank">
                         <img src="/WhatsApp-logo.webp" class="w-5" />
                       </a>

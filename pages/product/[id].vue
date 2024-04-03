@@ -10,13 +10,17 @@
     body: { "viewed": product.value.id }
   })
 
+  const price = ref('0')
   const brand = ref('noname')
 
-  onMounted( async () => {
-    if ( product.value.brand ) {
-      brand.value = product.value.brand.brand
-    }
-  })
+  if ( product.value.only_price ) {
+    price.value = `${ product.value.only_price }00`
+  }
+
+  if ( product.value.brand ) {
+    brand.value = product.value.brand.brand
+  }
+
 
   useHead({
     script: [{
@@ -43,8 +47,8 @@
             "offers": {
               '@type': 'Offer',
               "url": 'https://glsvar.ru/product/' + product.value.id,
-              "priceCurrency": 'KZT',
-              "price": product.value.price,
+              "priceCurrency": 'RUB',
+              "price": price.value,
               "itemCondition": 'https://schema.org/UsedCondition',
               "availability": 'https://schema.org/InStock',
             },
@@ -53,8 +57,14 @@
     }],
   })
 
+  const status = ref('заказать')
+
+  if ( product.value.status === 'stock' ) {
+    status.value = 'купить'
+  }
+
   useSeoMeta({
-    title: `${ product.value.name } - Главный Сварщик`,
+    title: `${ product.value.name } - ${status.value} онлайн в Главный Сварщик`,
     description: `${ product.value.description }`,
     keywords: `${ product.value.name }, Главный Сварщик - сварочное оборудование, оборудование для сварки, купить электроды, купить проволоку, купить источник, купить сварочный инвертор`,
     ogLocale: 'ru_RU',

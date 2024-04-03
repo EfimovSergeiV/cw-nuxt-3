@@ -12,6 +12,18 @@
   <div class="container mx-auto px-4 max-w-6xl lg:px-8 pt-2">
     <div class="bg-gray-100 dark:bg-gray-800 rounded-t-md border-t border-x border-gray-200 dark:border-gray-700 px-4 py-2 relative">
 
+      <div class="hidden">
+        <div class="">
+          <h1 class="text-sm">
+            С 2009 года Главный сварщик – ваш надежный партнер в мире сварочного оборудования!
+          </h1>
+          <h2 class="text-xs">
+            Наши магазины – это место, где профессионалы и энтузиасты приходят за лучшими решениями для сварочных работ. Сварка - это искусство, и мы знаем, как сделать его доступным и эффективным для каждого.
+          </h2>
+        </div>
+      </div>
+
+
       <div class="hidden md:block">
         <!-- <p class="text-base text-gray-700 dark:text-gray-300 py-1">Категории</p> -->
         <div class="">
