@@ -12,6 +12,21 @@
   const { data: products } = await useFetch(`${ config.public.baseURL }c/prods/`, { params: route.query })
   const { data: breadcrumbs } = await useFetch(`${ config.public.baseURL }c/breadcrumb/`, { params: route.query })
 
+  console.log('prods', products.value )
+
+  if ( products.value === null ) {
+    products.value = {
+      count: 0,
+      results: [],
+      meta: {
+        title: 'Товары',
+        description: 'Товары',
+        keywords: 'Товары',
+        inserted: []
+      }
+    }
+  }
+
   useSeoMeta({
     title: `${ products.value.meta.title } - купить онлайн в Главный Сварщик`,
     description: `${ products.value.meta.title }, большой выбор, купить по низким ценам. Гарантия качества.`,
