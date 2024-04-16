@@ -52,7 +52,7 @@
         "textContent": {
             "@context": "https://schema.org",
             "@type": "Product",
-            "id": product.value.vcode,
+            "id": product.value.id,
             "name": product.value.name,
             "image": product.value.preview_image,
             "description": product.value.description,
