@@ -10,7 +10,7 @@
           <span class="relative text-white">ГЛАВНЫЙ СВАРЩИК</span>
         </span>
         
-        <p class="mt-1 ml-20"><span class="text-2xl">интернет магазин</span> glsvar.ru</p>
+        <p class="mt-1 ml-20 text-white"><span class="text-2xl">интернет магазин</span> glsvar.ru</p>
         
       </blockquote>
 
