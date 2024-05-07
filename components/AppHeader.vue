@@ -286,7 +286,14 @@
                               </div>
                               <div class="">
                                 <p class="text-sm text-gray-800">{{ product.name }}</p>
-                                <p v-if="product.only_price > 0" class="text-gray-700">{{ product.only_price.toLocaleString() }} <span class="text-xs">руб.</span></p>
+                                <p v-if="product.only_price > 0" class="text-gray-700">{{ product.only_price.toLocaleString() }} <span class="text-xs">руб.</span> 
+                                <span>                
+
+                                    <span v-if="product.status === 'stock'" class="text-sm px-2">/ в наличии</span>
+                                    <span v-if="product.status === 'order'" class="text-sm px-2">/ под заказ</span>
+
+                                </span>  
+                                </p>
                                 <p v-else class="text-xs text-gray-700">Стоимость по запросу</p>
                               </div>
                             </div>
