@@ -44,40 +44,44 @@
   }
 
 
-  useHead({
-    script: [{
-    type: 'application/ld+json',
-    innerHTML: JSON.stringify({
-        "type": "application/ld+json",
-        "textContent": {
-            "@context": "https://schema.org",
-            "@type": "Product",
-            "id": product.value.id,
-            "name": product.value.name,
-            "image": product.value.preview_image,
-            "description": product.value.description,
-            "mpn": product.value.vcode,
-            "brand": {
-              "@type": 'Brand',
-              "name": brand.value,
-            },
-            "aggregateRating": {
-              '@type': 'AggregateRating',
-              "ratingValue": product.value.rating,
-              "reviewCount": '5',
-            },
-            "offers": {
-              '@type': 'Offer',
-              "url": 'https://glsvar.ru/product/' + product.value.id,
-              "priceCurrency": 'RUB',
-              "price": price.value,
-              "itemCondition": 'https://schema.org/UsedCondition',
-              "availability": 'https://schema.org/InStock',
-            },
-          }
-      })
-    }],
-  })
+  if ( product.value.id ) {
+    
+    useHead({
+      script: [{
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+          "type": "application/ld+json",
+          "textContent": {
+              "@context": "https://schema.org",
+              "@type": "Product",
+              "id": product.value.id,
+              "name": product.value.name,
+              "image": product.value.preview_image,
+              "description": product.value.description,
+              "mpn": product.value.vcode,
+              "brand": {
+                "@type": 'Brand',
+                "name": brand.value,
+              },
+              "aggregateRating": {
+                '@type': 'AggregateRating',
+                "ratingValue": product.value.rating,
+                "reviewCount": '5',
+              },
+              "offers": {
+                '@type': 'Offer',
+                "url": 'https://glsvar.ru/product/' + product.value.id,
+                "priceCurrency": 'RUB',
+                "price": price.value,
+                "itemCondition": 'https://schema.org/UsedCondition',
+                "availability": 'https://schema.org/InStock',
+              },
+            }
+        })
+      }],
+    })    
+  }
+
 
   const status = ref('')
 
