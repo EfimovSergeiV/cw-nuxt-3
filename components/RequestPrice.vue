@@ -136,30 +136,30 @@
 
 
                 <div class="text-xs text-gray-700 dark:text-gray-300 pb-4 border border-black/10 dark:border-white/10 p-4 rounded-md">
-                  <div class="grid grid-cols-1 gap-2">
+                  <div class="grid grid-cols-1 gap-3">
                     <p class="">Куда вам ответить?</p>
                     <div class="grid grid-cols-2 md:flex flex-row gap-4">
                       <div class="flex items-center">
-                        <input id="responseMethodDefault" type="radio" name="countries" v-model="responseMethod" value="" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="responseMethodDefault" class="block ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                        <input id="responseMethodDefault" type="radio" name="responseMethodDefault" v-model="responseMethod" value="" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="responseMethodDefault" class="block ms-2 text-xs md:text-sm font-medium text-gray-900 dark:text-gray-300">
                           На телефон или e-mail
                         </label>
                       </div>
                       <div class="flex items-center">
-                        <input id="responseMethodWhatsApp" type="radio" name="countries" v-model="responseMethod" value="WhatsApp" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="responseMethodWhatsApp" class="block ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                        <input id="responseMethodWhatsApp" type="radio" name="responseMethodWhatsApp" v-model="responseMethod" value="WhatsApp" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="responseMethodWhatsApp" class="block ms-2 text-xs md:text-sm font-medium text-gray-900 dark:text-gray-300">
                           В WhatsApp
                         </label>
                       </div>
                       <div class="flex items-center">
-                        <input id="responseMethodViber" type="radio" name="countries" v-model="responseMethod" value="Viber" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="responseMethodViber" class="block ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                        <input id="responseMethodViber" type="radio" name="responseMethodViber" v-model="responseMethod" value="Viber" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="responseMethodViber" class="block ms-2 text-xs md:text-sm font-medium text-gray-900 dark:text-gray-300">
                           В Viber
                         </label>
                       </div>
                       <div class="flex items-center">
-                        <input id="responseMethodTG" type="radio" name="countries" v-model="responseMethod" value="Телеграмм" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="responseMethodTG" class="block ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                        <input id="responseMethodTG" type="radio" name="responseMethodTG" v-model="responseMethod" value="Телеграмм" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="responseMethodTG" class="block ms-2 text-xs md:text-sm font-medium text-gray-900 dark:text-gray-300">
                           В Телеграмм
                         </label>
                       </div>
