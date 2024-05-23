@@ -12,7 +12,6 @@
   const { data: products } = await useFetch(`${ config.public.baseURL }c/prods/`, { params: route.query })
   const { data: breadcrumbs } = await useFetch(`${ config.public.baseURL }c/breadcrumb/`, { params: route.query })
 
-  console.log('prods', products.value )
 
   if ( products.value === null ) {
     products.value = {
