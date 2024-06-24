@@ -158,11 +158,11 @@
 
     <transition name="fade">
       <div v-if="products.length > 0" class="container mx-auto px-4 max-w-6xl lg:px-8 py-2">
-        <div class="grid grid-cols-1 gap-4">
+        <div class="grid grid-cols-1 gap-2">
           <div v-for="product in products" :key="product.id" class="">
             <div class="bg-gray-100 dark:bg-gray-800 rounded-md border border-gray-200 dark:border-gray-700 relative">
 
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-8 px-2 py-2">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-8 px-2 py-1">
 
                 <div class="flex items-center md:px-4">
                   <div class="">
@@ -173,22 +173,22 @@
                 <div class="">
                   <div class="flex items-center justify-start md:justify-end h-full gap-2">
 
-                    <div class="grid grid-cols-1 content-center border border-gray-200 hover:border-gray-300 dark:border-gray-600 dark:hover:border-gray-500 bg-gray-100 dark:bg-gray-700 transition-all px-4 py-0.5 h-16 rounded-md shadow-md shadow-black/20">
+                    <div class="grid grid-cols-1 content-center border border-gray-200 hover:border-gray-300 dark:border-gray-600 dark:hover:border-gray-500 bg-gray-100 dark:bg-gray-700 transition-all px-4 py-0.5 h-12 rounded-md shadow-md shadow-black/20">
                       <p class="text-xs">{{ product.city }}</p>
                       <p class="text-xs">{{ product.shop }}</p>
                     </div>
 
-                    <div class="w-[200px] grid grid-cols-1 content-center border border-gray-200 hover:border-gray-300 dark:border-gray-600 dark:hover:border-gray-500 bg-gray-100 dark:bg-gray-700 transition-all px-4 py-0.5 h-16 rounded-md shadow-md shadow-black/20">
-                      <div class="flex items-center justify-center">
+                    <div class="w-[200px] grid grid-cols-1 content-center border border-gray-200 hover:border-gray-300 dark:border-gray-600 dark:hover:border-gray-500 bg-gray-100 dark:bg-gray-700 transition-all px-4 py-0.5 h-12 rounded-md shadow-md shadow-black/20">
+                      <div class="flex items-center justify-end">
                         <div class="">
-                          <p class="text-base font-semibold">{{ product.price }}<span class="text-sm px-1 font-normal"> руб.</span></p>
-                          <p class="text-xs">в наличии: <span class="text-sm font-semibold px-2"> {{ product.quantity }}</span></p>                           
+                          <p class="text-base font-semibold text-right">{{ product.price }}<span class="text-sm px-1 font-normal"> руб.</span></p>
+                          <p class="text-xs text-right">в наличии: <span class="text-sm font-semibold px-2"> {{ product.quantity }}</span></p>                           
                         </div>
                 
                       </div>
                     </div>
 
-                    <div class="w-[60px] flex items-center justify-center border border-gray-200 hover:border-gray-300 dark:border-gray-600 dark:hover:border-gray-500 bg-gray-100 dark:bg-gray-700 transition-all px-4 py-0.5 h-16 rounded-md shadow-md shadow-black/20">
+                    <div class="w-[60px] flex items-center justify-center border border-gray-200 hover:border-gray-300 dark:border-gray-600 dark:hover:border-gray-500 bg-gray-100 dark:bg-gray-700 transition-all px-4 py-0.5 h-12 rounded-md shadow-md shadow-black/20">
                       <!-- <button @click="" class="mdi mdi-24px mdi-cart-arrow-down text-gray-600 dark:text-gray-300"></button> -->
                       <nuxt-link :to="{ name: 'ext-id', params: { id: product.id }}" class="mdi mdi-24px mdi-cart-arrow-down text-gray-600 dark:text-gray-300"></nuxt-link>
                     </div>
