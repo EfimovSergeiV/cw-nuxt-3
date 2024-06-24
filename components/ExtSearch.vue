@@ -189,7 +189,8 @@
                     </div>
 
                     <div class="w-[60px] flex items-center justify-center border border-gray-200 hover:border-gray-300 dark:border-gray-600 dark:hover:border-gray-500 bg-gray-100 dark:bg-gray-700 transition-all px-4 py-0.5 h-16 rounded-md shadow-md shadow-black/20">
-                      <button @click="" class="mdi mdi-24px mdi-cart-arrow-down text-gray-600 dark:text-gray-300"></button>
+                      <!-- <button @click="" class="mdi mdi-24px mdi-cart-arrow-down text-gray-600 dark:text-gray-300"></button> -->
+                      <nuxt-link :to="{ name: 'ext-id', params: { id: product.id }}" class="mdi mdi-24px mdi-cart-arrow-down text-gray-600 dark:text-gray-300"></nuxt-link>
                     </div>
 
                   </div>

@@ -15,16 +15,27 @@
   })
 
   const responseMethod = ref(" ")
+  const quantity = ref(1)
 
 
   const sendOrder = async () => {
-    if ( (false) ) {
+    if (clientStore.client.contact) {
       const { data: response } = await useFetch(`${ config.public.baseURL }o/oneclick/`, {
         method: 'POST',
         body: {
-          person: clientStore.client.person,
-          contact: clientStore.client.contact,
-          client_product: productsStore.oneclickCart,
+          "prod_type": "ext",
+          "name": clientStore.client.person,
+          "contact": clientStore.client.contact,
+          "msger": responseMethod.value,
+          "shop": 'пос. Неёлово, ул.Юбилейная д. 5ж',
+          "comment": null,
+          "prods": [
+            {
+              "id": prod.value.id,
+              "name": prod.value.name,
+              "quantity": quantity.value
+            }
+          ],
         }
       });
 
@@ -179,12 +190,19 @@
 
                       <div class="grid grid-cols-1 gap-4">
                         <div class="flex items-center justify-center gap-4">
-                          <button class="text-2xl font-semibold">-</button>
-                          <p class="text-xl">10</p>
-                          <button class="text-2xl font-semibold">+</button>                          
+                          <div>
+                            <button v-if="quantity > 1" @click="quantity = quantity - 1" class="text-2xl font-semibold">-</button>
+                            <button v-else class="text-2xl font-semibold">-</button>
+                          </div>
+                          <p class="text-xl">{{ quantity }}</p>
+                          <div class="">
+                            <button v-if="quantity < prod.quantity" @click="quantity = quantity + 1" class="text-2xl font-semibold">+</button>
+                            <button v-else disabled class="text-2xl font-semibold">+</button>
+                          </div>
+                                                   
                         </div>
 
-                        <button @click="" class="">
+                        <button @click="sendOrder" class="">
                           <div class=" text-sm text-gray-100 rounded-lg bg-blue-600 hover:bg-blue-700 border border-gray-300/50 dark:border-gray-500/50 transition-all duration-1000">
                             <div class=" bg-gradient-to-br from-gray-100/20 to-gray-900/40 rounded-lg">
                               <div>
