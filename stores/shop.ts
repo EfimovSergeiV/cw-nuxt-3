@@ -45,6 +45,15 @@ interface ProductImages {
   image: string,
 }
 
+
+interface OneClickProduct {
+  id: number,
+  name: string,
+  price: number,
+  quantity: number
+}
+
+
 export const useShopStore = defineStore('ShopStore', {
   /// Хранение данных о магазинах
   state: () => ({
@@ -73,6 +82,7 @@ export const useShopStore = defineStore('ShopStore', {
 export const useProductsStore = defineStore('ProductsStore', {
   /// Хранение данных о товарах
   state: () => ({
+    oneclickCart: [] as OneClickProduct[], /// Корзина для заказа в один клик
     cart: [] as Product[],  /// Товары в корзине
     comp: [] as Product[],  /// Товары в сравнении
     like: [] as Product[],  /// Товары в избраннном
@@ -115,6 +125,17 @@ export const useProductsStore = defineStore('ProductsStore', {
       }
 
 
+    },
+
+    /// Добавление товара в корзину для заказа в один клик
+    addOneclickProduct(product: any) {
+      console.log(product)
+      const productInCart = this.oneclickCart.find((item) => item.id === product.id)
+      if (productInCart) {
+        productInCart.quantity++
+      } else {
+        this.oneclickCart.push(product)
+      }
     },
 
     addProduct(target: string, payload: Product) {

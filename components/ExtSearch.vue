@@ -10,19 +10,29 @@
   const selShop = ref('all')
   // const selOrder = ref('low')
 
+  const loading = ref(false)
+  const emptySearch = ref(false)
+
 
   const debouncedHandler = debounce(async query => {
+    emptySearch.value = false
+    loading.value = true
 
     const { data: prods }  = await useFetch(`${ config.public.baseURL }c/ext/search/`, {
       method: 'POST',
       body: {
         name: search,
-        city: 'Псков',
-        shop: 'пос. Неёлово, ул.Юбилейная д. 5ж'
+        city: selCity.value,
+        shop: selShop.value
       }
     })
 
+    if (prods.value.length === 0) {
+      emptySearch.value = true
+    }
+
     products.value = ( await prods.value )
+    loading.value = false
 
   }, 300);
 
@@ -58,6 +68,35 @@
           </div>
           <div class=" md:w-3/4">
             <div class="grid grid-cols-1 gap-2">
+
+              <div class="grid grid-cols-1 md:flex items-center gap-2">
+                
+                <div class="">
+                  <select v-model="selCity" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500/0 focus:border-blue-500/0 block w-full pr-10 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500/0 dark:focus:border-blue-500/0">
+                    <option value="all">Во всех горадах</option>
+                    <option value="Псков">Псков</option>
+                    <option value="Великие Луки">Великие Луки</option>
+                    <option value="Смоленск">Смоленск</option>
+                    <option value="Петрозаводск">Петрозаводск</option>
+                  </select>
+                </div>
+
+                <div class="">
+                  <select v-model="selShop" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500/0 focus:border-blue-500/0 block w-full pr-4 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500/0 dark:focus:border-blue-500/0">
+                    <option value="all" >Во всех магазинах</option>
+                    <option value="пос. Неёлово, ул.Юбилейная д. 5ж">пос. Неёлово, ул.Юбилейная д. 5ж</option>
+                    <!-- <option value="CA">Canada</option> -->
+                    <!-- <option value="FR">France</option> -->
+                    <!-- <option value="DE">Germany</option> -->
+                  </select>
+                </div>
+
+                <div class="md:px-4">
+                  <button @click="showAll" class="">Показать все</button>
+                </div>
+                
+              </div>
+
               <div class="bg-white border border-gray-300 rounded-md">
                 <div class="flex items-center gap-0.5">
                   <div class=" pl-4 mdi mdi-24px mdi-magnify text-gray-600"></div>
@@ -73,33 +112,7 @@
                   >                      
                 </div>
               </div>
-              <div class="grid grid-cols-1 md:flex items-center gap-2">
-                
-                <div class="">
-                  <select v-model="selCity" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500/0 focus:border-blue-500/0 block w-full px-4 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500/0 dark:focus:border-blue-500/0">
-                    <option value="all">Выбрать город</option>
-                    <option value="Псков">Псков</option>
-                    <option value="Санкт-Петербург">Санкт-Петербург</option>
-                    <!-- <option value="FR">France</option> -->
-                    <!-- <option value="DE">Germany</option> -->
-                  </select>
-                </div>
 
-                <div class="">
-                  <select v-model="selShop" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500/0 focus:border-blue-500/0 block w-full px-4 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500/0 dark:focus:border-blue-500/0">
-                    <option value="all" >Выбрать магазин</option>
-                    <option value="Псков. пос. Неёлово, ул.Юбилейная д. 5ж">Псков. пос. Неёлово, ул.Юбилейная д. 5ж</option>
-                    <!-- <option value="CA">Canada</option> -->
-                    <!-- <option value="FR">France</option> -->
-                    <!-- <option value="DE">Germany</option> -->
-                  </select>
-                </div>
-
-                <div class="md:px-4">
-                  <button @click="showAll" class="">Показать все</button>
-                </div>
-                
-              </div>
             </div>
             <!-- СПРАВА ОСТАВЛЯЕМ ПУСТО -->
             <div class="">
@@ -181,26 +194,6 @@
 
                   </div>
                   
-                  <div class="flex items-center justify-end">
-                    <div class="">
-                      <!-- <button @click="" class="">
-                        <div class=" text-sm text-gray-100 rounded-lg bg-blue-600 hover:bg-blue-700 border border-gray-300/50 dark:border-gray-500/50 transition-all duration-1000">
-                          <div class=" bg-gradient-to-br from-gray-100/20 to-gray-900/40 rounded-lg">
-                            
-                            <transition name="fade" mode="out-in">
-                              <div v-if="false">
-                                <p class="text-white text-sm w-36 md:w-44 py-1.5">В корзине</p>
-                              </div>
-                              <div v-else>
-                                <p class="text-white text-sm w-36 md:w-44 py-1.5">Купить</p>
-                              </div>
-                            </transition>
-
-                          </div>
-                        </div>
-                      </button> -->
-                    </div>
-                  </div>
 
                 </div>
                 
@@ -211,9 +204,26 @@
           </div>
         </div>
       </div>
+
     </transition>
 
+    <transition name="fade">
+      <div v-if="loading || emptySearch" class="container mx-auto px-4 max-w-6xl lg:px-8 py-2">
+        <div class="bg-gray-100 dark:bg-gray-800 rounded-md border border-gray-200 dark:border-gray-700 px-4 py-2 relative">
+          <div class="grid grid-cols-1 gap-4">
+            <div v-if="emptySearch" class="">
+              <p class="text-xl">По вашему запросу ничего не найдено</p>
+            </div>
+            <div v-else class="flex items-center justify-center">
+              <p class="mdi mdi-24px mdi-spin mdi-chart-donut"></p>
+              <p class="text-xl px-4">Ищем...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </transition>
 
+    
 
 
 
