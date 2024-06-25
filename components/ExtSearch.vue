@@ -40,7 +40,13 @@
     debouncedHandler()
   })
 
+  watch(selCity, () => {
+    debouncedHandler()
+  })
 
+  watch(selShop, () => {
+    debouncedHandler()
+  })
 
 
   const showAll = async () => {

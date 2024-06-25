@@ -1,6 +1,7 @@
 <script setup>
   const ctx = useNuxtApp()
   const route = useRoute()
+  const router = useRouter()
   const config = useRuntimeConfig()
   const clientStore = useClientStore()
   const productsStore = useProductsStore()
@@ -27,18 +28,21 @@
           "name": clientStore.client.person,
           "contact": clientStore.client.contact,
           "msger": responseMethod.value,
+          "city": "Псков",
           "shop": 'пос. Неёлово, ул.Юбилейная д. 5ж',
           "comment": null,
           "prods": [
             {
               "id": prod.value.id,
               "name": prod.value.name,
+              "price": prod.value.price,
               "quantity": quantity.value
             }
           ],
         }
       });
 
+      console.log(response.value)
 
       if ( productsStore.cartTotalPrice > 30000 ) {
         
@@ -46,15 +50,15 @@
         if (process.client) {
           ctx.$metrika.reachGoal('EXPENSIVE_ORDER')
         }
-        
+
       } else {
-        await router.push({ name: 'order', hash: `#${ response.value.order }` })
+        clientStore.order = response.value.order
         if (process.client) {
           ctx.$metrika.reachGoal('SEND_ORDER')
         }
       }
-      
-      productsStore.clearCartProducts()
+
+      // productsStore.clearCartProducts()
 
     } else {
       errorMsg.value = 'Ошибка: Укажите как с вами связаться.'
@@ -189,17 +193,18 @@
                       </div>
 
                       <div class="grid grid-cols-1 gap-4">
-                        <div class="flex items-center justify-center gap-4">
-                          <div>
-                            <button v-if="quantity > 1" @click="quantity = quantity - 1" class="text-2xl font-semibold">-</button>
-                            <button v-else class="text-2xl font-semibold">-</button>
-                          </div>
-                          <p class="text-xl">{{ quantity }}</p>
-                          <div class="">
-                            <button v-if="quantity < prod.quantity" @click="quantity = quantity + 1" class="text-2xl font-semibold">+</button>
-                            <button v-else disabled class="text-2xl font-semibold">+</button>
-                          </div>
-                                                   
+                        <div class="flex items-center justify-center">
+                          <div class="flex items-center justify-between gap-4 select-none w-[80px]">
+                            <div class="cursor-pointer">
+                              <button v-if="quantity > 1" @click="quantity = quantity - 1" class="text-2xl font-semibold">-</button>
+                              <button v-else class="text-2xl font-semibold">-</button>
+                            </div>
+                            <p class="text-xl">{{ quantity }}</p>
+                            <div class="cursor-pointer">
+                              <button v-if="quantity < prod.quantity" @click="quantity = quantity + 1" class="text-2xl font-semibold">+</button>
+                              <button v-else disabled class="text-2xl font-semibold">+</button>
+                            </div>
+                          </div>                        
                         </div>
 
                         <button @click="sendOrder" class="">
