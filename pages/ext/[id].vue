@@ -17,7 +17,7 @@
 
   const responseMethod = ref(" ")
   const quantity = ref(1)
-
+  const errorMsg = ref(false)
 
   const sendOrder = async () => {
     if (clientStore.client.contact) {
@@ -27,10 +27,10 @@
           "prod_type": "ext",
           "name": clientStore.client.person,
           "contact": clientStore.client.contact,
+          "comment": clientStore.client.comment,
           "msger": responseMethod.value,
           "city": "Псков",
           "shop": 'пос. Неёлово, ул.Юбилейная д. 5ж',
-          "comment": null,
           "prods": [
             {
               "id": prod.value.id,
@@ -61,7 +61,7 @@
       // productsStore.clearCartProducts()
 
     } else {
-      errorMsg.value = 'Ошибка: Укажите как с вами связаться.'
+      errorMsg.value = true
       notificationsStore.pushToast({ id: 1, type: 'error', text: 'Ошибка: Проверте правильно ли заполнены обязательные поля.' })
     }
   }
@@ -105,6 +105,13 @@
 
       <div class="grid grid-cols-1 gap-4">
         <div class="bg-gray-100 dark:bg-gray-800 rounded-md border border-gray-200 dark:border-gray-700 px-4 py-2">
+
+          <div class="grid grid-cols-1 gap-2">
+            <h1 class="text-xl text-right">{{ prod.name }}</h1>
+            <div class="">
+              <h2 class="text-xs text-right">{{ prod.city }}. {{ prod.shop }}</h2>            
+            </div>
+          </div>
           
           <p class="">Форма быстрого заказа</p>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -125,7 +132,12 @@
                 </div>
                 <div class="">
                   <div class="">
-                    <label for="message" class="block mt-2 mb-1 text-xs font-medium text-gray-900 dark:text-gray-400">Как с вами связаться?</label>
+                    
+                    <div class="">
+                      <label v-if="errorMsg" for="message" class="block animate-bounce mt-2 mb-1 text-xs font-medium text-red-500 dark:text-red-500">Как с вами связаться?</label>
+                      <label v-else for="message" class="block mt-2 mb-1 text-xs font-medium text-gray-900 dark:text-gray-400">Как с вами связаться?</label>
+                    </div>
+                    
                     <div class="relative">
                       <div class="flex absolute inset-y-0 left-0 items-center pl-2 pointer-events-none">
                         <p class="mdi mdi-24px mdi-cellphone-message"></p>
@@ -166,21 +178,22 @@
                     </div>
                   </div>
                 </div>
+
+
+
               </div>
             </div>
             <div class="grid grid-cols-1 content-between gap-4">
-              
-              <div class="grid grid-cols-1 gap-2">
-                <h1 class="text-xl text-right">{{ prod.name }}</h1>
-                <div class="">
-                  <h2 class="text-xs text-right">{{ prod.city }}. {{ prod.shop }}</h2>            
-                </div>
+
+              <div class="">
+                <label for="message" class="block mt-2 mb-1 text-xs font-medium text-gray-900 dark:text-gray-400">Комментарий к заказу (необязательно)</label>
+                <textarea v-model="clientStore.client.comment" id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Напишите что-нибудь..."></textarea>
               </div>
+
               <div class="">
                 <div class="border border-gray-200 hover:border-gray-300 dark:border-gray-600 dark:hover:border-gray-500 bg-gray-100 dark:bg-gray-700 transition-all rounded-md shadow-md shadow-black/20 px-2 py-2">
               
                   <div class="grid grid-cols-1 gap-4 content-between">
-
 
                     <div class="flex items-center justify-between">
 
