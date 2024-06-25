@@ -95,6 +95,23 @@
 <template>
   <div class="">
 
+    <div class="hidden">
+      <h1 id="glsvar">Большой выбор сварочного оборудования и расходных материалов в магазинах Главный Сварщик</h1>
+      <h2 id="desc">
+        С 2009 года Главный сварщик – ваш надежный партнер в мире сварочного оборудования!
+        Наши магазины – это место, где профессионалы и энтузиасты приходят за лучшими решениями для сварочных работ. 
+        Сварка - это искусство, и мы знаем, как сделать его доступным и эффективным для каждого.
+      </h2>
+      <a id="mma-welding" href="https://glsvar.ru/prods?ct=8">MMA сварка</a>
+      <a id="mig-mag-welding" href="https://glsvar.ru/prods?ct=9">MIG-MAG сварка</a>
+      <a id="tig-welding" href="https://glsvar.ru/prods?ct=11">TIG сварка</a>
+      <a id="laser-welding" href="https://glsvar.ru/prods?ct=111">Лазерная сварка</a>
+      <a id="auto-welding" href="https://glsvar.ru/prods?ct=106">Автоматическая сварка</a>
+      <a id="consumables" href="https://glsvar.ru/prods?ct=4">Расходные материалы</a>
+      <a id="means-of-protection" href="https://glsvar.ru/prods?ct=108">Средства защиты</a>
+      <a id="gas-equiment" href="https://glsvar.ru/prods?ct=3">Газосварочное оборудование</a>
+    </div>
+
     <div class="">
       <div id="navbar" class="bg-gray-300 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-b border-gray-400 dark:border-gray-700 fixed hidden w-full z-40">
         

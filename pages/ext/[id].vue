@@ -10,9 +10,9 @@
   const { data: prod } = await useFetch(`${ config.public.baseURL }c/ext/${route.params.id}/`)
 
   useSeoMeta({
-    title: `${prod.value.name} есть наличии в ${prod.value.city} - купить в магазине Главный Сварщик'`,
-    description: `Главный сварщик ${prod.value.city}, ${prod.value.name}, сварочное оборудование, оборудование для сварки, купить электроды, купить проволоку, купить источник, купить сварочный инвертор`,
-    keywords: `Главный сварщик ${prod.value.city}, ${prod.value.name}, сварочное оборудование, оборудование для сварки, купить электроды, купить проволоку, купить источник, купить сварочный инвертор`,
+    title: `${prod.value.name} есть наличии г.${prod.value.city}. ${prod.value.shop} - купить в магазине Главный Сварщик`,
+    description: `Главный сварщик г.${prod.value.city} ${prod.value.shop}, ${prod.value.name}, сварочное оборудование, оборудование для сварки, купить электроды, купить проволоку, купить источник, купить сварочный инвертор`,
+    keywords: `Главный сварщик г.${prod.value.city} ${prod.value.shop}, ${prod.value.name}, сварочное оборудование, оборудование для сварки, купить электроды, купить проволоку, купить источник, купить сварочный инвертор`,
   })
 
   const responseMethod = ref(" ")
@@ -171,9 +171,9 @@
             <div class="grid grid-cols-1 content-between gap-4">
               
               <div class="grid grid-cols-1 gap-2">
-                <p class="text-xl text-right">{{ prod.name }}</p>
+                <h1 class="text-xl text-right">{{ prod.name }}</h1>
                 <div class="">
-                  <p class="text-xs text-right">{{ prod.city }}. {{ prod.shop }}</p>            
+                  <h2 class="text-xs text-right">{{ prod.city }}. {{ prod.shop }}</h2>            
                 </div>
               </div>
               <div class="">
