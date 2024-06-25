@@ -3,7 +3,7 @@
 
   const config = useRuntimeConfig()
   const products = ref([])
-  const search = ref('')
+  const search = ref(null)
   const current = ref(1)
 
   const selCity = ref('all')
@@ -21,7 +21,7 @@
     const { data: prods }  = await useFetch(`${ config.public.baseURL }c/ext/search/`, {
       method: 'POST',
       body: {
-        name: search,
+        name: search.value,
         city: selCity.value,
         shop: selShop.value
       }
@@ -41,6 +41,7 @@
   })
 
   watch(selCity, () => {
+    selShop.value = 'all'
     debouncedHandler()
   })
 
