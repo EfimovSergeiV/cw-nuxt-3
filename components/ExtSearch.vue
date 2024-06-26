@@ -2,6 +2,9 @@
   import debounce from "lodash.debounce";
 
   const config = useRuntimeConfig()
+  const productsStore = useProductsStore()
+  const notificationsStore = useNotificationsStore()
+
   const products = ref([])
   const search = ref(null)
   const current = ref(1)
@@ -50,18 +53,6 @@
   })
 
 
-  const showAll = async () => {
-    const { data: prods }  = await useFetch(`${ config.public.baseURL }c/ext/search/`, {
-      method: 'POST',
-      body: {
-        name: 'all',
-        city: selCity.value,
-        shop: selShop.value
-      }
-    })
-    products.value = ( await prods.value )
-  }
-
 </script>
 
 <template>
@@ -97,10 +88,6 @@
                     <!-- <option value="DE">Germany</option> -->
                   </select>
                 </div>
-
-                <div class="md:px-4">
-                  <button @click="showAll" class="">Показать все</button>
-                </div>
                 
               </div>
 
@@ -127,6 +114,10 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="">
+      {{ productsStore.simpleCart }}
     </div>
 
 
@@ -196,8 +187,16 @@
                     </div>
 
                     <div class="w-[60px] flex items-center justify-center border border-gray-200 hover:border-gray-300 dark:border-gray-600 dark:hover:border-gray-500 bg-gray-100 dark:bg-gray-700 transition-all px-4 py-0.5 h-12 rounded-md shadow-md shadow-black/20">
-                      <!-- <button @click="" class="mdi mdi-24px mdi-cart-arrow-down text-gray-600 dark:text-gray-300"></button> -->
-                      <nuxt-link :to="{ name: 'ext-id', params: { id: product.id }}" class="mdi mdi-24px mdi-cart-arrow-down text-gray-600 dark:text-gray-300"></nuxt-link>
+
+                      <div v-if="productsStore.productInSimpleCart(product.id)" class="">
+                        <nuxt-link :to="{ name: 'ext-id', params: { id: product.id }}" class="mdi mdi-24px mdi-check text-gray-600 dark:text-gray-300"></nuxt-link>
+                      </div>
+                      
+                      <div v-else>
+                        <button @click="notificationsStore.pushToast({id: 1, type: 'success', text:'Товар добавлен в корзину'}); productsStore.addSimpleProduct({'prod_type': 'ext', 'id': product.id, 'name': product.name, 'price': product.price, 'quantity': 1 })" class="mdi mdi-24px mdi-cart-arrow-down text-gray-600 dark:text-gray-300"></button>
+                      </div>
+
+
                     </div>
 
                   </div>

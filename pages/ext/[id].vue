@@ -19,52 +19,48 @@
   const quantity = ref(1)
   const errorMsg = ref(false)
 
-  const sendOrder = async () => {
+  const sendData = () => {
     if (clientStore.client.contact) {
-      const { data: response } = await useFetch(`${ config.public.baseURL }o/oneclick/`, {
+      $fetch(`${ config.public.baseURL }o/oneclick/`, {
         method: 'POST',
         body: {
-          "prod_type": "ext",
           "name": clientStore.client.person,
           "contact": clientStore.client.contact,
           "comment": clientStore.client.comment,
           "msger": responseMethod.value,
           "city": "Псков",
           "shop": 'пос. Неёлово, ул.Юбилейная д. 5ж',
-          "prods": [
-            {
-              "id": prod.value.id,
-              "name": prod.value.name,
-              "price": prod.value.price,
-              "quantity": quantity.value
-            }
-          ],
+          "prods": productsStore.simpleCart,
         }
-      });
-
-      console.log(response.value)
-
-      if ( productsStore.cartTotalPrice > 30000 ) {
+      }).then((res) => {
         
-        clientStore.order = response.value.order
-        if (process.client) {
-          ctx.$metrika.reachGoal('EXPENSIVE_ORDER')
+        if ( productsStore.cartTotalPrice > 30000 ) {
+          
+          clientStore.order = res.order
+
+          if (process.client) {
+            ctx.$metrika.reachGoal('EXPENSIVE_ORDER')
+          }
+
+        } else {
+          
+          clientStore.order = res.order
+          if (process.client) {
+            ctx.$metrika.reachGoal('SEND_ORDER')
+          }
         }
 
-      } else {
-        clientStore.order = response.value.order
-        if (process.client) {
-          ctx.$metrika.reachGoal('SEND_ORDER')
-        }
-      }
 
-      // productsStore.clearCartProducts()
+      })
 
     } else {
+
       errorMsg.value = true
       notificationsStore.pushToast({ id: 1, type: 'error', text: 'Ошибка: Проверте правильно ли заполнены обязательные поля.' })
+
     }
   }
+
 
 </script>
 
@@ -114,6 +110,7 @@
           </div>
           
           <p class="">Форма быстрого заказа</p>
+          {{  productsStore.productInSimpleCart(prod.id)  }}
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
             <div class="">
@@ -220,7 +217,7 @@
                           </div>                        
                         </div>
 
-                        <button @click="sendOrder" class="">
+                        <button v-if="productsStore.productInSimpleCart(prod.id)" @click="sendData" class="">
                           <div class=" text-sm text-gray-100 rounded-lg bg-blue-600 hover:bg-blue-700 border border-gray-300/50 dark:border-gray-500/50 transition-all duration-1000">
                             <div class=" bg-gradient-to-br from-gray-100/20 to-gray-900/40 rounded-lg">
                               <div>
@@ -229,9 +226,18 @@
                             </div>
                           </div>
                         </button>
-                        <!-- <button @click="" class="text-sm">
-                          Добавить в корзину
-                        </button> -->
+
+                        <button v-else @click="notificationsStore.pushToast({id: 1, type: 'success', text:'Товар добавлен в корзину'}); productsStore.addSimpleProduct({'prod_type': 'ext', 'id': prod.id, 'name': prod.name, 'price': prod.price, 'quantity': 1 })" class="">
+                          <div class=" text-sm text-gray-100 rounded-lg bg-blue-600 hover:bg-blue-700 border border-gray-300/50 dark:border-gray-500/50 transition-all duration-1000">
+                            <div class=" bg-gradient-to-br from-gray-100/20 to-gray-900/40 rounded-lg">
+                              <div>
+                                <p class="text-white text-sm w-36 md:w-32 py-1.5">В корзину</p>
+                              </div>
+                            </div>
+                          </div>
+                        </button>
+
+
                       </div>
 
                     </div>

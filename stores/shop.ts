@@ -46,7 +46,8 @@ interface ProductImages {
 }
 
 
-interface OneClickProduct {
+interface SimpleProduct {
+  prod_type: string,
   id: number,
   name: string,
   price: number,
@@ -82,7 +83,7 @@ export const useShopStore = defineStore('ShopStore', {
 export const useProductsStore = defineStore('ProductsStore', {
   /// Хранение данных о товарах
   state: () => ({
-    oneclickCart: [] as OneClickProduct[], /// Корзина для заказа в один клик
+    simpleCart: [] as SimpleProduct[], /// Упрощённая корзина для заказа в один клик, а позже для основной
     cart: [] as Product[],  /// Товары в корзине
     comp: [] as Product[],  /// Товары в сравнении
     like: [] as Product[],  /// Товары в избраннном
@@ -93,6 +94,11 @@ export const useProductsStore = defineStore('ProductsStore', {
     productImages: null as ProductImages[] | null, /// Отображение изображений товаров
   }),
   getters: {
+    productInSimpleCart: (state) => (id: number) => {
+      return state.simpleCart.find((item) => item.id === id);
+    },
+
+    
     productInCart: (state) => (id: number) => {
       return state.cart.find((item) => item.id === id);
     },
@@ -128,14 +134,16 @@ export const useProductsStore = defineStore('ProductsStore', {
     },
 
     /// Добавление товара в корзину для заказа в один клик
-    addOneclickProduct(product: any) {
-      console.log(product)
-      const productInCart = this.oneclickCart.find((item) => item.id === product.id)
-      if (productInCart) {
-        productInCart.quantity++
-      } else {
-        this.oneclickCart.push(product)
+    addSimpleProduct(product: any) {
+      if (product.prod_type === 'ext') {
+        this.simpleCart.push(product)
       }
+      // const productInCart = this.oneclickCart.find((item) => item.id === product.id)
+      // if (productInCart) {
+      //   productInCart.quantity++
+      // } else {
+      //   this.oneclickCart.push(product)
+      // }
     },
 
     addProduct(target: string, payload: Product) {

@@ -197,14 +197,31 @@
                             </div>
                           </div>
 
+
                           <div class="">
                             <div class="bg-white border border-gray-200 rounded-md py-2 px-2 h-full">
                               <nuxt-link :to="{ name: 'cts' }">
-                                <div class="grid grid-cols-1 gap-4  h-full">
-                                  <div class="flex items-center justify-center h-full">
-                                    <p class=" text-gray-600">Перейти в категории</p>
-                                  </div>
-                                </div>                              
+                                <div class="flex items-center justify-center h-16">
+                                  <img src="/icons/cts.png" class="h-10" />
+                                </div>
+                                
+                                <div class="flex justify-center mt-4">
+                                  <p class="text-center text-gray-700 text-base transition-all">Перейти в категории</p>              
+                                </div>
+                              </nuxt-link>
+                            </div>
+                          </div>
+
+                          <div class="">
+                            <div class="bg-white border border-gray-200 rounded-md py-2 px-2 h-full">
+                              <nuxt-link :to="{ name: 'ext-search' }">
+                                <div class="flex items-center justify-center h-16">
+                                  <img src="/icons/search.png" class="h-10" />
+                                </div>
+                                
+                                <div class="flex justify-center mt-4">
+                                  <p class="text-center text-gray-700 text-base transition-all">Расширенный поиск</p>              
+                                </div>
                               </nuxt-link>
                             </div>
                           </div>
