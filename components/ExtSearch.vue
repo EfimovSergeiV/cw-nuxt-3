@@ -116,10 +116,6 @@
       </div>
     </div>
 
-    <div class="">
-      {{ productsStore.simpleCart }}
-    </div>
-
 
     <div class="container mx-auto px-4 max-w-6xl lg:px-8 py-2 hidden">
       <div class="grid grid-cols-1 gap-4 md:flex items-center justify-between">
