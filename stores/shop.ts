@@ -98,7 +98,7 @@ export const useProductsStore = defineStore('ProductsStore', {
       return state.simpleCart.find((item) => item.id === id);
     },
 
-    
+
     productInCart: (state) => (id: number) => {
       return state.cart.find((item) => item.id === id);
     },
@@ -144,6 +144,19 @@ export const useProductsStore = defineStore('ProductsStore', {
       // } else {
       //   this.oneclickCart.push(product)
       // }
+    },
+    quantitySimpleProduct(product: any, prod_type: string, action: string) {
+
+      const simpleProduct = this.simpleCart.find((item) => item.id === product.id && item.prod_type === prod_type)
+
+      if (simpleProduct) {
+        if ( action === 'del') {
+          simpleProduct.quantity--
+        } else {
+          simpleProduct.quantity++
+        }        
+      }
+
     },
 
     addProduct(target: string, payload: Product) {

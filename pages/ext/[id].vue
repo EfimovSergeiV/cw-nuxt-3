@@ -33,7 +33,8 @@
           "prods": productsStore.simpleCart,
         }
       }).then((res) => {
-        
+        productsStore.simpleCart = []
+
         if ( productsStore.cartTotalPrice > 30000 ) {
           
           clientStore.order = res.order
@@ -110,11 +111,9 @@
           </div>
           
           <p class="">Форма быстрого заказа</p>
-          {{  productsStore.productInSimpleCart(prod.id)  }}
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="">
-              
               <div class="grid grid-cols-1 gap-2">
                 <div class="">
                   <div class="">
@@ -204,17 +203,23 @@
 
                       <div class="grid grid-cols-1 gap-4">
                         <div class="flex items-center justify-center">
-                          <div class="flex items-center justify-between gap-4 select-none w-[80px]">
-                            <div class="cursor-pointer">
-                              <button v-if="quantity > 1" @click="quantity = quantity - 1" class="text-2xl font-semibold">-</button>
-                              <button v-else class="text-2xl font-semibold">-</button>
-                            </div>
-                            <p class="text-xl">{{ quantity }}</p>
-                            <div class="cursor-pointer">
-                              <button v-if="quantity < prod.quantity" @click="quantity = quantity + 1" class="text-2xl font-semibold">+</button>
-                              <button v-else disabled class="text-2xl font-semibold">+</button>
-                            </div>
-                          </div>                        
+                          
+                          <div class="min-h-[32px]">
+                            <Transition name="fade">
+                              <div v-if="productsStore.productInSimpleCart(prod.id)" class="flex items-center justify-between gap-4 select-none w-[80px]">
+                                <div class="cursor-pointer">
+                                  <button v-if="productsStore.productInSimpleCart(prod.id).quantity > 1" @click="productsStore.quantitySimpleProduct({ 'prod_type': 'ext', 'id': prod.id, 'name': prod.name, 'price': prod.price, 'quantity': productsStore.productInSimpleCart(prod.id).quantity }, 'ext', 'del' )" class="text-2xl font-semibold">-</button>
+                                  <button v-else class="text-2xl font-semibold">-</button>
+                                </div>
+                                <p class="text-xl">{{ productsStore.productInSimpleCart(prod.id).quantity }}</p>
+                                <div class="cursor-pointer">
+                                  <button v-if="productsStore.productInSimpleCart(prod.id).quantity < prod.quantity" @click="productsStore.quantitySimpleProduct({ 'prod_type': 'ext', 'id': prod.id, 'name': prod.name, 'price': prod.price, 'quantity': productsStore.productInSimpleCart(prod.id).quantity }, 'ext', 'add' )" class="text-2xl font-semibold">+</button>
+                                  <button v-else disabled class="text-2xl font-semibold">+</button>
+                                </div>
+                              </div>                               
+                            </Transition>
+                          </div>
+
                         </div>
 
                         <button v-if="productsStore.productInSimpleCart(prod.id)" @click="sendData" class="">
