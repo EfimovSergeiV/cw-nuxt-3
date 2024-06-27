@@ -16,7 +16,6 @@
   })
 
   const responseMethod = ref(" ")
-  const quantity = ref(1)
   const errorMsg = ref(false)
 
   const sendData = () => {
