@@ -83,6 +83,8 @@
                   <select v-model="selShop" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500/0 focus:border-blue-500/0 block w-full pr-4 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500/0 dark:focus:border-blue-500/0">
                     <option value="all" >Во всех магазинах</option>
                     <option value="пос. Неёлово, ул.Юбилейная д. 5ж">пос. Неёлово, ул.Юбилейная д. 5ж</option>
+                    <option value="ул.Леона Поземского, 92, Павильон 28 (рынок на Алмазной)">ул.Леона Поземского, 92, Павильон 28 (рынок на Алмазной)</option>
+                    <option value="ул.Шоссейная д. 3а">ул.Шоссейная д. 3а</option>
                     <!-- <option value="CA">Canada</option> -->
                     <!-- <option value="FR">France</option> -->
                     <!-- <option value="DE">Germany</option> -->
