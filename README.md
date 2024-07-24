@@ -158,3 +158,20 @@ npm install @mdi/font
   </Swiper>
 </div>
 ```
+
+
+#### Видео для фона
+```typescript
+    <!-- <div id="background-page" class="bg-fixed bg-no-repeat bg-[center_100px] bg-cover bg-[url('images/footer-bg.webp')] dark:bg-[url('images/footer-dark-bg.webp')] min-h-screen"> -->
+      
+  <div id="backgr ound-page" class="min-h-screen bg-fixed bg-no-repeat bg-center bg-cover bg-[url('images/weld.webp')] dark:bg-[url('images/weld.webp')] ">
+    <div class="bg-gradient-to-r from-gray-300/80 to-gray-100/80 dark:from-gray-900/80 dark:to-gray-800/80 text-gray-700/80 dark:text-gray-300/80">
+      <div v-if="clientIP" class="">
+        <slot />
+      </div>
+      <div v-else class="">
+        <ErrBackEnd />
+      </div>
+    </div>
+  </div>
+```
