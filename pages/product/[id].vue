@@ -110,6 +110,7 @@
   const { data: breadcrumbs } = await useFetch(`${ config.public.baseURL }c/breadcrumb/?ct=${ product.value.category.id }`)
   const { data: recommends } = await useFetch(`${ config.public.baseURL }c/recommend/`)  
   
+
 </script>
 
 
@@ -119,9 +120,16 @@
     <AppHeader />
 
     <div v-if="product.id" class="">
+      
       <BreadCrumbs :breadcrumbs="breadcrumbs" />
-      <ProductDetail :product="product" :related="related" :analogue="analogue.slice(0, 2)" />      
+      <ProductDetail :product="product" :analogue="analogue" />
+      <ProductExt  :keywords="product.keywords" />
+      <ProductParams :propstrmodel="product.propstrmodel" :prod_doc="product.prod_doc" :prod_link="product.prod_link" />
+      <ProductRelated :related="related" />
+      <ProductDescription :description="product.description" />
+
     </div>
+
     <div v-else class="mx-auto px-4 max-w-6xl lg:px-8 py-2">
       <div class="bg-white rounded-md border dark:border-gray-700 dark:bg-gray-800 py-20">
         <div class="flex items-center justify-center">

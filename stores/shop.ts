@@ -1,5 +1,3 @@
-import { del } from 'nuxt/dist/app/compat/capi'
-import { type } from 'os'
 import { defineStore } from 'pinia'
 
 

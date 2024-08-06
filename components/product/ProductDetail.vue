@@ -1,6 +1,6 @@
 <script setup>
   const productsStore = useProductsStore()
-  const props = defineProps(['product','related','analogue'])
+  const props = defineProps(['product', 'analogue', ])
 
 
 </script>
@@ -12,7 +12,7 @@
 
     <div class="mx-auto px-4 max-w-6xl lg:px-8 py-2">
 
-      <div class="bg-white rounded-md border dark:border-gray-700 dark:bg-gray-800 p-2 mb-4">
+      <div class="bg-white rounded-md border dark:border-gray-700 dark:bg-gray-800 p-2">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div class="">
 
@@ -149,92 +149,6 @@
       </div>
 
 
-      <div v-if="props.related && props.related.length > 0" class="">
-        <div class="">
-          <div class="bg-white rounded-md border dark:border-gray-700 dark:bg-gray-800 shadow-md p-2">
-            <p class="text-lg uppercase italic font-semibold my-2">Сопутствующие товары</p>
-            
-            <div class=" py-1">
-              <div class="">
-                <Swiper
-                  class=""
-                  :modules="[]"
-                  :slidesPerView="'auto'"
-                  :loop="true"
-                  :spaceBetween="10"
-                >
-                
-                  <SwiperSlide v-for="prod_related in props.related" :key="prod_related.id">
-                    <ProductSmall :product="prod_related" />
-                  </SwiperSlide>
-
-                  <div class="lg:hidden absolute bottom-0 right-0 py-1 px-1 z-40">
-                    <SwiperControls class="bg-gray-100 rounded-full border border-gray-200 hover:border-gray-300 dark:border-gray-600 dark:hover:border-gray-500 dark:bg-gray-700 transition-all duration-500 px-1" />
-                  </div>
-
-                </Swiper>
-              </div>
-            </div>
-
-          </div>
-        </div>           
-      </div>
-     
-
-
-
-      <div class="">
-
-        <div v-if="props.product.propstrmodel.length > 0" class="mt-4">
-          <div class="bg-white rounded-md border dark:border-gray-700 dark:bg-gray-800 shadow-md px-2 py-4">
-
-            <div class="grid grid-cols-1 gap-8">
-              <div class="">
-                <p class="text-lg uppercase italic font-semibold mb-2">Характеристики:</p>
-                <div class="">
-                  <div class="">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
-                      <div v-for="param in props.product.propstrmodel" :key="param.id">
-                        
-                        <div class="flex items-center justify-between gap-x-10 gap-y-2 border-b border-gray-300 hover:border-gray-400 dark:border-gray-700 dark:hover:border-gray-600">
-                          <p class="text-sm">{{ param.name }}:</p>
-                          <p class="text-sm">{{ param.value }}</p>
-                        </div>
-                          
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div v-if="props.product.prod_doc.length > 0 || props.product.prod_link.length > 0" class="">
-                <p class="text-lg uppercase italic font-semibold mb-2">Документы:</p>
-                <div class="">
-                  <div class="">
-                    <div class="flex flex-wrap gap-x-8 gap-y-2">
-
-                      <div class="" v-for="file in props.product.prod_doc" :key="file.id">
-                        <a class="text-sm" :href="file.doc" target="_blank">{{ file.name }}</a>
-                      </div>
-                      <div class="" v-for="doc in props.product.prod_link" :key="doc.id">
-                        <a class="text-sm" :href="doc.url" target="_blank">{{ doc.name }}</a>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <div v-if="props.product.description" class="bg-white rounded-md border dark:border-gray-700 dark:bg-gray-800 shadow-md px-2 py-4 mt-4">
-          <p class="text-lg uppercase italic font-semibold mb-2">Описание:</p>
-          <div class=" description-style" v-html="props.product.description"></div> 
-        </div>
-
-      </div>
     </div>
 
   </div>
