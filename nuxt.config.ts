@@ -24,6 +24,13 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      ],
+      script: [
+        {
+          hid: 'gtm',
+          innerHTML: `window.dataLayer = window.dataLayer || [];`,
+          type: 'text/javascript'
+        }
       ]
     },
 
@@ -155,6 +162,9 @@ export default defineNuxtConfig({
 
   yandexMetrika: {
     id: cfg.yandexMetrika,
+    initParams: {
+      ecommerce: "dataLayer",
+    },
   }
 
 

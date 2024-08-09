@@ -103,8 +103,10 @@
                       <div class="grid grid-cols-1 gap-2">
                         <p class="">{{ prod.name }}</p>
                         <div class="flex gap-4">
-                          <p class=""> {{ prod.price }} руб.</p>
+
                           <p class="">в наличии: {{ prod.quantity }}</p>
+                          <p class=""> {{ prod.price }} руб.</p>
+                        
                         </div>
                       </div>
                     </div>

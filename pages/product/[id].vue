@@ -1,4 +1,6 @@
 <script setup>
+  const gtag = useGtag()
+  const ctx = useNuxtApp()
   const config = useRuntimeConfig()
   const route = useRoute()
   const tmp_id = useCookie('tmp_id')
@@ -66,13 +68,13 @@
               "aggregateRating": {
                 '@type': 'AggregateRating',
                 "ratingValue": product.value.rating,
-                "reviewCount": '5',
+                "reviewCount": '0',
               },
               "offers": {
                 '@type': 'Offer',
                 "url": 'https://glsvar.ru/product/' + product.value.id,
                 "priceCurrency": 'RUB',
-                "price": price.value,
+                "lowPrice": price.value,
                 "itemCondition": 'https://schema.org/UsedCondition',
                 "availability": 'https://schema.org/InStock',
               },
@@ -104,6 +106,31 @@
     twitterCard: `${ product.value.preview_image }`,
   })
 
+
+  /// Ecommerce
+
+  onMounted(() => {
+    const ecommerceData = {
+      "event": "ecommerce",
+      "ecommerce": {
+        "currencyCode": "RUB",
+        "detail": {
+          "products": [
+            {
+              "id": product.value.id,
+              "name" : product.value.name,
+              "price": price.value,
+              "brand": brand.value,
+              "category": product.value.category.name,
+            }
+          ]
+        }
+      }
+    }
+    window.dataLayer.push(ecommerceData)
+  })
+
+
   
   const { data: analogue } =  await useFetch(`${ config.public.baseURL }c/anlgs/?ct=${ product.value.category.id }`)
   const { data: related } =  await useFetch(`${ config.public.baseURL }c/rel/`, { query: { "ct": product.value.related }})
@@ -123,7 +150,7 @@
       
       <BreadCrumbs :breadcrumbs="breadcrumbs" />
       <ProductDetail :product="product" :analogue="analogue" />
-      <ProductExt  :keywords="product.keywords" />
+      <!-- <ProductExt  :keywords="product.keywords" /> -->
       <ProductParams :propstrmodel="product.propstrmodel" :prod_doc="product.prod_doc" :prod_link="product.prod_link" />
       <ProductRelated :related="related" />
       <ProductDescription :description="product.description" />

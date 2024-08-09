@@ -1,7 +1,30 @@
 <script setup>
 
   const props = defineProps(['description',])
-
+  
+  // const eccEvent = () => {
+  //   const ecommerceData = {
+  //     "event": "ecommerce",
+  //     "ecommerce": {
+  //       "currencyCode": "RUB",
+  //       "detail": {
+  //         "products": [
+  //           {
+  //             "id": "P15432",
+  //             "name" : "Футболка",
+  //             "price": 477.60,
+  //             "brand": "Яндекс / Яndex",
+  //             "category": "Одежда/Мужская одежда/Футболки",
+  //             "variant" : "Красный цвет",
+  //             "list": "Результаты поиска",
+  //             "position": 1
+  //           }
+  //         ]
+  //       }
+  //     }
+  //   }
+  //   window.dataLayer.push(ecommerceData)
+  // }
 
 
 </script>
