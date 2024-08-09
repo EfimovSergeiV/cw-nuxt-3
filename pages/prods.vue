@@ -41,6 +41,9 @@
   // Ecommerce
 
   const impressList = (products, category) => {
+    /// Сделать очистку "ecommerce" из dataLayer
+    
+    
     const ecommerceData = {
       "event": "ecommerce",
       "ecommerce": {

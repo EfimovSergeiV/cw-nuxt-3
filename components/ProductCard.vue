@@ -2,6 +2,30 @@
   const productsStore = useProductsStore()
   const props = defineProps(['product', 'category'])
 
+
+  /// Ecommerce
+
+  const clickProduct = () => {
+    const ecommerceData = {
+      "event": "ecommerce",
+      "ecommerce": {
+        "currencyCode": "RUB",
+        "click": {
+          "products": [
+            {
+              "id": props.product.id,
+              "name" : props.product.name,
+              "price": props.product.only_price,
+              "brand": props.product.brand.brand,
+              "category": props.category,
+            }
+          ]
+        }
+      }
+    }
+    window.dataLayer.push(ecommerceData)
+  }
+
 </script>
 
 <template>
@@ -10,7 +34,7 @@
 
       <p class="pb-1 text-xs font-semibold">{{ props.product.vcode }}</p>
 
-      <nuxt-link :to="{ name: 'product-id', params: { id: props.product.id } }">
+      <nuxt-link @click="clickProduct()" :to="{ name: 'product-id', params: { id: props.product.id } }">
         <div class="flex md:grid md:grid-cols-1 gap-4">
           <div class="bg-white rounded-md flex items-center justify-center min-h-[6rem] md:min-h-[10rem]">
             <div class="w-28 md:w-48 p-1">
