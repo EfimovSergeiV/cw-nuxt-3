@@ -62,6 +62,8 @@
           </div>
         </div>
 
+        <!-- {'id": 8, 'name': 'Ручная дуговая сварка', 'parent': 1} -->
+
         <div class="flex gap-4 items-end justify-end">
           <CartBtnSmall v-if="props.product.only_price" :product="props.product" />
           <button v-else @click="productsStore.addRequestPrice(props.product)" class="">

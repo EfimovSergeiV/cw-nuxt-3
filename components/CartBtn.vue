@@ -14,6 +14,8 @@
   const cartEvent = (product) => {
     let ecommerceData = null
 
+    console.log('BigBtn: ', product)
+
     if (product) {
       ecommerceData = {
         "event": "ecommerce",
@@ -65,9 +67,9 @@
   <div class="">
 
     <button @click="
-                    productsStore.addProduct('cart', props.product); 
-                    ymEvent(productsStore.productInCart(props.product.id)); 
-                    cartEvent(productsStore.productInCart(props.product.id))"
+              productsStore.addProduct('cart', props.product); 
+              ymEvent(productsStore.productInCart(props.product.id)); 
+              cartEvent(productsStore.productInCart(props.product.id))"
             class="">
       <div class=" text-sm text-gray-100 rounded-lg bg-blue-600 hover:bg-blue-700 border border-gray-300/50 dark:border-gray-500/50 transition-all duration-1000">
         <div class="bg-gradient-to-br from-gray-100/20 to-gray-900/40 rounded-lg">

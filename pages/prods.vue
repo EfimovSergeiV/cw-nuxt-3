@@ -37,7 +37,31 @@
     twitterCard: `/og-image.png`,
   })
 
-  /// Корзина кнопки, лайки, сравнение
+
+  // Ecommerce
+
+  const impressList = (products, category) => {
+    const ecommerceData = {
+      "event": "ecommerce",
+      "ecommerce": {
+        "currencyCode": "RUB",
+        "impressions": []
+      }
+    }
+
+    products.forEach((product) => {
+      ecommerceData.ecommerce.impressions.push({
+        "id": product.id,
+        "name" : product.name,
+        "price": product.only_price,
+        "brand": product.brand.brand,
+        "category": category,
+      })
+    })
+
+    window.dataLayer.push(ecommerceData)
+  }
+
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0 })
@@ -53,6 +77,8 @@
       products.value = ( await prods_updated.value )
       props.value = ( await props_updated.value)
       breadcrumbs.value = ( await breadcrumbs_updated.value )
+
+      impressList(products.value.results, products.value.meta.title)
       
       scrollToTop()
     }
@@ -106,6 +132,15 @@
       },
     })
   }
+
+    /// Ecommerce
+
+  onMounted(() => {
+
+    console.log("MOUNTED ")
+    impressList(products.value.results, products.value.meta.title)
+
+  })
 
 </script>
 

@@ -14,6 +14,8 @@
   const cartEvent = (product) => {
     let ecommerceData = null
 
+    console.log('SmallBtn: ', product)
+
     if (product) {
       ecommerceData = {
         "event": "ecommerce",
@@ -26,33 +28,33 @@
                 "name" : props.product.name,
                 "price": props.product.only_price,
                 "brand": props.product.brand.brand,
-                "category": props.product.category.name,
+                "category": props.product.category,
                 "quantity": 1,
               }
             ]
           }
         }
       }
-    } else {
-      ecommerceData = {
-        "event": "ecommerce",
-        "ecommerce": {
-        "currencyCode": "RUB",    
-        "remove": {
-          "products": [
-              {
-                "id": props.product.id,
-                "name" : props.product.name,
-                "price": props.product.only_price,
-                "brand": props.product.brand.brand,
-                "category": props.product.category.name,
-                "quantity": 1,
-              }
-            ]
-          }
-        }
-      }
-    }
+    } // else {
+    //   ecommerceData = {
+    //     "event": "ecommerce",
+    //     "ecommerce": {
+    //     "currencyCode": "RUB",    
+    //     "remove": {
+    //       "products": [
+    //           {
+    //             "id": props.product.id,
+    //             "name" : props.product.name,
+    //             "price": props.product.only_price,
+    //             "brand": props.product.brand.brand,
+    //             "category": props.product.category.name,
+    //             "quantity": 1,
+    //           }
+    //         ]
+    //       }
+    //     }
+    //   }
+    // }
 
     window.dataLayer.push(ecommerceData)
   }
@@ -65,7 +67,7 @@
       
     <button @click="
               productsStore.addProduct('cart', props.product); 
-              ymEvent(productsStore.productInCart(props.product.id))
+              ymEvent(productsStore.productInCart(props.product.id));
               cartEvent(productsStore.productInCart(props.product.id))" 
             class="">
       <div class=" text-sm text-gray-100 rounded-lg bg-blue-600 hover:bg-blue-700 border border-gray-300/50 dark:border-gray-500/50 transition-all duration-1000">
