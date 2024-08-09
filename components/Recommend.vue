@@ -40,7 +40,7 @@
         >
         
           <SwiperSlide  v-for="product in recommends" :key="product.id" class="">
-            <ProductSmall :product="product" />
+            <ProductSmall :product="product" :category="'Главный сварщик рекомендует'" />
           </SwiperSlide>
 
           <div class="absolute bottom-0 right-0 py-1 px-1 z-40">

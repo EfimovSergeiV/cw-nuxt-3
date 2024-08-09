@@ -1,6 +1,6 @@
 <script setup>
   const productsStore = useProductsStore()
-  const props = defineProps(['product'])
+  const props = defineProps(['product', 'category'])
 
 </script>
 
@@ -65,7 +65,7 @@
         <!-- {'id": 8, 'name': 'Ручная дуговая сварка', 'parent': 1} -->
 
         <div class="flex gap-4 items-end justify-end">
-          <CartBtnSmall v-if="props.product.only_price" :product="props.product" />
+          <CartBtnSmall v-if="props.product.only_price" :product="props.product" :category="props.category" />
           <button v-else @click="productsStore.addRequestPrice(props.product)" class="">
             <div class=" text-sm text-gray-100 rounded-lg bg-blue-600 hover:bg-blue-700 border border-gray-300/50 dark:border-gray-500/50 transition-all duration-1000">
               <div class=" bg-gradient-to-br from-gray-100/20 to-gray-900/40 rounded-lg">

@@ -149,10 +149,10 @@
     <div v-if="product.id" class="">
       
       <BreadCrumbs :breadcrumbs="breadcrumbs" />
-      <ProductDetail :product="product" :analogue="analogue" />
+      <ProductDetail :product="product" :analogue="analogue" :category="product.category.name" />
       <!-- <ProductExt  :keywords="product.keywords" /> -->
       <ProductParams :propstrmodel="product.propstrmodel" :prod_doc="product.prod_doc" :prod_link="product.prod_link" />
-      <ProductRelated :related="related" />
+      <ProductRelated :related="related" :category="`Сопутствующие ${product.category.name.toLowerCase()}`" />
       <ProductDescription :description="product.description" />
 
     </div>

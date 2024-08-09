@@ -1,6 +1,6 @@
 <script setup>
   const productsStore = useProductsStore()
-  const props = defineProps(['related',])
+  const props = defineProps(['related', 'category',])
 
 
 </script>
@@ -23,7 +23,7 @@
             >
             
               <SwiperSlide v-for="prod_related in props.related" :key="prod_related.id">
-                <ProductSmall :product="prod_related" />
+                <ProductSmall :product="prod_related" :category="props.category" />
               </SwiperSlide>
 
               <div class="lg:hidden absolute bottom-0 right-0 py-1 px-1 z-40">

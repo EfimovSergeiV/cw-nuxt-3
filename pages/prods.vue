@@ -224,7 +224,7 @@
               <div v-if="clientStore.viewport === 'grid'" class="grid grid-cols-1 gap-y-4 gap-x-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
                 <transition-group name="fade">
                     <div class="" v-for="product in products.results" :key="product.id">
-                      <ProductCard :product="product" />
+                      <ProductCard :product="product" :category="products.meta.title" />
                     </div>                
                 </transition-group>
               </div>
@@ -232,7 +232,7 @@
               <div v-else class="grid grid-cols-1 gap-4">
                 <transition-group name="fade">
                     <div class="" v-for="product in products.results" :key="product.id">
-                      <ProductCardLS :product="product" />
+                      <ProductCardLS :product="product" :category="products.meta.title" />
                     </div>                
                 </transition-group>
               </div>            

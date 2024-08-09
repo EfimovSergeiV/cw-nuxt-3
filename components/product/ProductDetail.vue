@@ -1,6 +1,6 @@
 <script setup>
   const productsStore = useProductsStore()
-  const props = defineProps(['product', 'analogue', ])
+  const props = defineProps(['product', 'analogue', 'category',])
 
 
 </script>
@@ -139,7 +139,7 @@
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div v-for="prod_analogue in analogue" :key="prod_analogue.id" class="">
-                  <ProductSmall :product="prod_analogue" />
+                  <ProductSmall :product="prod_analogue" :category="props.category" />
                 </div>
               </div>              
             </div>

@@ -1,6 +1,6 @@
 <script setup>
   const ctx = useNuxtApp()
-  const props = defineProps(['product'])
+  const props = defineProps(['product', 'category'])
   const productsStore = useProductsStore()
   const notificationsStore = useNotificationsStore()
 
@@ -14,7 +14,7 @@
   const cartEvent = (product) => {
     let ecommerceData = null
 
-    console.log('SmallBtn: ', product)
+    console.log('SmallBtn: ', product, props.category)
 
     if (product) {
       ecommerceData = {
@@ -28,33 +28,33 @@
                 "name" : props.product.name,
                 "price": props.product.only_price,
                 "brand": props.product.brand.brand,
-                "category": props.product.category,
+                "category": props.category,
                 "quantity": 1,
               }
             ]
           }
         }
       }
-    } // else {
-    //   ecommerceData = {
-    //     "event": "ecommerce",
-    //     "ecommerce": {
-    //     "currencyCode": "RUB",    
-    //     "remove": {
-    //       "products": [
-    //           {
-    //             "id": props.product.id,
-    //             "name" : props.product.name,
-    //             "price": props.product.only_price,
-    //             "brand": props.product.brand.brand,
-    //             "category": props.product.category.name,
-    //             "quantity": 1,
-    //           }
-    //         ]
-    //       }
-    //     }
-    //   }
-    // }
+    } else {
+      ecommerceData = {
+        "event": "ecommerce",
+        "ecommerce": {
+        "currencyCode": "RUB",    
+        "remove": {
+          "products": [
+              {
+                "id": props.product.id,
+                "name" : props.product.name,
+                "price": props.product.only_price,
+                "brand": props.product.brand.brand,
+                "category": props.category,
+                "quantity": 1,
+              }
+            ]
+          }
+        }
+      }
+    }
 
     window.dataLayer.push(ecommerceData)
   }
