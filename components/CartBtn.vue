@@ -67,7 +67,7 @@
   <div class="">
 
     <button @click="
-              productsStore.addProduct('cart', props.product); 
+              productsStore.addProduct('cart', {...props.product, category: props.product.category.name}); 
               ymEvent(productsStore.productInCart(props.product.id)); 
               cartEvent(productsStore.productInCart(props.product.id))"
             class="">

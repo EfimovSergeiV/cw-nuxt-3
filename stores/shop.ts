@@ -10,6 +10,7 @@ interface Product {
   status: string
   preview_image: string
   description: string,
+  category: string | null,
   propstrmodel: any
   quantity: number
 }
@@ -153,7 +154,7 @@ export const useProductsStore = defineStore('ProductsStore', {
           simpleProduct.quantity--
         } else {
           simpleProduct.quantity++
-        }        
+        }
       }
 
     },
@@ -170,7 +171,7 @@ export const useProductsStore = defineStore('ProductsStore', {
       if (target === 'cart') {
         product.quantity = 1
         const index = this.cart.findIndex((item) => item.id === product.id)
-        if (index === -1){
+        if (index === -1) {
 
           this.cart.push(product)
 

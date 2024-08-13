@@ -43,6 +43,38 @@
   const errorMsg = ref(null)
   const selectedShop = ref(null)
 
+
+    // Ecommerce
+
+    const impressList = (products, order_id) => {      
+      const ecommerceData = {
+        "event": "ecommerce",
+        "ecommerce": {
+          "currencyCode": "RUB",
+          "purchase": {
+            "actionField": {
+              "id" : order_id,
+            },
+            "products": []
+          },
+        }
+      }
+
+      products.forEach((product, pk) => {
+        ecommerceData.ecommerce.purchase.products.push({
+          "id": product.id,
+          "name" : product.name,
+          "price": product.only_price,
+          "brand": product.brand.brand,
+          "category": product.category,          
+          "quantity": product.quantity,
+          "position": pk + 1
+        })
+      })
+
+      window.dataLayer.push(ecommerceData)
+      console.log(ecommerceData)
+  }
   
   const sendOrder = async () => {
     if ( (phoneValidate.value || emailValidate.value) ) {
@@ -90,6 +122,9 @@
         }
       }
       
+      // Ecommerce call
+      impressList(productsStore.cart, response.value.order)
+
       productsStore.clearCartProducts()
 
     } else {
@@ -152,8 +187,6 @@
 <template>
 
   <div class="container mx-auto px-4 py-2 max-w-6xl lg:px-8">
-
-
 
     <div v-if="(productsStore.simpleCart.length > 0)" class="bg-white border-gray-200 border dark:border-gray-700 dark:bg-gray-800 rounded-md p-1">
 
