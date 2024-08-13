@@ -18,6 +18,59 @@
   const products = ref([])
 
 
+
+  /// Ecommerce
+
+  const impressList = (products, category) => {
+    /// Сделать очистку "ecommerce" из dataLayer
+
+    const ecommerceData = {
+      "event": "ecommerce",
+      "ecommerce": {
+        "currencyCode": "RUB",
+        "impressions": []
+      }
+    }
+
+    products.forEach((product) => {
+      ecommerceData.ecommerce.impressions.push({
+        "id": product.id,
+        "name" : product.name,
+        "price": product.only_price,
+        "brand": product.brand.brand,
+        "category": category,
+      })
+    })
+
+    // window.dataLayer.push(ecommerceData)
+    console.log(ecommerceData)
+  }
+
+
+  const clickProduct = (product) => {
+    const ecommerceData = {
+      "event": "ecommerce",
+      "ecommerce": {
+        "currencyCode": "RUB",
+        "click": {
+          "products": [
+            {
+              "id": product.id,
+              "name" : product.name,
+              "price": product.only_price,
+              "brand": product.brand.brand,
+              "category": 'Поисковый запрос пользователя',
+            }
+          ]
+        }
+      }
+    }
+    // window.dataLayer.push(ecommerceData)
+    console.log(ecommerceData)
+  }
+
+
+
   const debouncedHandler = debounce(async query => {
 
     const { data: prods }  = await useFetch(`${ config.public.baseURL }c/search/`, {
@@ -28,6 +81,7 @@
     })
     
     products.value = ( await prods.value )
+    impressList(prods.value, 'Результаты поискового запроса')
 
   }, 300);
 
@@ -291,8 +345,8 @@
                         <p class="">Введите запрос</p>
                       </div>
                       <transition-group name="fade">
-                        <div class="px-2 py-0.5 my-1 bg-gray-100  border border-gray-200 hover:border-gray-300 rounded-md transition-all" v-for="product in products" :key="product.id">
-                          <nuxt-link :to="{ name: 'product-id', params: { id: product.id }}" @click="succesSearch()" class="">
+                        <div v-for="product in products" :key="product.id" class="px-2 py-0.5 my-1 bg-gray-100  border border-gray-200 hover:border-gray-300 rounded-md transition-all">
+                          <nuxt-link :to="{ name: 'product-id', params: { id: product.id }}" @click="succesSearch(); clickProduct(product)" class="">
                             <div class="flex gap-4">
                               <div class="">
                                 <img class="bg-white w-20 p-1 rounded-md" :src="product.preview_image" />
