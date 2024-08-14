@@ -14,8 +14,6 @@
   const cartEvent = (product) => {
     let ecommerceData = null
 
-    console.log('SmallBtn: ', product, props.category)
-
     if (product) {
       ecommerceData = {
         "event": "ecommerce",

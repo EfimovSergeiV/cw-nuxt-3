@@ -21,7 +21,7 @@
 
   /// Ecommerce
 
-  const impressList = (products, category) => {
+  const impressList = (products) => {
     /// Сделать очистку "ecommerce" из dataLayer
 
     const ecommerceData = {
@@ -32,18 +32,19 @@
       }
     }
 
-    products.forEach((product) => {
+    products.forEach((product, pk) => {
       ecommerceData.ecommerce.impressions.push({
         "id": product.id,
         "name" : product.name,
         "price": product.only_price,
         "brand": product.brand.brand,
-        "category": category,
+        "category": product.category.name,
+        "list": "Результаты поиска",
+        "position": pk + 1
       })
     })
 
-    // window.dataLayer.push(ecommerceData)
-    console.log(ecommerceData)
+    window.dataLayer.push(ecommerceData)
   }
 
 
@@ -59,14 +60,15 @@
               "name" : product.name,
               "price": product.only_price,
               "brand": product.brand.brand,
-              "category": 'Поисковый запрос пользователя',
+              "category": product.category.name,
+              "list": "Search",
+              "position": 1
             }
           ]
         }
       }
     }
-    // window.dataLayer.push(ecommerceData)
-    console.log(ecommerceData)
+    window.dataLayer.push(ecommerceData)
   }
 
 
@@ -81,7 +83,7 @@
     })
     
     products.value = ( await prods.value )
-    impressList(prods.value, 'Результаты поискового запроса')
+    impressList(prods.value)
 
   }, 300);
 

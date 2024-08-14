@@ -14,8 +14,6 @@
   const cartEvent = (product) => {
     let ecommerceData = null
 
-    console.log('BigBtn: ', product)
-
     if (product) {
       ecommerceData = {
         "event": "ecommerce",

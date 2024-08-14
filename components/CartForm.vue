@@ -73,7 +73,6 @@
       })
 
       window.dataLayer.push(ecommerceData)
-      console.log(ecommerceData)
   }
   
   const sendOrder = async () => {

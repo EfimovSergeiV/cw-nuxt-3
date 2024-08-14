@@ -139,10 +139,7 @@
     /// Ecommerce
 
   onMounted(() => {
-
-    console.log("MOUNTED ")
     impressList(products.value.results, products.value.meta.title)
-
   })
 
 </script>
