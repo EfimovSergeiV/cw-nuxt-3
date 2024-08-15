@@ -42,7 +42,7 @@
   const order = ref(null)
   const errorMsg = ref(null)
   const selectedShop = ref(null)
-
+  const responseMethod = ref(" ")
 
     // Ecommerce
 
@@ -83,7 +83,7 @@
           shop_id: clientStore.client.id,
           region_code: selectedShop.value.region_code,
           person: clientStore.client.person,
-          phone: clientStore.client.phone,
+          phone: `${responseMethod.value} ${clientStore.client.phone}`,
           email: clientStore.client.email,
           comment: clientStore.client.comment,
           delivery: clientStore.client.delivery,
@@ -134,8 +134,7 @@
 
 
   // FROM SIMPLE CART
-  const responseMethod = ref(" ")
-  // const errorMsg = ref(false)
+
 
   const sendData = () => {
     if (clientStore.client.contact) {
@@ -143,9 +142,8 @@
         method: 'POST',
         body: {
           "name": clientStore.client.person,
-          "contact": clientStore.client.contact,
+          "contact": `${responseMethod.value} ${clientStore.client.contact}`,
           "comment": clientStore.client.comment,
-          "msger": responseMethod.value,
           "city": "Псков",
           "shop": 'пос. Неёлово, ул.Юбилейная д. 5ж',
           "prods": productsStore.simpleCart,
@@ -442,7 +440,7 @@
                 </ul>
               </div>
             </div>
-            <div class="grid md:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div class="">
                 <label for="message" class="block mt-2 mb-1 text-xs font-medium text-gray-900 dark:text-gray-400">Имя (необязательно)</label>
                 <div class="relative">
@@ -470,6 +468,40 @@
                   <input v-model="clientStore.client.phone" type="text" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-700 dark:placeholder-gray-400 dark:text-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="+7 (987) 654 32 10">
                 </div> 
               </div>
+
+              <div class="text-xs text-gray-700 dark:text-gray-300 pb-4 border border-black/10 dark:border-white/10 p-4 rounded-md">
+                <div class="grid grid-cols-1 gap-3">
+                  <p class="">Мы с вами свяжемся. Где вам удобнее?</p>
+                  <div class="grid grid-cols-2 gap-2">
+                    <div class="flex items-center">
+                      <input id="responseMethodDefault" type="radio" name="responseMethodDefault" v-model="responseMethod" value="" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                      <label for="responseMethodDefault" class="block ms-2 text-xs md:text-sm font-medium text-gray-900 dark:text-gray-300">
+                        На телефон или e-mail
+                      </label>
+                    </div>
+                    <div class="flex items-center">
+                      <input id="responseMethodWhatsApp" type="radio" name="responseMethodWhatsApp" v-model="responseMethod" value="WhatsApp" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                      <label for="responseMethodWhatsApp" class="block ms-2 text-xs md:text-sm font-medium text-gray-900 dark:text-gray-300">
+                        В WhatsApp
+                      </label>
+                    </div>
+                    <div class="flex items-center">
+                      <input id="responseMethodViber" type="radio" name="responseMethodViber" v-model="responseMethod" value="Viber" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                      <label for="responseMethodViber" class="block ms-2 text-xs md:text-sm font-medium text-gray-900 dark:text-gray-300">
+                        В Viber
+                      </label>
+                    </div>
+                    <div class="flex items-center">
+                      <input id="responseMethodTG" type="radio" name="responseMethodTG" v-model="responseMethod" value="Телеграмм" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                      <label for="responseMethodTG" class="block ms-2 text-xs md:text-sm font-medium text-gray-900 dark:text-gray-300">
+                        В Телеграмм
+                      </label>
+                    </div>
+                  </div>                    
+                </div>
+
+              </div>
+
             </div>
           </div>
         </div>

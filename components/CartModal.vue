@@ -13,6 +13,31 @@
     }, 500)
   }
 
+  /// Ecomerce dataLayer
+  const removeProduct = (product) => {
+
+    let ecommerceData = {
+        "event": "ecommerce",
+        "ecommerce": {
+        "currencyCode": "RUB",    
+        "remove": {
+          "products": [
+              {
+                "id": product.id,
+                "name" : product.name,
+                "price": product.only_price,
+                "brand": product.brand.brand,
+                "category": product.category,
+                "quantity": 1,
+              }
+            ]
+          }
+        }
+      }
+    window.dataLayer.push(ecommerceData)
+
+  }
+
   // watch на удаление последнего товара из корзины и скрытие модальки
 
 </script>
@@ -57,7 +82,7 @@
                       </div>
                     </div>
 
-                    <div class="grid gap-2 text-gray-700 dark:text-gray-300">
+                    <div v-if="productsStore.cart.length > 0" class="grid gap-2 text-gray-700 dark:text-gray-300">
                       <transition-group tag="div" name="left-emergence">
                         <div v-for="product in productsStore.cart" :key="product.id" class="my-4 border-t border-gray-300 dark:border-gray-700">
                           <div class="flex items-center gap-2">
@@ -78,11 +103,15 @@
                             </div>
                             <div class="flex justify-center w-32"><p class="text-sm">{{ product.only_price.toLocaleString() }} руб/шт</p></div>
                             <div class="flex justify-center w-20">
-                              <button @click="productsStore.addProduct('cart', product)" class="mdi mdi-24px mdi-close cursor-pointer"></button>
+                              <!-- <button @click="productsStore.addProduct('cart', product); removeProduct(product)" class="mdi mdi-24px mdi-close cursor-pointer"></button> -->
+                              <button @click="productsStore.addProduct('cart', product); removeProduct(product)" class="mdi mdi-24px mdi-close cursor-pointer"></button>
                             </div>
                           </div>
                         </div>
                       </transition-group>
+                    </div>
+                    <div class="flex justify-center" v-else>
+                      <p class="text-sm text-gray-700 dark:text-gray-300 py-6">Тут пока пусто</p>
                     </div>
                   </div>
                 </div>
@@ -92,7 +121,11 @@
               <div class="grid grid-cols-1 items-end justify-between p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-700">
                 <div class="">
                   <div class="flex items-center mb-4">
-                    <input id="default-checkbox" type="checkbox" v-model="productsStore.cartAlertBlock" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-700">
+                    <input id="default-checkbox" type="checkbox" v-model="productsStore.cartAlertBlock" class="
+                        w-4 h-4 
+                        rounded text-gray-700 focus:ring-0 
+                        focus:ring-gray-300 ring-offset-gray-300 bg-gray-700 border-gray-300
+                        dark:focus:ring-gray-500 dark:ring-offset-gray-800 dark:bg-gray-500 dark:border-gray-500">
                     <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-700 dark:text-gray-300 cursor-pointer">Не показывать больше</label>
                   </div>
                 </div>
