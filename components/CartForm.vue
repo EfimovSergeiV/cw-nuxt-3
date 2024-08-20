@@ -44,39 +44,65 @@
   const selectedShop = ref(null)
   const responseMethod = ref(" ")
 
-    // Ecommerce
 
-    const impressList = (products, order_id) => {      
-      const ecommerceData = {
-        "event": "ecommerce",
-        "ecommerce": {
-          "currencyCode": "RUB",
-          "purchase": {
-            "actionField": {
-              "id" : order_id,
-            },
-            "products": []
-          },
+  // Ecommerce
+
+  const removeProduct = (product) => {
+
+    let ecommerceData = {
+      "event": "ecommerce",
+      "ecommerce": {
+      "currencyCode": "RUB",    
+      "remove": {
+        "products": [
+            {
+              "id": product.id,
+              "name" : product.name,
+              "price": product.only_price,
+              "brand": product.brand.brand,
+              "category": product.category,
+              "quantity": product.quantity,
+            }
+          ]
         }
       }
+    }
 
-      products.forEach((product, pk) => {
-        ecommerceData.ecommerce.purchase.products.push({
-          "id": product.id,
-          "name" : product.name,
-          "price": product.only_price,
-          "brand": product.brand.brand,
-          "category": product.category,          
-          "quantity": product.quantity,
-          "position": pk + 1
-        })
+    window.dataLayer.push(ecommerceData)
+  }
+
+  const impressList = (products, order_id) => {      
+    const ecommerceData = {
+      "event": "ecommerce",
+      "ecommerce": {
+        "currencyCode": "RUB",
+        "purchase": {
+          "actionField": {
+            "id" : order_id,
+          },
+          "products": []
+        },
+      }
+    }
+
+    products.forEach((product, pk) => {
+      ecommerceData.ecommerce.purchase.products.push({
+        "id": product.id,
+        "name" : product.name,
+        "price": product.only_price,
+        "brand": product.brand.brand,
+        "category": product.category,          
+        "quantity": product.quantity,
+        "position": pk + 1
       })
+    })
 
-      window.dataLayer.push(ecommerceData)
+    window.dataLayer.push(ecommerceData)
   }
   
+
   const sendOrder = async () => {
-    if ( (phoneValidate.value || emailValidate.value) ) {
+    if ((phoneValidate.value || emailValidate.value) && selectedShop.value ) {
       const { data: response } = await useFetch(`${ config.public.baseURL }o/order/`, {
         method: 'POST',
         body: {
@@ -127,15 +153,13 @@
       productsStore.clearCartProducts()
 
     } else {
-      errorMsg.value = 'Ошибка: Укажите как с вами связаться.'
+      errorMsg.value = 'Ошибка: Укажите как с вами связаться и выберите магазин.'
       notificationsStore.pushToast({ id: 1, type: 'error', text: 'Ошибка: Проверте правильно ли заполнены обязательные поля.' })
     }
   }
 
 
-  // FROM SIMPLE CART
-
-
+  // FROM SIMPLE CART !!
   const sendData = () => {
     if (clientStore.client.contact) {
       $fetch(`${ config.public.baseURL }o/oneclick/`, {
@@ -173,7 +197,7 @@
     } else {
 
       errorMsg.value = true
-      notificationsStore.pushToast({ id: 1, type: 'error', text: 'Ошибка: Проверте правильно ли заполнены обязательные поля.' })
+      notificationsStore.pushToast({ id: 1, type: 'error', text: 'Ошибка: Укажите как с вами связаться и выберите магазин.' })
 
     }
   }
@@ -235,8 +259,6 @@
               </div>
             </div>          
           </div>        
-        
-        
         </transition-group>
 
 
@@ -343,7 +365,7 @@
         <div v-if="(productsStore.cart.length > 0)" class="bg-white border-gray-200 border dark:border-gray-700 dark:bg-gray-800 rounded-md p-1">
           <div class="overflow-x-auto w-full">
             <div class="">
-              <div class="grid gap-2 px-2 py-4">
+              <div class="grid gap-2 px-2 py-4 border-b border-gray-400 dark:border-gray-600">
                 <div class="flex lg:items-center lg:gap-2">
                   <div class="flex justify-center w-24"><p class="text-sm">Изображение</p></div>
                   <div class="flex justify-center w-1/2"><p class="text-sm">Наименование</p></div>
@@ -374,7 +396,7 @@
                       </div>
                       <div class="flex justify-center w-32"><p class="text-sm">{{ product.only_price.toLocaleString() }} руб.</p></div>
                       <div class="flex justify-center w-20">
-                        <button @click="productsStore.addProduct('cart', product)" class="mdi mdi-24px mdi-close cursor-pointer"></button>
+                        <button @click="productsStore.addProduct('cart', product); removeProduct(product)" class="mdi mdi-24px mdi-close cursor-pointer"></button>
                       </div>
                     </div>
                   </div>
@@ -474,7 +496,7 @@
                   <p class="">Мы с вами свяжемся. Где вам удобнее?</p>
                   <div class="grid grid-cols-2 gap-2">
                     <div class="flex items-center">
-                      <input id="responseMethodDefault" type="radio" name="responseMethodDefault" v-model="responseMethod" value="" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                      <input id="responseMethodDefault" type="radio" name="responseMethodDefault" v-model="responseMethod" value=" "  class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
                       <label for="responseMethodDefault" class="block ms-2 text-xs md:text-sm font-medium text-gray-900 dark:text-gray-300">
                         На телефон или e-mail
                       </label>
