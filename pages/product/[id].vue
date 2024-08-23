@@ -119,7 +119,7 @@
             {
               "id": product.value.id,
               "name" : product.value.name,
-              "price": price.value,
+              "price": product.value.only_price,
               "brand": brand.value,
               "category": product.value.category.name,
             }
@@ -150,7 +150,10 @@
       
       <BreadCrumbs :breadcrumbs="breadcrumbs" />
       <ProductDetail :product="product" :analogue="analogue" :category="product.category.name" />
-      <!-- <ProductExt  :keywords="product.keywords" /> -->
+      
+      <!-- <p class="text-[10px] font-semibold px-4">kw:{{ product.keywords }}</p>
+      <ProductExt  :keywords="product.keywords" /> -->
+      
       <ProductParams :propstrmodel="product.propstrmodel" :prod_doc="product.prod_doc" :prod_link="product.prod_link" />
       <ProductRelated :related="related" :category="`Сопутствующие ${product.category.name.toLowerCase()}`" />
       <ProductDescription :description="product.description" />
