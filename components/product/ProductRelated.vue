@@ -37,7 +37,6 @@
       </div>
     </div>           
   </div>
-  <!-- <div v-else class="py-2">нет связанных</div> -->
 </template>
 
 

@@ -151,12 +151,13 @@
       <BreadCrumbs :breadcrumbs="breadcrumbs" />
       <ProductDetail :product="product" :analogue="analogue" :category="product.category.name" />
       
-      <!-- <p class="text-[10px] font-semibold px-4">kw:{{ product.keywords }}</p>
-      <ProductExt  :keywords="product.keywords" /> -->
-      
+      <!-- <p class="text-[10px] font-semibold px-4">kw:{{ product.keywords }}</p> -->
+      <ProductExt  :keywords="product.keywords" />
+
+      <ProductDescription :description="product.description" />      
       <ProductParams :propstrmodel="product.propstrmodel" :prod_doc="product.prod_doc" :prod_link="product.prod_link" />
+
       <ProductRelated :related="related" :category="`Сопутствующие ${product.category.name.toLowerCase()}`" />
-      <ProductDescription :description="product.description" />
 
     </div>
 

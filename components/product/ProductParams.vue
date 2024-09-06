@@ -31,8 +31,8 @@
             </div>
           </div>
 
-          <div v-if="props.prod_doc.length > 0 || props.prod_link.length > 0" class="">
-            <p class="text-lg uppercase italic font-semibold mb-2">Документы:</p>
+          <div v-if="props.prod_doc.length > 0 || props.prod_link.length > 0" class="flex flex-wrap gap-8 items-center">
+            <p class="text-lg uppercase italic font-semibold">Документы:</p>
             <div class="">
               <div class="">
                 <div class="flex flex-wrap gap-x-8 gap-y-2">

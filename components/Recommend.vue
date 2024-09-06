@@ -3,7 +3,10 @@
   const config = useRuntimeConfig()
 
   const { data: recommends, pending, error} = await useFetch(`${ config.public.baseURL }c/recommend/`)
+  const route = useRoute()
 
+
+  console.log(route)
 
 </script>
 
@@ -26,29 +29,37 @@
 
 
 
-      <div class="mb-1">
-        <p class="text-lg uppercase italic font-semibold ">Рекомендуем:</p>
+      <div v-if="route.name  !== 'product-id'" class="">
+
+        <div class="mb-1">
+          <p class="text-lg uppercase italic font-semibold ">Рекомендуем:</p>
+        </div>
+
+        <div class="">
+          <Swiper
+            class=""
+            :modules="[]"
+            :slidesPerView="'auto'"
+            :loop="true"
+            :spaceBetween="10"
+          >
+          
+            <SwiperSlide  v-for="product in recommends" :key="product.id" class="">
+              <ProductSmall :product="product" :category="'Главный сварщик рекомендует'" />
+            </SwiperSlide>
+
+            <div class="absolute bottom-0 right-0 py-1 px-1 z-40">
+              <SwiperControls class="bg-gray-100 rounded-full border border-gray-200 hover:border-gray-300 dark:border-gray-600 dark:hover:border-gray-500 dark:bg-gray-700 transition-all duration-500 px-1" />
+            </div>
+
+          </Swiper>
+        </div>
+
       </div>
 
-      <div class="">
-        <Swiper
-          class=""
-          :modules="[]"
-          :slidesPerView="'auto'"
-          :loop="true"
-          :spaceBetween="10"
-        >
-        
-          <SwiperSlide  v-for="product in recommends" :key="product.id" class="">
-            <ProductSmall :product="product" :category="'Главный сварщик рекомендует'" />
-          </SwiperSlide>
 
-          <div class="absolute bottom-0 right-0 py-1 px-1 z-40">
-            <SwiperControls class="bg-gray-100 rounded-full border border-gray-200 hover:border-gray-300 dark:border-gray-600 dark:hover:border-gray-500 dark:bg-gray-700 transition-all duration-500 px-1" />
-          </div>
 
-        </Swiper>
-      </div>
+
 
 
     </div>
