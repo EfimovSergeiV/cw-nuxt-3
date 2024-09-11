@@ -5,9 +5,6 @@
   const { data: recommends, pending, error} = await useFetch(`${ config.public.baseURL }c/recommend/`)
   const route = useRoute()
 
-
-  console.log(route)
-
 </script>
 
 <template>

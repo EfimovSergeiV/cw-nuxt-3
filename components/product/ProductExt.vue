@@ -12,7 +12,7 @@
         city: 'all',
         shop: 'all'
       }
-    }).catch((error) => error.data)
+    }).catch((error) => null)
 
     extprods.value = await eprods
   }
@@ -21,6 +21,7 @@
     const date = new Date(str)
     return `${date.toLocaleTimeString('ru-RU')} ${date.toLocaleDateString('ru-RU')}`
   }
+
 
 </script>
 
@@ -85,7 +86,7 @@
               <div :title="prod.name" class="bg-gray-100 dark:bg-gray-700 dark:text-gray-200 text-xs px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600">
                 <div class="grid grid-cols-1 gap-2">
 
-                  <p class="text-xs text-right">{{ prod.shop.slice(0, 37) }}</p>
+                  <p v-if="prod" class="text-xs text-right">{{ prod.shop.slice(0, 37) }}</p>
 
                   <div class="flex items-end justify-between gap-4">
                     <p class="text-sm uppercase italic font-semibold">{{ prod.city }}</p>
