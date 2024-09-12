@@ -1,6 +1,7 @@
 <script setup>
   const productsStore = useProductsStore()
   const config = useRuntimeConfig()
+  const props = defineProps(['hide_recommend',])
 
   const { data: recommends, pending, error} = await useFetch(`${ config.public.baseURL }c/recommend/`)
   const route = useRoute()
@@ -24,9 +25,7 @@
         </blockquote>
       </div>
 
-
-
-      <div v-if="route.name  !== 'product-id'" class="">
+      <div v-if="!props.hide_recommend" class="">
 
         <div class="mb-1">
           <p class="text-lg uppercase italic font-semibold ">Рекомендуем:</p>

@@ -135,7 +135,9 @@
   const { data: analogue } =  await useFetch(`${ config.public.baseURL }c/anlgs/?ct=${ product.value.category.id }`)
   const { data: related } =  await useFetch(`${ config.public.baseURL }c/rel/`, { query: { "ct": product.value.related }})
   const { data: breadcrumbs } = await useFetch(`${ config.public.baseURL }c/breadcrumb/?ct=${ product.value.category.id }`)
-  const { data: recommends } = await useFetch(`${ config.public.baseURL }c/recommend/`)  
+  const { data: recommends } = await useFetch(`${ config.public.baseURL }c/recommend/`)
+  
+  const hide_recommend = (related.value.length > 1) ? true : false
   
 
 </script>
@@ -175,8 +177,7 @@
 
     </div>
 
-
-    <Recommend :recommends="recommends" />
+    <Recommend :hide_recommend="hide_recommend" :recommends="recommends" />
     <AppFooter />
     
   </div>

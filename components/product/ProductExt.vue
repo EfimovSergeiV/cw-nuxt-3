@@ -116,6 +116,10 @@
 
 
 
+        <div class="flex items-center justify-end sm:mt-2 md:mt-0">
+          <nuxt-link :to="{ name: 'ext-search' }">Поиск по товарам в наличии</nuxt-link>  
+        </div>
+
 
 
       </div>
