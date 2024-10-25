@@ -13,6 +13,7 @@
       
         <div class="">
           <p class="dark:text-gray-300 text-center text-gray-700 text-2xl">Ошибка загрузки данных...</p>
+          <a href="smb://tks.local/sharedfolder" target="_blank">Открыть сетевую папку</a>
           <p class="dark:text-gray-300 text-center text-gray-700 text-2xl">Попробуйте посетить нас позже, мы уже этим занимаемся.</p>
         </div>
 

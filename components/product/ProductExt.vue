@@ -36,10 +36,14 @@
           <div class="flex items-center gap-2">
             <p class="text-lg uppercase italic font-semibold">Наличие в магазинах:</p>      
           </div>
-          <div class="px-2 text-right">
-            <p class="text-xs">Последнее обновление</p>
-            <p class="text-xs">{{ reFormatedDate(extprods[0].last_update) }}</p>
+          <div class="flex gap-0.5 items-center">
+            <div class="px-1 text-right">
+              <p class="text-xs">Последнее обновление</p>
+              <p class="text-xs">{{ reFormatedDate(extprods[0].last_update) }}</p>
+            </div>
+            <div class="mdi mdi-help-circle text-blue-600 dark:text-gray-200" title="Уточняйте актуальную цену и наличие в магазинах"></div>
           </div>
+
         </div>
 
 

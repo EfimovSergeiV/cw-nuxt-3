@@ -1,7 +1,15 @@
 <script setup>
   const productsStore = useProductsStore()
   const props = defineProps(['product', 'analogue', 'category',])
+  const ctx = useNuxtApp()
 
+
+
+  const ymEvent = () => {
+    if (process.client) {
+      ctx.$metrika.reachGoal('GOTO_OZON')
+    }
+  }
 
 </script>
 
@@ -103,15 +111,24 @@
 
                 <div class="grid grid-cols-1 gap-4">
                   <div class="flex items-center justify-end">
-                    <CartBtn v-if="props.product.only_price" :product="product" />    
-                    
-                    <button v-else @click="productsStore.addRequestPrice(product)" class="">
-                      <div class=" text-sm text-gray-100 rounded-lg bg-blue-600 hover:bg-blue-700 border border-gray-300/50 dark:border-gray-500/50 transition-all duration-1000">
-                        <div class=" bg-gradient-to-br from-gray-100/20 to-gray-900/40 rounded-lg">
-                          <p class="text-white text-base w-32 md:w-52 py-2.5">Запросить</p>
+
+                    <div class="flex items-center gap-4">
+
+                      <a v-if="product.ozon" @click="ymEvent()" :href="product.ozon" target="_blank">
+                        <img src="/ozon.webp" alt="vk-logo" title="Купить на OZON" class="h-[44px] hover:h-[45px] transition-all duration-100" />
+                      </a>
+                      
+                      <CartBtn v-if="props.product.only_price" :product="product" />    
+                      
+                      <button v-else @click="productsStore.addRequestPrice(product)" class="">
+                        <div class=" text-sm text-gray-100 rounded-lg bg-blue-600 hover:bg-blue-700 border border-gray-300/50 dark:border-gray-500/50 transition-all duration-1000">
+                          <div class=" bg-gradient-to-br from-gray-100/20 to-gray-900/40 rounded-lg">
+                            <p class="text-white text-base w-32 md:w-52 py-2.5">Запросить</p>
+                          </div>
                         </div>
-                      </div>
-                    </button>
+                      </button>
+
+                    </div>
 
                                     
                   </div>
