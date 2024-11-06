@@ -81,9 +81,13 @@
         name: search
       }
     })
-    
-    products.value = ( await prods.value )
-    impressList(prods.value)
+
+    if (prods.value) {
+      products.value = ( await prods.value )
+      impressList(prods.value)      
+    } else {
+      products.value = []
+    }
 
   }, 300);
 

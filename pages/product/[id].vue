@@ -38,7 +38,7 @@
   const brand = ref('noname')
 
   if ( product.value.only_price ) {
-    price.value = `${ product.value.only_price }00`
+    price.value = `${ product.value.only_price }.00`
   }
 
   if ( product.value.brand ) {
@@ -172,9 +172,6 @@
           </div>        
         </div>
       </div>
-
-
-
     </div>
 
     <Recommend :hide_recommend="hide_recommend" :recommends="recommends" />
