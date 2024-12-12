@@ -12,6 +12,8 @@
   const { data: recommends } = await useFetch(`${ config.public.baseURL }c/recommend/`)
   const { data: randomreviews } = await useFetch(`${ config.public.baseURL }c/random-reviews/`)
   
+  const { data: crags } = await useFetch(`${ config.public.baseURL }c/prods/?ct=109`)
+  
 
   const descriptionData = 'С 2009 года Главный сварщик – ваш надежный партнер в мире сварочного оборудования! Наши магазины – это место, где профессионалы и энтузиасты приходят за лучшими решениями для сварочных работ. Сварка - это искусство, и мы знаем, как сделать его доступным и эффективным для каждого.'
   
@@ -33,6 +35,7 @@
   <div class="">
 
     <AppHeader />
+    <OzonSection :crags="crags.results" />
     <MainSection :latest="latest" :banners="banners" />
     <MainWelder />    
     <UserData />
