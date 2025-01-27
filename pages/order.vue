@@ -43,15 +43,15 @@
         <div v-if="orderinfo">
 
           <div class="">
-            <p class="">Ваш заказ успешно принят!</p>
+            <p class="text-2xl text-blue-600 dark:text-blue-400 font-semibold">Мы получили ваш заказ, и свяжемся с вами в ближайшее время</p>
           </div>
 
-          <div class=" py-6">
-            <p class="my-2">Номер заказа: <span class="font-semibold ml-2">{{ orderinfo.order_number }}</span></p>
-            <p class="my-2">Статус: <span class="font-semibold ml-2" v-if="orderinfo.status === 'notprocessed'">В обработке</span><span class=" ml-2" v-else>Обработан</span></p>
-            <p class="my-2">Сумма по позициям: <span class="font-semibold ml-2">{{ orderinfo.position_total }}</span> руб.</p>
-            <p class="my-2" v-if="orderinfo.delivery_summ">Доставка: <span class="font-semibold ml-2">{{ orderinfo.delivery_summ }}</span></p>
-            <p class="my-2">Итог заказа: <span class="font-semibold ml-2">{{ orderinfo.total }}</span> руб.</p>            
+          <div class="grid grid-cols-1 gap-0.5 py-6">
+            <p class="">Номер заказа: <span class="font-semibold ml-2">{{ orderinfo.order_number }}</span></p>
+            <p class="">Статус: <span class="font-semibold ml-2" v-if="orderinfo.status === 'notprocessed'">В обработке</span><span class=" ml-2" v-else>Обработан</span></p>
+            <p class="">Сумма по позициям: <span class="font-semibold ml-2">{{ orderinfo.position_total }}</span> руб.</p>
+            <p class="" v-if="orderinfo.delivery_summ">Доставка: <span class="font-semibold ml-2">{{ orderinfo.delivery_summ }}</span></p>
+            <p class="">Итог заказа: <span class="font-semibold ml-2">{{ orderinfo.total }}</span> руб.</p>            
           </div>
 
           

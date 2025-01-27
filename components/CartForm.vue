@@ -102,7 +102,13 @@
   
 
   const sendOrder = async () => {
-    if ((phoneValidate.value || emailValidate.value) && selectedShop.value ) {
+    if ((phoneValidate.value || emailValidate.value) && (selectedShop.value || clientStore.client.delivery_adress) ) {
+      
+      /// HotFix
+      if(clientStore.client.delivery) {
+        selectedShop.value = shopStore.shops[3]
+      }
+      
       const { data: response } = await useFetch(`${ config.public.baseURL }o/order/`, {
         method: 'POST',
         body: {
@@ -111,21 +117,22 @@
           person: clientStore.client.person,
           phone: `${responseMethod.value} ${clientStore.client.phone}`,
           email: clientStore.client.email,
-          comment: clientStore.client.comment,
+          comment: `${clientStore.client.comment}`,
           delivery: clientStore.client.delivery,
+          delivery_adress: clientStore.client.delivery_adress,
           promocode: null,
           adress: selectedShop.value.adress,
 
-          entity: clientStore.client.entity,
-          company: clientStore.client.company,
-          legaladress: clientStore.client.legaladress,
-          inn: clientStore.client.inn,
-          kpp: clientStore.client.kpp,
-          okpo: clientStore.client.okpo,
-          bankname: clientStore.client.bankname,
-          currentacc: clientStore.client.currentacc,
-          corresponding: clientStore.client.corresponding,
-          bic: clientStore.client.bic,
+          // entity: clientStore.client.entity,
+          // company: clientStore.client.company,
+          // legaladress: clientStore.client.legaladress,
+          // inn: clientStore.client.inn,
+          // kpp: clientStore.client.kpp,
+          // okpo: clientStore.client.okpo,
+          // bankname: clientStore.client.bankname,
+          // currentacc: clientStore.client.currentacc,
+          // corresponding: clientStore.client.corresponding,
+          // bic: clientStore.client.bic,
 
           client_product: productsStore.cart,
         }
@@ -257,8 +264,8 @@
                   </div>
                 </div>
               </div>
-            </div>          
-          </div>        
+            </div>
+          </div>
         </transition-group>
 
 
@@ -530,9 +537,23 @@
 
         <div v-if="clientStore.client.entity" class="mt-4">
           <div class="bg-white border-gray-200 border dark:border-gray-700 dark:bg-gray-800 p-4 rounded-md transition-all duration-300">
-            <p class="">Дополнительные поля для юр.лиц:</p>
-            
-            <div class="grid md:grid-cols-3 gap-4">
+            <p class="">Файл с реквизитами (необязательно)</p>
+
+            <div class="py-4">
+              <div class=" cursor-pointer">
+                <input id="newfile" type="file" multiple
+                  class="block w-full text-sm text-white
+                  file:mr-4 file:py-2 file:px-4
+                  file:rounded-full file:border-0
+                  file:text-sm file:font-semibold
+                  file:bg-blue-600 file:text-white
+                  hover:file:bg-blue-600 transition-all duration-700"
+                  @change="uploadFiles"
+                />
+              </div>
+            </div>
+
+            <!-- <div class="grid md:grid-cols-3 gap-4">
               <div v-for="(field, pk) in fields" :key="pk" class="">
                 <label for="message" class="block mt-2 mb-1 text-xs font-medium text-gray-900 dark:text-gray-400">{{ field.title }}</label>
                 <div class="relative">
@@ -542,7 +563,7 @@
                   <input v-model="clientStore.client[field.keyword]" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-700 dark:placeholder-gray-400 dark:text-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500" :placeholder="field.placeholder">
                 </div> 
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -566,8 +587,8 @@
                     </label>
                   </li>
                   <li>
-                    <input disabled type="radio" id="delivery" name="delivery" v-model="clientStore.client.delivery" :value="true" class="hidden peer">
-                    <label for="delivery" class="text-gray-700 dark:text-gray-300 peer-checked:text-gray-900 dark:peer-checked:text-gray-100 peer-checked:border-b-2 border-blue-500 select-none text-sm cursor-not-allowed inline-flex justify-between items-center px-2 py-1 w-full transition-all ease-in duration-75">
+                    <input type="radio" id="delivery" name="delivery" v-model="clientStore.client.delivery" :value="true" class="hidden peer">
+                    <label for="delivery" class="text-gray-700 dark:text-gray-300 peer-checked:text-gray-900 dark:peer-checked:text-gray-100 peer-checked:border-b-2 border-blue-500 select-none text-sm cursor-pointer inline-flex justify-between items-center px-2 py-1 w-full transition-all ease-in duration-75">
                       <div class="block">
                         <div class="w-full">Доставка ТК</div>
                       </div>
@@ -577,40 +598,57 @@
               </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-1 py-2">
+
+            <div v-if="clientStore.client.delivery" class="">
               <div class="">
-                <div class="justify-self-center mx-2 my-2" v-if="selectedShop">
-                  <div class="flex items-center">
-                    <div class="border-r">
-                      <a class="text-base md:text-2xl mx-2" :href="'tel:' + selectedShop.phone.replace(/[^+\d]/g, '')">{{ selectedShop.phone }}</a>
+                <label for="message" class="block mt-2 mb-1 text-xs font-medium text-gray-900 dark:text-gray-400">Адрес доставки</label>
+                <div class="relative">
+                  <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                    <p class="mdi mdi-phone"></p>
+                  </div>
+                  <input v-model="clientStore.client.delivery_adress" type="text" id="delivery-adress" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-700 dark:placeholder-gray-400 dark:text-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Московская обл., г. Зеленоград, ул. Панфилова, 28Б">
+                </div> 
+              </div>
+            </div>
+
+            <div v-else class="">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-1 py-2">
+                <div class="">
+                  <div class="justify-self-center mx-2 my-2" v-if="selectedShop">
+                    <div class="flex items-center">
+                      <div class="border-r">
+                        <a class="text-base md:text-2xl mx-2" :href="'tel:' + selectedShop.phone.replace(/[^+\d]/g, '')">{{ selectedShop.phone }}</a>
+                      </div>
+                      <div class="mx-2">
+                        <p class="text-xs font-bold mt-1">{{ selectedShop.wday }}</p>
+                        <p class="text-xs font-bold">{{ selectedShop.wend }}</p>
+                      </div>
                     </div>
-                    <div class="mx-2">
-                      <p class="text-xs font-bold mt-1">{{ selectedShop.wday }}</p>
-                      <p class="text-xs font-bold">{{ selectedShop.wend }}</p>
+                  </div>
+                </div>
+                <div class="">
+                  <select v-model="selectedShop" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option disabled value="null">Выберие магазин</option>
+                    <option v-for="shop in shopStore.shops" :key="shop.id" :value="shop">{{ shop.adress }}</option>
+                  </select>                    
+                </div>            
+              </div>
+              <div class="border dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-700">
+                <div class="h-[350px]">
+                  <div v-if="selectedShop" class="">
+                    <iframe :src="selectedShop.google_maps" width="100%" height="350" frameborder="0" loading="lazy" class="rounded-md"></iframe>
+                  </div>
+                  <div v-else class="flex items-center justify-center h-full relative">
+                    <img src="/mapshops.webp" class="rounded-md object-cover min-h-[350px]" />
+                    <div class="absolute inset-0 bg-white/50 hover:bg-white/60 dark:bg-black/50 dark:hover:bg-black/60 transition-all duration-700 flex items-center justify-center rounded-md">
+                      <p class="text-center text-sm text-gray-700 dark:text-gray-100">Для отображения карты выберите магазин</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="">
-                <select v-model="selectedShop" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                  <option disabled value="null">Выберие магазин</option>
-                  <option v-for="shop in shopStore.shops" :key="shop.id" :value="shop">{{ shop.adress }}</option>
-                </select>                    
-              </div>            
             </div>
-            <div class="border dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-700">
-              <div class="h-[350px]">
-                <div v-if="selectedShop" class="">
-                  <iframe :src="selectedShop.google_maps" width="100%" height="350" frameborder="0" loading="lazy" class="rounded-md"></iframe>
-                </div>
-                <div v-else class="flex items-center justify-center h-full relative">
-                  <img src="/mapshops.webp" class="rounded-md object-cover min-h-[350px]" />
-                  <div class="absolute inset-0 bg-white/50 hover:bg-white/60 dark:bg-black/50 dark:hover:bg-black/60 transition-all duration-700 flex items-center justify-center rounded-md">
-                    <p class="text-center text-sm text-gray-700 dark:text-gray-100">Для отображения карты выберите магазин</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+
+
 
             <label for="message" class="block mt-2 mb-1 text-xs font-medium text-gray-900 dark:text-gray-400">Комментарий к заказу (необязательно)</label>
             <textarea v-model="clientStore.client.comment" id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Напишите что-нибудь..."></textarea>

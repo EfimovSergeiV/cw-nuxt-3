@@ -246,6 +246,7 @@ export const useClientStore = defineStore('ClientStore', {
       email: null,
       comment: null,
       delivery: false,
+      delivery_adress: null,
       adress: null,
 
       city: 'Москва',
