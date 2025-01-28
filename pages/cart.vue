@@ -1,7 +1,9 @@
 <script setup>
-useHead({
-  titleTemplate: '%s - Ваша корзина'
-})
+  const productsStore = useProductsStore()
+
+  useHead({
+    titleTemplate: '%s - Ваша корзина'
+  })
   const config = useRuntimeConfig()
   // const { data: shops } = await useFetch(`${ config.public.baseURL }c/shops/`)
 
@@ -10,6 +12,10 @@ useHead({
 <template>
   <div class="">
     <AppHeader />
+
+    <div v-if="(productsStore.cart.length === 0) && (productsStore.simpleCart.length === 0)">
+      <UserData />
+    </div>
     
     <CartForm />
 
