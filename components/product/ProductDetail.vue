@@ -25,24 +25,51 @@
           <div class="">
 
 
-            <div v-if="product.prod_img.length > 0" class="flex h-full min-h-[340px] bg-white rounded-md cursor-zoom-in relative" @click="productsStore.showProductImages(product.prod_img)">
-              <div class="flex gap-4">
-                <div class="px-3 py-3">
-                  <div v-for="image in props.product.prod_img.slice(0, 4)" :key="image.id" class="w-[80px] h-[80px] rounded-md bg-white flex items-center justify-center">
-                    <img :src="image.image" class="" />
+            <div v-if="product.prod_img.length > 0" class="flex h-full min-h-[340px] bg-white rounded-md relative select-none">
+              
+              <div class="flex items-center justify-center w-full cursor-zoom-in" @click="productsStore.showProductImages(product.prod_img)">
+                <div class="flex gap-4">
+                  <div class="px-3 py-3">
+                    <div v-for="image in props.product.prod_img.slice(0, 4)" :key="image.id" class="w-[80px] h-[80px] rounded-md bg-white flex items-center justify-center">
+                      <img :src="image.image" class="" />
+                    </div>
                   </div>
                 </div>
+                <div class="flex items-center justify-center w-full">
+                  <div class="bg-white p-4">
+                    <img :src="props.product.preview_image" :alt="props.product.name" />
+                  </div>
+                </div>                
               </div>
-              <div class="flex items-center justify-center w-full">
-                <div class="bg-white p-4">
-                  <img :src="props.product.preview_image" :alt="props.product.name" />
-                </div>
-              </div>
-              <div v-if="props.product.brand" class="absolute top-0 right-0">
+
+
+              <div v-if="props.product.brand" class="absolute top-0 right-0 cursor-pointer">
                 <div class="py-1 px-1">
                   <img :src="props.product.brand.image" class="h-12" />
                 </div>
               </div>
+
+              <div class="absolute bottom-0 right-0 z-40 select-none">
+                
+                <div class="sm:px-4 md:px-2 py-2">
+                  <div class="flex gap-2 items-center">
+
+                    <p class="text-[#005bfe] uppercase font-semibold text-base">Оптовая скидка</p>
+                    <div class="bg-[#005bfe] border border-blue-600/50 shadow-md shadow-black/20 rounded-full cursor-pointer">
+                      <div class="px-4 py-0.5">
+                        <div class="flex gap-2 items-center" :title="`Оптовая скидка 10% за целую упаковку`">
+                          <p class="text-white italic text-xl font-semibold">-17% </p>
+                          <p class="text-white text-sm font-semibold"> уп. <span class="text-xs">(27 шт.)</span></p>
+                        </div>                      
+                      </div>
+                    </div>                    
+                  </div>
+
+                </div>
+              </div>
+
+
+
             </div>
 
             <div v-else class="flex h-full min-h-[340px] bg-white rounded-md relative">
