@@ -3,6 +3,7 @@
   const route = useRoute()
 
   const { data: orderinfo, pending: pendingorder, error: errorder } = await useFetch(`${ config.public.baseURL }o/orderinfo/${ route.hash.slice(1,) }`)
+  const { data: recommends } = await useFetch(`${ config.public.baseURL }c/recommend/`)
   
   // const sendRequest = async () => {
   //     if ( (clientStore.client.city) && (clientStore.client.contact) ) {
@@ -37,21 +38,23 @@
   <div class="">
     <AppHeader />
 
+    <UserData />
+
     <div class="container mx-auto px-4 py-2 max-w-6xl lg:px-8">
       
-      <div class="bg-white dark:bg-gray-800 rounded-md border dark:border-gray-700 px-4 py-4 min-h-[65vh]">
+      <div class="bg-white dark:bg-gray-800 rounded-md border dark:border-gray-700 px-4 py-4">
         <div v-if="orderinfo">
 
           <div class="">
-            <p class="text-2xl text-blue-600 dark:text-blue-400 font-semibold">Мы получили ваш заказ, и свяжемся с вами в ближайшее время</p>
+            <p class="text-2xl text-blue-700 dark:text-white font-semibold">Мы получили ваш заказ, и свяжемся с вами в ближайшее время</p>
           </div>
 
           <div class="grid grid-cols-1 gap-0.5 py-6">
-            <p class="">Номер заказа: <span class="font-semibold ml-2">{{ orderinfo.order_number }}</span></p>
-            <p class="">Статус: <span class="font-semibold ml-2" v-if="orderinfo.status === 'notprocessed'">В обработке</span><span class=" ml-2" v-else>Обработан</span></p>
-            <p class="">Сумма по позициям: <span class="font-semibold ml-2">{{ orderinfo.position_total }}</span> руб.</p>
-            <p class="" v-if="orderinfo.delivery_summ">Доставка: <span class="font-semibold ml-2">{{ orderinfo.delivery_summ }}</span></p>
-            <p class="">Итог заказа: <span class="font-semibold ml-2">{{ orderinfo.total }}</span> руб.</p>            
+            <p class="">Номер заказа: <span class="font-semibold ml-2 text-blue-700 dark:text-white">{{ orderinfo.order_number }}</span></p>
+            <p class="">Статус: <span class="font-semibold ml-2 text-blue-700 dark:text-white" v-if="orderinfo.status === 'notprocessed'">В обработке</span><span class=" ml-2" v-else>Обработан</span></p>
+            <p class="">Сумма по позициям: <span class="font-semibold ml-2 text-blue-700 dark:text-white">{{ orderinfo.position_total }}</span> руб.</p>
+            <p class="" v-if="orderinfo.delivery_summ">Доставка: <span class="font-semibold ml-2 text-blue-700 dark:text-white">{{ orderinfo.delivery_summ }}</span></p>
+            <p class="">Итог заказа: <span class="font-semibold ml-2 text-blue-700 dark:text-white">{{ orderinfo.total }}</span> руб.</p>            
           </div>
 
           
@@ -83,6 +86,9 @@
 
 
     </div>
+
+
+    <Recommend :recommends="recommends" />
     
     <AppFooter />
 

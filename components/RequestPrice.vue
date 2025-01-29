@@ -124,7 +124,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div class="">
                     <p class="text-xs text-gray-700 dark:text-gray-300 my-1">Ваш город</p>
-                    <input v-model="clientStore.client.city" type="text" id="contacts" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-50 dark:border-gray-700 placeholder-gray-600 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ваш номер телефона или e-mail">
+                    <input v-model="clientStore.client.city" type="text" id="contacts" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-50 dark:border-gray-700 placeholder-gray-600 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Где вы находитесь?">
                   </div>
                   <div class="">
                     <p class="text-xs text-gray-700 dark:text-gray-300 my-1">Как с вами связаться?</p>

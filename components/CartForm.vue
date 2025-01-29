@@ -99,7 +99,13 @@
 
     window.dataLayer.push(ecommerceData)
   }
-  
+
+
+  const file = ref(null)
+
+  const uploadFile = (e) => {
+    file.value = e.target.files[0]
+  }
 
   const sendOrder = async () => {
     if ((phoneValidate.value || emailValidate.value) && (selectedShop.value || clientStore.client.delivery_adress) ) {
@@ -108,6 +114,7 @@
       if(clientStore.client.delivery) {
         selectedShop.value = shopStore.shops[3]
       }
+
       
       const { data: response } = await useFetch(`${ config.public.baseURL }o/order/`, {
         method: 'POST',
@@ -117,28 +124,27 @@
           person: clientStore.client.person,
           phone: `${responseMethod.value} ${clientStore.client.phone}`,
           email: clientStore.client.email,
-          comment: `${clientStore.client.comment}`,
+          comment: clientStore.client.comment,
           delivery: clientStore.client.delivery,
           delivery_adress: clientStore.client.delivery_adress,
           promocode: null,
           adress: selectedShop.value.adress,
-
-          // entity: clientStore.client.entity,
-          // company: clientStore.client.company,
-          // legaladress: clientStore.client.legaladress,
-          // inn: clientStore.client.inn,
-          // kpp: clientStore.client.kpp,
-          // okpo: clientStore.client.okpo,
-          // bankname: clientStore.client.bankname,
-          // currentacc: clientStore.client.currentacc,
-          // corresponding: clientStore.client.corresponding,
-          // bic: clientStore.client.bic,
-
           client_product: productsStore.cart,
         }
         
-      });
+      })
 
+      // Добавляем файл с реквизитами, если он выбран
+      if (file.value) {
+        console.log('JS ОТПРАВЛЯЕМ ФАЙЛ')
+        const formData = new FormData();
+        formData.append('order_number', response.value.order)
+        formData.append('file', file.value);
+        await $fetch(`${ config.public.baseURL }o/order/`, {
+          method: 'POST',
+          body: formData
+        })
+      }
 
       if ( productsStore.cartTotalPrice > 30000 ) {
         
@@ -527,16 +533,16 @@
           <div class="bg-white border-gray-200 border dark:border-gray-700 dark:bg-gray-800 p-4 rounded-md transition-all duration-300">
             <p class="">Файл с реквизитами (необязательно)</p>
 
-            <div class="py-4">
-              <div class=" cursor-pointer">
-                <input id="newfile" type="file" multiple
-                  class="block w-full text-sm text-white
+            <div class="py-4 flex cursor-pointer">
+              <div class="flex cursor-pointer">
+                <input id="newfile" type="file" title="Файл с реквизитами"
+                  class="block w-full text-sm text-blue-600 dark:text-white
                   file:mr-4 file:py-2 file:px-4
-                  file:rounded-full file:border-0
+                  file:rounded-md file:border-0
                   file:text-sm file:font-semibold
                   file:bg-blue-600 file:text-white
                   hover:file:bg-blue-600 transition-all duration-700"
-                  @change="uploadFiles"
+                  @change="uploadFile($event)"
                 />
               </div>
             </div>
