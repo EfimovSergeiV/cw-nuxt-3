@@ -46,15 +46,15 @@
         <div v-if="orderinfo">
 
           <div class="">
-            <p class="text-2xl text-blue-700 dark:text-white font-semibold">Мы получили ваш заказ, и свяжемся с вами в ближайшее время</p>
+            <p class="text-2xl text-blue-700 dark:text-white italic uppercase font-semibold">Мы получили ваш заказ, и свяжемся с вами в ближайшее время</p>
           </div>
 
-          <div class="grid grid-cols-1 gap-0.5 py-6">
-            <p class="">Номер заказа: <span class="font-semibold ml-2 text-blue-700 dark:text-white">{{ orderinfo.order_number }}</span></p>
-            <p class="">Статус: <span class="font-semibold ml-2 text-blue-700 dark:text-white" v-if="orderinfo.status === 'notprocessed'">В обработке</span><span class=" ml-2" v-else>Обработан</span></p>
-            <p class="">Сумма по позициям: <span class="font-semibold ml-2 text-blue-700 dark:text-white">{{ orderinfo.position_total }}</span> руб.</p>
-            <p class="" v-if="orderinfo.delivery_summ">Доставка: <span class="font-semibold ml-2 text-blue-700 dark:text-white">{{ orderinfo.delivery_summ }}</span></p>
-            <p class="">Итог заказа: <span class="font-semibold ml-2 text-blue-700 dark:text-white">{{ orderinfo.total }}</span> руб.</p>            
+          <div class="flex flex-wrap gap-x-12 gap-y-4 py-4">
+            <p class="">Номер заказа: <span class="font-semibold ml-2 text-gray-700 dark:text-white">{{ orderinfo.order_number }}</span></p>
+            <p class="">Статус: <span class="font-semibold ml-2 text-gray-700 dark:text-white" v-if="orderinfo.status === 'notprocessed'">В обработке</span><span class=" ml-2" v-else>Обработан</span></p>
+            <p class="">Сумма по позициям: <span class="font-semibold ml-2 text-gray-700 dark:text-white">{{ orderinfo.position_total }}</span> руб.</p>
+            <p class="" v-if="orderinfo.delivery_summ">Доставка: <span class="font-semibold ml-2 text-gray-700 dark:text-white">{{ orderinfo.delivery_summ }}</span></p>
+            <p class="">Итог заказа: <span class="font-semibold ml-2 text-gray-700 dark:text-white">{{ orderinfo.total }}</span> руб.</p>            
           </div>
 
           

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
   import { useOneTap, type CredentialResponse, decodeCredential } from "vue3-google-signin";
-  
+
   const config = useRuntimeConfig()  
   const tmp_id = useCookie('tmp_id')
 
