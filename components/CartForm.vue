@@ -100,7 +100,7 @@
     window.dataLayer.push(ecommerceData)
   }
 
-
+  const sendOrderBtn = ref(false)
   const file = ref(null)
 
   const uploadFile = (e) => {
@@ -108,6 +108,7 @@
   }
 
   const sendOrder = async () => {
+    sendOrderBtn.value = true
     if ((phoneValidate.value || emailValidate.value) && (selectedShop.value || clientStore.client.delivery_adress) ) {
       
       /// HotFix
@@ -169,6 +170,11 @@
       errorMsg.value = 'Ошибка: Укажите как с вами связаться и выберите магазин.'
       notificationsStore.pushToast({ id: 1, type: 'error', text: 'Ошибка: Проверте правильно ли заполнены обязательные поля.' })
     }
+
+    setTimeout(() => {
+      sendOrderBtn.value = false
+    }, 1000)
+
   }
 
 
@@ -652,10 +658,11 @@
             </div>
 
             <div class="flex justify-end items-center my-4">
-              <button @click="sendOrder" class="">
+              <button :disabled="sendOrderBtn" @click="sendOrder" class="">
                 <div class=" text-sm text-gray-100 rounded-lg bg-blue-600 hover:bg-blue-700 border border-gray-300/50 dark:border-gray-500/50 transition-all duration-1000">
                   <div class=" bg-gradient-to-br from-gray-100/20 to-gray-900/40 rounded-lg">
-                    <p class="text-white text-base w-52 py-1.5">Сделать заказ</p>
+                    <p v-if="sendOrderBtn" class="text-white text-base w-52 py-1.5 mdi mdi-loading animate-spin"></p>
+                    <p v-else class="text-white text-base w-52 py-1.5">Сделать заказ</p>
                   </div>
                 </div>
               </button>              

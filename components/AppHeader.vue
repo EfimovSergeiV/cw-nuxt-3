@@ -164,7 +164,7 @@
                   </div>
                 </button>
 
-                <div id="color-mode">
+                <div id="color-mode" class="BUG">
                   <button v-if="$colorMode.preference === 'system'" @click="$colorMode.preference = 'dark'" class="bg-gray-100 shadow-lg shadow-black/30 border border-gray-100/10 dark:border-white/20 rounded-lg transition-all duration-500 w-full h-full flex items-center">
                     <div class="flex items-center gap-2 text-gray-700 ">
                       <span class="px-2 mdi mdi-laptop border-r border-gray-300"></span>
