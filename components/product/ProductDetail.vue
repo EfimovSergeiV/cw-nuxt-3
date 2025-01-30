@@ -11,6 +11,15 @@
     }
   }
 
+
+  const addOPTProduct = (product) => {
+    // product.quantity = 25
+    product.only_price = 680
+    console.log('addOPTProduct ', product)
+    productsStore.addProduct('cart', {...product, category: props.product.category.name})
+    productsStore.manualChangeQuantity(product, 25)
+  }
+
 </script>
 
 
@@ -43,23 +52,24 @@
               </div>
 
 
-              <div v-if="props.product.brand" class="absolute top-0 right-0 cursor-pointer">
+              <div v-if="props.product.brand" class="absolute z-10 top-0 right-0 cursor-pointer">
                 <div class="py-1 px-1">
                   <img :src="props.product.brand.image" class="h-12" />
                 </div>
               </div>
 
-              <div class="absolute bottom-0 right-0 z-40 select-none">
+              <div class="absolute bottom-0 right-0 z-10 select-none">
                 
                 <div class="sm:px-4 md:px-2 py-2">
                   <div class="flex gap-2 items-center">
 
-                    <p class="text-[#005bfe] uppercase font-semibold text-base">Оптовая скидка</p>
-                    <div class="bg-[#005bfe] border border-blue-600/50 shadow-md shadow-black/20 rounded-full cursor-pointer">
+                    <p class="text-[#1658d3] uppercase font-semibold text-base">Опт. цена</p>
+                    <!-- <p class="text-[#f81155] uppercase font-semibold text-base">Оптовая скидка</p> -->
+                    <div @click="addOPTProduct(props.product)" class="bg-[#005bfe] border border-blue-600/50 shadow-md shadow-black/20 rounded-full cursor-pointer">
                       <div class="px-4 py-0.5">
                         <div class="flex gap-2 items-center" :title="`Оптовая скидка 10% за целую упаковку`">
-                          <p class="text-white italic text-xl font-semibold">-17% </p>
-                          <p class="text-white text-sm font-semibold"> уп. <span class="text-xs">(27 шт.)</span></p>
+                          <p class="text-white italic text-xl font-semibold">680 ₽</p>
+                          <p class="text-white text-sm font-semibold"> X 25 шт.<span class="text-xs"></span></p>
                         </div>                      
                       </div>
                     </div>                    
@@ -179,7 +189,7 @@
 
             <div v-if="props.analogue && props.analogue.length > 0">
               <div class="my-2">
-                <p class="text-lg uppercase italic font-semibold">Аналоги</p>
+                <p class="text-lg uppercase italic font-semibold">Смотрите так же</p>
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div v-for="prod_analogue in analogue" :key="prod_analogue.id" class="">

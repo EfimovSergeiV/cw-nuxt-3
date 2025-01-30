@@ -169,7 +169,7 @@ export const useProductsStore = defineStore('ProductsStore', {
       
       /// Добавление или удаление товара в корзину
       if (target === 'cart') {
-        product.quantity = 1
+        product.quantity = Number(product.quantity) + 1
         const index = this.cart.findIndex((item) => item.id === product.id)
         if (index === -1) {
 
@@ -213,6 +213,13 @@ export const useProductsStore = defineStore('ProductsStore', {
         cartProduct.quantity++
       }
     },
+    manualChangeQuantity( product: any, quantity: number ) {
+      const cartProduct = this.cart.find((item) => item.id === product.id)
+      if ( cartProduct ) {
+        cartProduct.quantity = quantity
+      }
+    },
+
     clearCartProducts() {
       this.cart = []
     },
