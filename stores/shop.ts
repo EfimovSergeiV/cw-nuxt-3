@@ -169,7 +169,7 @@ export const useProductsStore = defineStore('ProductsStore', {
       
       /// Добавление или удаление товара в корзину
       if (target === 'cart') {
-        product.quantity = Number(product.quantity) + 1
+        product.quantity = 1
         const index = this.cart.findIndex((item) => item.id === product.id)
         if (index === -1) {
 
@@ -211,6 +211,10 @@ export const useProductsStore = defineStore('ProductsStore', {
         cartProduct.quantity--
       } else if ( cartProduct && action === 'add') {
         cartProduct.quantity++
+      } else if ( cartProduct && action === 'opt_add') {
+        cartProduct.quantity = cartProduct.quantity + product.opt_quantity
+      } else if ( cartProduct && cartProduct.quantity > 1 && action === 'opt_del') {
+        cartProduct.quantity = cartProduct.quantity - product.opt_quantity
       }
     },
     manualChangeQuantity( product: any, quantity: number ) {

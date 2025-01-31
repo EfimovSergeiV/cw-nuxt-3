@@ -397,6 +397,12 @@
               <div class="grid gap-2 px-1">
                 <transition-group tag="div" name="left-emergence">
                   <div v-for="product in productsStore.cart" :key="product.id" class="my-4">
+                    <div class="flex gap-4">
+                      OPT: {{ product.opt }}
+                      <div v-if="product.opt">Оптовая цена</div>
+                      <div v-else>Обычная цена</div>
+                    </div>
+                    
                     <div class="flex items-center gap-2">
                       <div class="flex justify-center items-center w-24 bg-white rounded-md">
                         <img :src="product.preview_image" class="rounded-md w-20" />
@@ -404,11 +410,26 @@
                       <div class="flex justify-center w-1/2">
                         <p class="text-sm">{{ product.name }}</p>
                       </div>
-                      <div class="flex justify-center w-32">
-                        <button  @click="productsStore.changeQuantity(product, 'del')" class="mdi mdi-minus cursor-pointer"></button>
-                        <div class="mx-2"><p>{{ product.quantity }}</p></div>
-                        <button @click="productsStore.changeQuantity(product, 'add')" class="mdi mdi-plus cursor-pointer"></button>
+                      
+
+                      <div>
+                        <div v-if="product.opt" class="">
+                          <div class="flex justify-center w-32">
+                            <button  @click="productsStore.changeQuantity(product, 'opt_del')" class="mdi mdi-minus cursor-pointer"></button>
+                            <div class="mx-2"><p>{{ product.quantity }}</p></div>
+                            <button @click="productsStore.changeQuantity(product, 'opt_add')" class="mdi mdi-plus cursor-pointer"></button>
+                          </div>
+                        </div>
+                        <div v-else class="">
+                          <div class="flex justify-center w-32">
+                            <button  @click="productsStore.changeQuantity(product, 'del')" class="mdi mdi-minus cursor-pointer"></button>
+                            <div class="mx-2"><p>{{ product.quantity }}</p></div>
+                            <button @click="productsStore.changeQuantity(product, 'add')" class="mdi mdi-plus cursor-pointer"></button>
+                          </div>
+                        </div>
                       </div>
+
+
                       <div class="flex justify-center w-32">
                         <p v-if="product.status === 'order'" class="text-sm text-right font-medium text-gray-900 dark:text-gray-200">под заказ</p>
                         <p v-else class="text-sm text-right font-medium text-gray-900 dark:text-gray-200">в наличии</p>

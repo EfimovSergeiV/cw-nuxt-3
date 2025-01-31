@@ -13,11 +13,11 @@
 
 
   const addOPTProduct = (product) => {
-    // product.quantity = 25
-    product.only_price = 680
-    console.log('addOPTProduct ', product)
+    console.log(product)
+    product.opt = true
+    product.only_price = product.opt_price
     productsStore.addProduct('cart', {...product, category: props.product.category.name})
-    productsStore.manualChangeQuantity(product, 25)
+    productsStore.manualChangeQuantity(product, product.opt_quantity)
   }
 
 </script>
@@ -58,7 +58,7 @@
                 </div>
               </div>
 
-              <div class="absolute bottom-0 right-0 z-10 select-none">
+              <div v-if="props.product.opt_price" class="absolute bottom-0 right-0 z-10 select-none">
                 
                 <div class="sm:px-4 md:px-2 py-2">
                   <div class="flex gap-2 items-center">
@@ -67,9 +67,9 @@
                     <!-- <p class="text-[#f81155] uppercase font-semibold text-base">Оптовая скидка</p> -->
                     <div @click="addOPTProduct(props.product)" class="bg-[#005bfe] border border-blue-600/50 shadow-md shadow-black/20 rounded-full cursor-pointer">
                       <div class="px-4 py-0.5">
-                        <div class="flex gap-2 items-center" :title="`Оптовая скидка 10% за целую упаковку`">
-                          <p class="text-white italic text-xl font-semibold">680 ₽</p>
-                          <p class="text-white text-sm font-semibold"> X 25 шт.<span class="text-xs"></span></p>
+                        <div class="flex gap-2 items-center" :title="`Оптовая цена ${props.product.opt_price} руб. за ${props.product.opt_quantity} шт.`">
+                          <p class="text-white italic text-xl font-semibold">{{ props.product.opt_price }} ₽</p>
+                          <p class="text-white text-sm font-semibold"> X {{ props.product.opt_quantity }} шт.<span class="text-xs"></span></p>
                         </div>                      
                       </div>
                     </div>                    
