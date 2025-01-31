@@ -7,12 +7,15 @@ interface Product {
   name: string
   rating: any
   price: number | null,
+  opt_price: number | null,
+  quantity: number  
+  opt_quantity: number | null,
   status: string
   preview_image: string
   description: string,
   category: string | null,
   propstrmodel: any
-  quantity: number
+
 }
 
 interface Client {
@@ -213,7 +216,7 @@ export const useProductsStore = defineStore('ProductsStore', {
         cartProduct.quantity++
       } else if ( cartProduct && action === 'opt_add') {
         cartProduct.quantity = cartProduct.quantity + product.opt_quantity
-      } else if ( cartProduct && cartProduct.quantity > 1 && action === 'opt_del') {
+      } else if ( cartProduct && cartProduct.quantity > product.opt_quantity && action === 'opt_del') {
         cartProduct.quantity = cartProduct.quantity - product.opt_quantity
       }
     },
