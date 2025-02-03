@@ -14,10 +14,13 @@
 
   const addOPTProduct = (product) => {
     console.log(product)
-    product.opt = true
-    product.only_price = product.opt_price
-    productsStore.addProduct('cart', {...product, category: props.product.category.name})
-    productsStore.manualChangeQuantity(product, product.opt_quantity)
+    /// Создаем копию продукта и добавляем к нему свойства оптовой цены
+
+    let opt_prod = {...product}
+    opt_prod.opt = true
+    opt_prod.only_price = product.opt_price
+    productsStore.addProduct('cart', {...opt_prod, category: product.category.name})
+    productsStore.manualChangeQuantity(opt_prod, opt_prod.opt_quantity)
   }
 
 </script>
@@ -67,7 +70,7 @@
                     <!-- <p class="text-[#f81155] uppercase font-semibold text-base">Оптовая скидка</p> -->
                     <div @click="addOPTProduct(props.product)" class="bg-[#005bfe] border border-blue-600/50 shadow-md shadow-black/20 rounded-full cursor-pointer">
                       <div class="px-4 py-0.5">
-                        <div class="flex gap-2 items-center" :title="`Оптовая цена ${props.product.opt_price} руб. за ${props.product.opt_quantity} шт.`">
+                        <div class="flex gap-2 items-center" :title="`Оптовая цена ${props.product.opt_price} руб. за шт. (мин.кол-во ${props.product.opt_quantity} шт.)`">
                           <p class="text-white italic text-xl font-semibold">{{ props.product.opt_price }} ₽</p>
                           <p class="text-white text-sm font-semibold"> X {{ props.product.opt_quantity }} шт.<span class="text-xs"></span></p>
                         </div>                      

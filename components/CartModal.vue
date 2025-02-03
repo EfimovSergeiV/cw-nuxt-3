@@ -92,11 +92,24 @@
                             <div class="flex justify-center w-1/2">
                               <p class="text-sm text-center">{{ product.name }}</p>
                             </div>
-                            <div class="flex justify-center w-32">
-                              <button  @click="productsStore.changeQuantity(product, 'del')" class="mdi mdi-minus cursor-pointer"></button>
-                              <div class="mx-2"><p>{{ product.quantity }}</p></div>
-                              <button @click="productsStore.changeQuantity(product, 'add')" class="mdi mdi-plus cursor-pointer"></button>
+
+                            <div>
+                              <div v-if="product.opt" class="">
+                                <div class="flex justify-center w-32">
+                                  <button  @click="productsStore.changeQuantity(product, 'opt_del')" class="mdi mdi-minus cursor-pointer"></button>
+                                  <div class="mx-2"><p>{{ product.quantity }}</p></div>
+                                  <button @click="productsStore.changeQuantity(product, 'opt_add')" class="mdi mdi-plus cursor-pointer"></button>
+                                </div>
+                              </div>
+                              <div v-else class="">
+                                <div class="flex justify-center w-32">
+                                  <button  @click="productsStore.changeQuantity(product, 'del')" class="mdi mdi-minus cursor-pointer"></button>
+                                  <div class="mx-2"><p>{{ product.quantity }}</p></div>
+                                  <button @click="productsStore.changeQuantity(product, 'add')" class="mdi mdi-plus cursor-pointer"></button>
+                                </div>
+                              </div>
                             </div>
+
                             <div class="flex justify-center w-32">
                               <p v-if="product.status === 'stock'" class="text-sm">в наличии</p>
                               <p v-if="product.status === 'order'" class="text-sm">под заказ</p>

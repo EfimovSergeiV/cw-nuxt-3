@@ -396,13 +396,9 @@
               </div>
               <div class="grid gap-2 px-1">
                 <transition-group tag="div" name="left-emergence">
-                  <div v-for="product in productsStore.cart" :key="product.id" class="my-4">
-                    <div class="flex gap-4">
-                      OPT: {{ product.opt }}
-                      <div v-if="product.opt">Оптовая цена</div>
-                      <div v-else>Обычная цена</div>
-                    </div>
-                    
+                  <div v-for="product in productsStore.cart" :key="product.id" class="my-4 border-b border-gray-200 dark:border-gray-700">
+
+
                     <div class="flex items-center gap-2">
                       <div class="flex justify-center items-center w-24 bg-white rounded-md">
                         <img :src="product.preview_image" class="rounded-md w-20" />
@@ -444,8 +440,8 @@
               </div>
             </div>         
           </div>
-          <div class="py-2 px-2">
-            <p class="">Итог: <span class="font-semibold pl-2">{{ productsStore.cartTotalPrice.toLocaleString() }}</span> <span>руб.</span></p>
+          <div class="py-2 px-2 mt-4">
+            <p class="text-xl uppercase italic font-semibold">Итог: <span class="font-semibold pl-2">{{ productsStore.cartTotalPrice.toLocaleString() }}</span> <span>руб.</span></p>
           </div>
         </div>
 
