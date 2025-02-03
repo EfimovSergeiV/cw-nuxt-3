@@ -88,7 +88,7 @@
     </div>
 
     <UserData />
-    <Recommend :recommends="recommends" />
+    <Recommend :hide_recommend="true" />
 
     <AppFooter />
 

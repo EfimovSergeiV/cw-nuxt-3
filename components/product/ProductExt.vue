@@ -120,7 +120,7 @@
 
 
 
-        <div class="flex items-center justify-end sm:mt-2 md:mt-0">
+        <div class="flex items-center justify-end mt-2 md:mt-0">
           <nuxt-link :to="{ name: 'ext-search' }" class="bg-[#005bfe] border border-blue-600/50 shadow-md shadow-black/20 rounded-full cursor-pointer">
             <div class="px-4 py-0.5">
               <p class="text-white italic text-base font-semibold">Искать в наличии</p>

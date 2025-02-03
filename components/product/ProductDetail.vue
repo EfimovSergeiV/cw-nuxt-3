@@ -63,7 +63,7 @@
 
               <div v-if="props.product.opt_price" class="absolute bottom-0 right-0 z-10 select-none">
                 
-                <div class="sm:px-4 md:px-2 py-2">
+                <div class="px-4 md:px-2 py-2">
                   <div class="flex gap-2 items-center">
 
                     <p class="text-[#1658d3] uppercase font-semibold text-base">Опт. цена</p>
@@ -107,7 +107,7 @@
 
           <div class="">
             <div class="grid grid-cols-1 md:flex gap-2">
-              <div class="flex items-center justify-end w-full md:order-last">
+              <div class="flex items-center justify-start md:justify-end w-full md:order-last">
                 <span class="flex gap-1 items-center text-xs">код товара:<p class="text-sm"> {{ props.product.vcode }}</p></span>
               </div>
 
@@ -192,7 +192,7 @@
 
             <div v-if="props.analogue && props.analogue.length > 0">
               <div class="my-2">
-                <p class="text-lg uppercase italic font-semibold">Смотрите так же</p>
+                <p class="text-lg uppercase italic font-semibold">Смотрите также</p>
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div v-for="prod_analogue in analogue" :key="prod_analogue.id" class="">
