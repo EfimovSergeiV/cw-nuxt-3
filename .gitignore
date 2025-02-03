@@ -1,7 +1,7 @@
 conf.ts
-public/prods/*.xml
+# public/prods/*.xml
 public/tmp/*
-sitemap.xml
+# sitemap.xml
 
 # Nuxt dev/build outputs
 .output
