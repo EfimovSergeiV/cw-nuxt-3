@@ -48,7 +48,7 @@
             <div class="absolute top-0 right-0 z-40 w-full h-full">
               <div class="flex justify-end">
                 <div class="relative mx-2 md:mx-4 md:my-2">
-                  <span class="mdi mdi-16px mdi-link-variant text-whitw shadow-2xl"></span>
+                  <span class=""></span>
                 </div>
               </div>
             </div>
@@ -58,7 +58,7 @@
             <div class="absolute top-0 right-0 z-40 w-full h-full">
               <div class="flex justify-end">
                 <div class="relative mx-2 md:mx-4 md:my-2">
-                  <span class="mdi mdi-16px mdi-link-variant text-whitw shadow-2xl"></span>
+                  <span class=""></span>
                 </div>
               </div>
             </div>

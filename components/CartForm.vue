@@ -462,24 +462,24 @@
         <div class="mt-4">
           <div class="bg-white border-gray-200 border dark:border-gray-700 dark:bg-gray-800 p-4 rounded-md">
             <div class="flex items-center justify-between">
-              <div class="">
-                1. Данные покупателя
+              <div class="py-4">
+                <p class="text-xl uppercase italic font-semibold">1. Данные покупателя</p>
               </div>
               <div class="flex justify-end gap-4">
-                <ul class="grid gap-6 w-full md:grid-cols-2">
+                <ul class="grid gap-2 w-full md:grid-cols-2">
                   <li>
                     <input type="radio" id="hosting-small" name="person" v-model="clientStore.client.entity" :value="false" class="hidden peer" required>
                     <label for="hosting-small" class="text-gray-700 dark:text-gray-300 peer-checked:text-gray-900 dark:peer-checked:text-gray-100 peer-checked:border-b-2 border-blue-500 select-none text-sm cursor-pointer inline-flex justify-between items-center px-2 py-1 w-full transition-all ease-in duration-75">                           
-                      <div class="block">
-                        <div class="w-full">Физическое лицо</div>
+                      <div class="w-full block">
+                        <div class="text-center">Физическое лицо</div>
                       </div>
                     </label>
                   </li>
                   <li>
                     <input type="radio" id="hosting-big" name="person" v-model="clientStore.client.entity" :value="true" class="hidden peer">
                     <label for="hosting-big" class="text-gray-700 dark:text-gray-300 peer-checked:text-gray-900 dark:peer-checked:text-gray-100 peer-checked:border-b-2 border-blue-500 select-none text-sm cursor-pointer inline-flex justify-between items-center px-2 py-1 w-full transition-all ease-in duration-75">
-                      <div class="block">
-                        <div class="w-full">Юридическое лицо</div>
+                      <div class="w-full block">
+                        <div class="text-center">Юридическое лицо</div>
                       </div>
                     </label>
                   </li>
@@ -552,37 +552,28 @@
           </div>
         </div>
 
-        <div v-if="clientStore.client.entity" class="mt-4">
-          <div class="bg-white border-gray-200 border dark:border-gray-700 dark:bg-gray-800 p-4 rounded-md transition-all duration-300">
-            <p class="">Файл с реквизитами (необязательно)</p>
+        <transition name="list">
+          <div v-if="clientStore.client.entity" class="mt-4">
+            <div class="bg-white border-gray-200 border dark:border-gray-700 dark:bg-gray-800 p-4 rounded-md transition-all duration-300">
+              <p class="text-xl uppercase italic font-semibold">Файл с реквизитами <span class="text-sm">(необязательно)</span></p>
 
-            <div class="py-4 flex cursor-pointer">
-              <div class="flex cursor-pointer">
-                <input id="newfile" type="file" title="Файл с реквизитами"
-                  class="block w-full text-sm text-blue-600 dark:text-white
-                  file:mr-4 file:py-2 file:px-4
-                  file:rounded-md file:border-0
-                  file:text-sm file:font-semibold
-                  file:bg-blue-600 file:text-white
-                  hover:file:bg-blue-600 transition-all duration-700"
-                  @change="uploadFile($event)"
-                />
+              <div class="py-4 flex cursor-pointer">
+                <div class="flex cursor-pointer">
+                  <input id="newfile" type="file" title="Файл с реквизитами"
+                    class="block w-full text-sm text-blue-600 dark:text-white
+                    file:mr-4 file:py-2 file:px-4
+                    file:rounded-md file:border-0
+                    file:text-sm file:font-semibold
+                    file:bg-blue-600 file:text-white
+                    hover:file:bg-blue-600 transition-all duration-700"
+                    @change="uploadFile($event)"
+                  />
+                </div>
               </div>
             </div>
+          </div>        
+        </transition>
 
-            <!-- <div class="grid md:grid-cols-3 gap-4">
-              <div v-for="(field, pk) in fields" :key="pk" class="">
-                <label for="message" class="block mt-2 mb-1 text-xs font-medium text-gray-900 dark:text-gray-400">{{ field.title }}</label>
-                <div class="relative">
-                  <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                    <p class="mdi mdi-phone"></p>
-                  </div>
-                  <input v-model="clientStore.client[field.keyword]" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-700 dark:placeholder-gray-400 dark:text-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500" :placeholder="field.placeholder">
-                </div> 
-              </div>
-            </div> -->
-          </div>
-        </div>
       </div>
 
 
@@ -590,11 +581,11 @@
         <div class="mt-4">
           <div class="bg-white border-gray-200 border dark:border-gray-700 dark:bg-gray-800 p-4 rounded-md">
             <div class="flex items-center justify-between">
-              <div class="">
-                2. Способ получения
+              <div class="py-4">
+                <p class="text-xl uppercase italic font-semibold">2. Способ получения</p>
               </div>
-              <div class="flex justify-end gap-4">
-                <ul class="flex justify-end items-center gap-4 w-full md:grid-cols-2">
+              <div class="flex justify-end gap-2">
+                <ul class="grid grid-cols-1 md:flex justify-end items-center gap-4 w-full md:grid-cols-2">
                   <li>
                     <input type="radio" id="pickup" name="delivery" v-model="clientStore.client.delivery" :value="false" class="hidden peer" required>
                     <label for="pickup" class="text-gray-700 dark:text-gray-300 peer-checked:text-gray-900 dark:peer-checked:text-gray-100 peer-checked:border-b-2 border-blue-500 select-none text-sm cursor-pointer inline-flex justify-between items-center px-2 py-1 w-full transition-all ease-in duration-75">                           
@@ -606,8 +597,8 @@
                   <li>
                     <input type="radio" id="delivery" name="delivery" v-model="clientStore.client.delivery" :value="true" class="hidden peer">
                     <label for="delivery" class="text-gray-700 dark:text-gray-300 peer-checked:text-gray-900 dark:peer-checked:text-gray-100 peer-checked:border-b-2 border-blue-500 select-none text-sm cursor-pointer inline-flex justify-between items-center px-2 py-1 w-full transition-all ease-in duration-75">
-                      <div class="block">
-                        <div class="w-full">Доставка ТК</div>
+                      <div class="w-full block">
+                        <div class="text-center">Доставка ТК</div>
                       </div>
                     </label>
                   </li>
@@ -626,6 +617,10 @@
                   <input v-model="clientStore.client.delivery_adress" type="text" id="delivery-adress" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-700 dark:placeholder-gray-400 dark:text-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Московская обл., г. Зеленоград, ул. Панфилова, 28Б">
                 </div> 
               </div>
+              <div class="py-2">
+                <p class="text-xs font-medium ">* Доставка до транспортной компании бесплатно</p>                 
+              </div>
+
             </div>
 
             <div v-else class="">
@@ -684,6 +679,7 @@
                 </div>
               </button>              
             </div>
+
           </div>
         </div>
       </div>
