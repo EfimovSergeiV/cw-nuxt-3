@@ -589,8 +589,8 @@
                   <li>
                     <input type="radio" id="pickup" name="delivery" v-model="clientStore.client.delivery" :value="false" class="hidden peer" required>
                     <label for="pickup" class="text-gray-700 dark:text-gray-300 peer-checked:text-gray-900 dark:peer-checked:text-gray-100 peer-checked:border-b-2 border-blue-500 select-none text-sm cursor-pointer inline-flex justify-between items-center px-2 py-1 w-full transition-all ease-in duration-75">                           
-                      <div class="block">
-                        <div class="w-full">Самовывоз из магазина</div>
+                      <div class="w-full block">
+                        <div class="text-center">Самовывоз из магазина</div>
                       </div>
                     </label>
                   </li>
@@ -617,8 +617,8 @@
                   <input v-model="clientStore.client.delivery_adress" type="text" id="delivery-adress" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-700 dark:placeholder-gray-400 dark:text-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Московская обл., г. Зеленоград, ул. Панфилова, 28Б">
                 </div> 
               </div>
-              <div class="py-2">
-                <p class="text-xs font-medium ">* Доставка до транспортной компании бесплатно</p>                 
+              <div class="py-4">
+                <p class="text-xs font-medium ">* Доставка до магазинов "Главный Сварщик" или транспортной компании бесплатно</p>                 
               </div>
 
             </div>
