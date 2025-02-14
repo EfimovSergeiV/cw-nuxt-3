@@ -108,8 +108,20 @@
 
 
 
-        </div>        
-        <div class="bg-white rounded-md border dark:border-gray-700 dark:bg-gray-800 p-2">
+        </div>
+
+        
+
+
+
+        <div v-if="reviewSended" class="bg-white rounded-md border dark:border-gray-700 dark:bg-gray-800 p-2">
+          <div class="h-full flex items-center justify-center">
+            <p class="text-">Ваш отзыв отправлен, и будет опубликован после модерации</p>
+          </div>
+        </div>
+
+
+        <div v-else class="bg-white rounded-md border dark:border-gray-700 dark:bg-gray-800 p-2">
           <p class="text-lg uppercase italic font-semibold">Отправить отзыв</p>
 
           <div class="grid grid-cols-1 gap-2 mt-2">
@@ -157,9 +169,12 @@
             </div>
 
           </div>
-
-
         </div>
+
+
+
+
+
       </div>
 
       <div class="lg:w-4/6 flex flex-col justify-between gap-4">
