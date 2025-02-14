@@ -136,6 +136,7 @@
   const { data: related } =  await useFetch(`${ config.public.baseURL }c/rel/`, { query: { "ct": product.value.related }})
   const { data: breadcrumbs } = await useFetch(`${ config.public.baseURL }c/breadcrumb/?ct=${ product.value.category.id }`)
   const { data: recommends } = await useFetch(`${ config.public.baseURL }c/recommend/`)
+  const { data: reviews } = await useFetch(`${ config.public.baseURL }o/reviews/${ product.value.id }/`)
   
   const hide_recommend = (related.value.length > 1) ? true : false
   
@@ -158,6 +159,10 @@
 
       <ProductDescription :description="product.description" />      
       <ProductParams :propstrmodel="product.propstrmodel" :prod_doc="product.prod_doc" :prod_link="product.prod_link" />
+
+
+      <ProductReview :reviews="reviews" :product_id="product.id" />
+
 
       <ProductRelated :related="related" :category="`Сопутствующие ${product.category.name.toLowerCase()}`" />
 
