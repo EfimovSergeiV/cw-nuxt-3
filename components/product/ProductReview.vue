@@ -16,7 +16,7 @@
   }
 
   const sendStar = ref(0)
-  const userName = ref('')
+  const userName = ref(null)
   const message = ref('')
   const sendStatus = ref(false)
   const reviewSended = ref(false)
@@ -51,9 +51,8 @@
     <div class="grid grid-cols-1 lg:flex flex-nowrap gap-4">
 
       <div class="lg:w-2/6 grid grid-cols-1 gap-4">
-        <div class="bg-white rounded-md border dark:border-gray-700 dark:bg-gray-800 p-2 ">
+        <div v-if="props.reviews.length > 0" class="bg-white rounded-md border dark:border-gray-700 dark:bg-gray-800 p-2 ">
           <p class="text-lg uppercase italic font-semibold">Общий рейтинг</p>
-
 
           <div class="mt-2">
             <div class="flex items-center mb-2">
@@ -105,9 +104,6 @@
             </div>
           </div>
     
-
-
-
         </div>
 
         
@@ -116,7 +112,7 @@
 
         <div v-if="reviewSended" class="bg-white rounded-md border dark:border-gray-700 dark:bg-gray-800 p-2">
           <div class="h-full flex items-center justify-center">
-            <p class="text-">Ваш отзыв отправлен, и будет опубликован после модерации</p>
+            <p class="text-center">Ваш отзыв отправлен, и будет опубликован после модерации</p>
           </div>
         </div>
 
@@ -170,11 +166,6 @@
 
           </div>
         </div>
-
-
-
-
-
       </div>
 
       <div class="lg:w-4/6 flex flex-col justify-between gap-4">
@@ -213,7 +204,7 @@
             </div>
           </div>
 
-          <div class="max-h-[520px] overflow-y-scroll pr-2 py-2">
+          <div v-if="props.reviews.length > 0" class="max-h-[520px] overflow-y-scroll pr-2 py-2">
             <transition-group tag="div" name="list">
               <div v-for="(review, id) in props.reviews" :key="id" class="mt-2">
                 
@@ -223,7 +214,7 @@
                       <p class="">{{ review.user_name }}</p>
                     </div>
                     <div class="">
-                      <p class="text-sm font-semibold text-gray-500">{{ review.date }}</p>
+                      <p class="text-xs text-gray-500">{{ review.created_date }}</p>
                     </div>
                   </div>
 
@@ -246,6 +237,9 @@
 
               </div>
             </transition-group>            
+          </div>
+          <div v-else class="flex items-center justify-center h-full">
+            <p class="text-center py-8">Пока нет отзывов</p>
           </div>
 
         </div>

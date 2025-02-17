@@ -6,8 +6,15 @@
   const tmp_id = useCookie('tmp_id')
 
   const { data: product } = await useFetch(`${ config.public.baseURL }c/prod/${route.params.id}`)
-
+  const { data: analogue } =  await useFetch(`${ config.public.baseURL }c/anlgs/?ct=${ product.value.category.id }`)
+  const { data: related } =  await useFetch(`${ config.public.baseURL }c/rel/`, { query: { "ct": product.value.related }})
+  const { data: breadcrumbs } = await useFetch(`${ config.public.baseURL }c/breadcrumb/?ct=${ product.value.category.id }`)
+  const { data: recommends } = await useFetch(`${ config.public.baseURL }c/recommend/`)
+  const { data: reviews } = await useFetch(`${ config.public.baseURL }o/reviews/${ product.value.id }/`)
   
+  const hide_recommend = (related.value.length > 1) ? true : false
+  
+
   if ( product.value === null ) {
     product.value = {
       id: null,
@@ -45,6 +52,17 @@
     brand.value = product.value.brand.brand
   }
 
+  /// Считаем рейтинг
+  const ratingValue = ref(0)
+  const reviewCount = ref(0)
+
+  if ( reviews.value.length > 0 ) {
+    const sum = reviews.value.reduce((acc, item) => acc + item.rating, 0)
+    ratingValue.value = Math.ceil(sum / reviews.value.length)
+    reviewCount.value = reviews.value.length
+  }
+
+
 
   if ( product.value.id ) {
     
@@ -67,8 +85,8 @@
               },
               "aggregateRating": {
                 '@type': 'AggregateRating',
-                "ratingValue": product.value.rating,
-                "reviewCount": '0',
+                "ratingValue": ratingValue.value,
+                "reviewCount": reviewCount.value,
               },
               "offers": {
                 '@type': 'Offer',
@@ -132,13 +150,7 @@
 
 
   
-  const { data: analogue } =  await useFetch(`${ config.public.baseURL }c/anlgs/?ct=${ product.value.category.id }`)
-  const { data: related } =  await useFetch(`${ config.public.baseURL }c/rel/`, { query: { "ct": product.value.related }})
-  const { data: breadcrumbs } = await useFetch(`${ config.public.baseURL }c/breadcrumb/?ct=${ product.value.category.id }`)
-  const { data: recommends } = await useFetch(`${ config.public.baseURL }c/recommend/`)
-  const { data: reviews } = await useFetch(`${ config.public.baseURL }o/reviews/${ product.value.id }/`)
-  
-  const hide_recommend = (related.value.length > 1) ? true : false
+
   
 
 </script>
