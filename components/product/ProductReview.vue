@@ -2,7 +2,9 @@
   const config = useRuntimeConfig()
 
   const props = defineProps(['reviews', 'product_id'])
+  const notificationsStore = useNotificationsStore()
   const selectedReviews = ref([ 1, 2, 3, 4, 5 ])
+
 
   const countPercent = (rating) => {
     const count = props.reviews.filter(review => review.rating === rating).length
@@ -36,6 +38,9 @@
     .then(() => {
       sendStatus.value = false
       reviewSended.value = true
+    }).catch((error) => {
+      sendStatus.value = false
+      notificationsStore.pushToast({ id: 1, type: 'error', text: 'Ошибка: Вы не поставили оценку' })
     })
   }
 
