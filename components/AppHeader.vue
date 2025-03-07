@@ -13,6 +13,7 @@
 
   const { signIn, signOut, token, data, status, lastRefreshedAt } = useAuth()
   const { data: cts } = await useFetch(`${ config.public.baseURL }c/ct/`)
+  const { data: workingShops } = await useFetch(`${ config.public.baseURL }c/ws/`)
 
   const search = ref('')
   const products = ref([])
@@ -155,6 +156,12 @@
 
 
             <div class="grid grid-cols-1 items-end gap-2">
+              
+              <div v-if="workingShops" class="flex items-center gap-1">
+                <a :href="workingShops.google_table_url" target="_blank" class=""> Изменения в графике работы магазинов</a>
+                <span class="mdi mdi-open-in-new"></span>                
+              </div>
+
               <div class="grid grid-cols-2 gap-x-2 gap-y-2">
                 <button @click="clientStore.locationModal = true" class="py-1 cursor-pointer bg-gray-100 shadow-lg shadow-black/30 border border-gray-100/10 dark:border-white/20 rounded-lg transition-all duration-500">
                   <div class="flex items-center gap-2 text-gray-700">

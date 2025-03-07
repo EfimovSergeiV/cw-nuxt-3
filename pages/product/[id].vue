@@ -74,7 +74,6 @@
           "textContent": {
               "@context": "https://schema.org",
               "@type": "Product",
-              "id": product.value.id,
               "name": product.value.name,
               "image": product.value.preview_image,
               "description": product.value.description,
@@ -92,6 +91,7 @@
                 '@type': 'Offer',
                 "url": 'https://glsvar.ru/product/' + product.value.id,
                 "priceCurrency": 'RUB',
+                "price": price.value,
                 "lowPrice": price.value,
                 "itemCondition": 'https://schema.org/UsedCondition',
                 "availability": 'https://schema.org/InStock',
@@ -109,7 +109,6 @@
           "textContent": {
               "@context": "https://schema.org",
               "@type": "Product",
-              "id": product.value.id,
               "name": product.value.name,
               "image": product.value.preview_image,
               "description": product.value.description,
@@ -122,6 +121,7 @@
                 '@type': 'Offer',
                 "url": 'https://glsvar.ru/product/' + product.value.id,
                 "priceCurrency": 'RUB',
+                "price": price.value,
                 "lowPrice": price.value,
                 "itemCondition": 'https://schema.org/UsedCondition',
                 "availability": 'https://schema.org/InStock',

@@ -211,9 +211,9 @@
 
           <div v-if="props.reviews.length > 0" class="max-h-[520px] overflow-y-scroll pr-2 py-2">
             <transition-group tag="div" name="list">
-              <div v-for="(review, id) in props.reviews" :key="id" class="mt-2">
+              <div v-for="(review, id) in props.reviews" :key="id" class="mt-3">
                 
-                <div v-if="selectedReviews.includes(review.rating)" class="border border-gray-200 hover:border-gray-300 dark:border-gray-600 dark:hover:border-gray-500 bg-gray-100 dark:bg-gray-700 transition-all px-4 py-2 rounded-md shadow-md shadow-black/20">
+                <div v-if="selectedReviews.includes(review.rating)" class="border border-gray-200 hover:border-gray-300 dark:border-gray-600 dark:hover:border-gray-500 bg-gray-50 dark:bg-gray-700 transition-all px-4 py-2 rounded-md shadow-md shadow-black/20">
                   <div class="flex justify-between items-center">
                     <div class="">
                       <p class="">{{ review.user_name }}</p>
