@@ -137,7 +137,7 @@
 
       // Добавляем файл с реквизитами, если он выбран
       if (file.value) {
-        console.log('JS ОТПРАВЛЯЕМ ФАЙЛ')
+
         const formData = new FormData();
         formData.append('order_number', response.value.order)
         formData.append('file', file.value);

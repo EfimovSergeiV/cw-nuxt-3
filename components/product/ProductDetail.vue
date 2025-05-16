@@ -5,12 +5,17 @@
 
 
 
-  const ymEvent = () => {
+  const ozonEvent = () => {
     if (process.client) {
       ctx.$metrika.reachGoal('GOTO_OZON')
     }
   }
 
+  const wbEvent = () => {
+    if (process.client) {
+      ctx.$metrika.reachGoal('GOTO_WILDBERRIS')
+    }
+  }
 
   const addOPTProduct = (product) => {
     console.log(product)
@@ -152,11 +157,17 @@
                 <div class="grid grid-cols-1 gap-4">
                   <div class="flex items-center justify-end">
 
-                    <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-2">
 
-                      <a v-if="product.ozon" @click="ymEvent()" :href="product.ozon" target="_blank">
-                        <img src="/ozon.webp" alt="vk-logo" title="Купить на OZON" class="h-[44px] hover:h-[45px] transition-all duration-100" />
-                      </a>
+                      <div class="flex gap-2">
+                        <a v-if="product.wildberries" @click="wbEvent()" :href="product.wildberries" target="_blank">
+                          <img src="/wb.webp" alt="wb-logo" title="Купить на WILDBERRIS" class="h-[44px] hover:h-[45px] transition-all duration-100" />
+                        </a>
+
+                        <a v-if="product.ozon" @click="ozonEvent()" :href="product.ozon" target="_blank">
+                          <img src="/ozon.webp" alt="ozon-logo" title="Купить на OZON" class="h-[44px] hover:h-[45px] transition-all duration-100" />
+                        </a>                        
+                      </div>
                       
                       <CartBtn v-if="props.product.only_price" :product="product" />    
                       
