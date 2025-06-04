@@ -221,7 +221,7 @@
     }
   }
 
-import { vMaska } from "maska/vue"
+// import { vMaska } from "maska/vue"
 
 
 </script>
@@ -509,7 +509,7 @@ import { vMaska } from "maska/vue"
                 </div>
               </div>
               <div class="">
-                <label for="message" class="block mt-2 mb-1 text-xs font-medium text-gray-900 dark:text-gray-400">Номер телефона</label>
+                <label for="message" class="block mt-2 mb-1 text-xs font-medium text-gray-900 dark:text-gray-400">Номер телефона: {{ clientStore.client.phone }}</label>
                 <div class="relative">
                   <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                     <p class="mdi mdi-phone"></p>

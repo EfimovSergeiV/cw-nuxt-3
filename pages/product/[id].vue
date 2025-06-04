@@ -145,7 +145,7 @@
 
   useSeoMeta({
     title: `${ product.value.name } ${status.value}`,
-    description: `${ product.value.description }`,
+    description: `${ product.value.name } купить онлайн`,
     keywords: `${ product.value.name }, Главный Сварщик - сварочное оборудование, оборудование для сварки, купить электроды, купить проволоку, купить источник, купить сварочный инвертор`,
     ogLocale: 'ru_RU',
     ogTitle: `${ product.value.name }`,
@@ -177,10 +177,6 @@
     }
     window.dataLayer.push(ecommerceData)
   })
-
-
-  
-
   
 
 </script>
