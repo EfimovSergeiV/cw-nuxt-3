@@ -32,53 +32,46 @@
       </div>
 
 
-      <div class="md:flex md:justify-between items-start">
-
-
-        <div class="grid grid-cols-1">
-
-          <div class="">
-            <div class="flex items-center">
-              <img src="/images/vk-logo.webp" alt="vk-logo" class="w-5" />
-              <a href="https://vk.com/glsvar" target="_blank" class="font-bold text-base mx-2">МЫ ВКОНТАКТЕ</a>
-            </div> 
+      <div class="grid grid-cols-1 md:grid-cols-2 items-start gap-4 md:border-t border-gray-300 dark:border-gray-700">
+        <div class="flex flex-col justify-between h-full">
+          <div class="flex items-center justify-start py-2">
+            <img src="/images/vk-logo.webp" alt="vk-logo" class="w-5" />
+            <a href="https://vk.com/glsvar" target="_blank" class="font-bold text-base mx-2">МЫ ВКОНТАКТЕ</a>
           </div>
-
-          <div class="py-4">
-            <ul class="flex justify-start gap-2 md:gap-4 text-xs md:text-sm mt-3 sm:mt-0 md:order-last">
+          <div class="hidden md:block">
+            <div class="flex items-center justify-start">
+              <div class="grid grid-cols-1 gap-1">
+                <p class="text-xs">ООО "Техносвар КС"</p>
+                <span class="text-xs text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100 flex items-end justify-center md:justify-start">© {{ currentData }} <p class="mx-1">Главный сварщик</p></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 gap-0.5">
+          <p class="text-center md:text-left text-[10px] md:text-xs py-2 select-none text-gray-600 dark:text-gray-400">
+            Все цены и материаллы, указанные на сайте www.glsvar.ru, приведены как справочная информация и не являются публичной офертой и могут быть изменены в любое время без предупреждения. 
+            Для получения подробной информации о стоимости, сроках и условиях поставки просьба обращаться по указанным на сайте телефонам<span @click="eventSend()" class="cursor-pointer">.</span>
+          </p>
+          <div class="">
+            <ul class="flex justify-center md:justify-start gap-2 md:gap-4 text-xs md:text-sm sm:mt-0 md:order-last">
               <li>
                 <button @click="notificationsStore.pushToast({id: 1, type: 'error', text:' Раздел временно не доступен'})" class="text-xs text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100">Доставка</button>
               </li>
-              
               <li>
                 <button @click="notificationsStore.pushToast({id: 10, type: 'error', text:' Раздел временно не доступен'})" class="text-xs text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100">Способы оплаты</button>
               </li>
-
               <li>
                 <nuxt-link :to="{ name: 'policy'}" class="text-xs text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100">Политика обработки данных</nuxt-link>
               </li>
             </ul>
           </div>
-
-        </div>
-
-
-        <div class="w-full h-full md:w-1/2 md:order-1">
-          
-          <p class="text-[10px] md:text-xs py-2 select-none text-gray-600 dark:text-gray-400">
-            Все цены и материаллы, указанные на сайте www.glsvar.ru, приведены как справочная информация и не являются публичной офертой и могут быть изменены в любое время без предупреждения. 
-            Для получения подробной информации о стоимости, сроках и условиях поставки просьба обращаться по указанным на сайте телефонам<span @click="eventSend()" class="cursor-pointer">.</span>
-          </p> 
-
         </div>
       </div>
 
-
-      <div class="">
-        <div class="flex items-center justify-start">
-
+      <div class="md:hidden mt-4">
+        <div class="flex items-center justify-center">
+          <p class="text-xs mr-1">ООО "Техносвар КС"</p>
           <span class="text-xs text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100 flex items-end justify-center md:justify-start">© {{ currentData }} <p class="mx-1">Главный сварщик</p></span>
-
         </div>
       </div>
 
