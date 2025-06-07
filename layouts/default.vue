@@ -113,7 +113,7 @@
     </div>
 
     <div class="">
-      <div id="navbar" class="bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-b border-gray-400 dark:border-gray-700 fixed hidden w-full z-40">
+      <div id="nav-bar" class="bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-b border-gray-400 dark:border-gray-700 fixed hidden w-full z-40">
         
         <div class="container mx-auto px-4 max-w-6xl lg:px-8">
           <div class="lg:flex items-start justify-between">
@@ -188,7 +188,7 @@
 
       <div  v-if=" route.path !== '/banner'" class="">
         <div class="">
-          <div class="fixed z-10 bottom-60 md:bottom-54 right-20 hover:right-24 transition-all duration-500">
+          <div class="fixed z-30 bottom-60 md:bottom-54 right-20 hover:right-24 transition-all duration-500">
             <div class="relative">
               <div class="absolute z-40">
                 <div class="-rotate-90 bg-blue-600 px-4 pb-12 group rounded-md w-44 cursor-pointer" @click="shopStore.showWriteUsModal">
@@ -208,7 +208,7 @@
 
 
         <div class="">
-          <div class="fixed z-10 bottom-16 -right-[126px] hover:right-0 focus:right-0 transition-all duration-500">
+          <div class="fixed z-30 bottom-16 -right-[126px] hover:right-0 focus:right-0 transition-all duration-500">
             <div class="relative">
               <div class="">
                 <div class=" bg-blue-600 group rounded-l-md cursor-pointer transition-all duration-500">
