@@ -101,9 +101,9 @@
 
     <div class="absolute bottom-0 right-0 z-10 bg-white dark:bg-gray-700 rounded-md">
       <div class="flex items-end justify-end h-full px-2 py-2">
-        <div class="grid grid-cols-2">
+        <div class="grid grid-cols-2 gap-6">
           <div class="w-[80px] h-[80px] bg-yellow-500 rounded-full"></div>
-          <div class="w-[80px] h-[80px] bg-fuchsia-500 rounded-full"></div>
+          <div class="w-[80px] h-[80px] bg-fuchsia-500/0 rounded-full"></div>
           <div class="w-[80px] h-[80px] bg-red-500 rounded-full"></div>
           <div class="w-[80px] h-[80px] bg-blue-500 rounded-full"></div>
         </div>
