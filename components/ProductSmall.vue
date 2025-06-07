@@ -12,7 +12,7 @@
         <div class="">
           <p class="text-xs">{{ product.name.slice(0,80) }}</p>
         </div>
-        <div class="">
+        <div class="px-1">
           <div class="flex items-center justify-center bg-white w-[80px] h-[60px] rounded-md">
             <img :src="product.preview_image" width="70" :alt="product.name" />
           </div>

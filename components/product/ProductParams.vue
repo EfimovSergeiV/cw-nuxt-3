@@ -9,8 +9,8 @@
 <template>
 
   <div v-if="props.propstrmodel.length > 0" class="mx-auto px-4 max-w-6xl lg:px-8 py-2">
-    <div class="">
-      <div class="bg-white rounded-md border dark:border-gray-700 dark:bg-gray-800 shadow-md px-2 py-4">
+    <div class="relative">
+      <div class="bg-white/70 rounded-md border dark:border-gray-700 dark:bg-gray-800/70 shadow-md px-2 py-4 relative z-20 backdrop-blur-3xl min-h-[260px]">
 
         <div class="grid grid-cols-1 gap-8">
           <div class="">
@@ -50,7 +50,25 @@
           </div>
         </div>
       </div>
+
+
+      <div class="absolute bottom-0 right-0 z-10 bg-white dark:bg-gray-700 rounded-md">
+        <div class="flex items-end justify-end h-full px-2 py-2">
+          <div class="grid grid-cols-2 gap-x-12 gap-y-2">
+            <div class="w-[120px] h-[60px] bg-blue-500 rounded-full"></div>
+            <div class="w-[120px] h-[60px] bg-blue-500 rounded-full"></div>
+            <div class="w-[120px] h-[60px] bg-yellow-500/30 rounded-full"></div>
+            <div class="w-[120px] h-[60px] bg-blue-500 rounded-full"></div>
+          </div>
+        </div>
+      </div>
+
     </div>
+
+
+
+
+
   </div>
 
 
