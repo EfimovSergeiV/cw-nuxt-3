@@ -13,7 +13,7 @@
 
     <div class="relative">
 
-      <div class="bg-white/70 dark:bg-gray-800/70 backdrop-blur-3xl rounded-t-md border-t border-x border-gray-200 dark:border-gray-700 px-4 py-2 relative z-20 ">
+      <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-3xl rounded-t-md border-t border-x border-gray-200 dark:border-gray-700 px-4 py-2 relative z-20 ">
 
 
         <div class="hidden md:block">
@@ -84,9 +84,9 @@
       <div class="absolute bottom-0 right-0 z-10 bg-white dark:bg-gray-700 rounded-md">
         <div class="flex items-end justify-end h-full px-2 py-2">
           <div class="grid grid-cols-2 gap-x-6 gap-y-2">
-            <div class="w-[120px] h-[60px] md:w-[240px] md:h-[120px] bg-yellow-500/50 rounded-full"></div>
+            <div class="w-[120px] h-[60px] md:w-[260px] md:h-[120px] bg-blue-500 rounded-full"></div>
             <div class="w-[120px] h-[60px] md:w-[240px] md:h-[120px] bg-blue-500 rounded-full"></div>
-            <div class="w-[120px] h-[60px] md:w-[240px] md:h-[120px] bg-red-500/50 rounded-full"></div>
+            <div class="w-[120px] h-[60px] md:w-[240px] md:h-[120px] bg-yellow-500/30 rounded-full"></div>
             <div class="w-[120px] h-[60px] md:w-[240px] md:h-[120px] bg-blue-500 rounded-full"></div>
           </div>
         </div>
