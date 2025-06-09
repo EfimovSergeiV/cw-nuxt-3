@@ -90,6 +90,13 @@
     }
   }
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
+
 </script>
 
 <template>
@@ -214,7 +221,7 @@
                 <div class=" bg-blue-600 group rounded-l-md cursor-pointer transition-all duration-500">
                   <div class="flex items-center justify-center">
                     <div class="grid grid-cols-4 items-center gap-4 px-1">
-                      <p class="mdi mdi-24px mdi-cellphone-link text-gray-100 pl-0.5"></p>
+                      <p class="mdi mdi-24px mdi-face-agent text-gray-100 pl-0.5"></p>
                       <a class="" title="WhatsApp" href="https://wa.me/79116965424" @click="onClick('ONCLICK_WHATSAPP')" target="_blank">
                         <img src="/WhatsApp-logo.webp" class="w-5" />
                       </a>
@@ -238,7 +245,7 @@
 
 
     <transition name="fade">
-      <div v-if="cookiesModal" class="fixed bottom-0 z-50">
+      <div v-if="cookiesModal" class="fixed bottom-0 z-40">
         <div class="bg-gray-700 border-t border-r border-gray-500 px-10 py-4 rounded-tr-3xl">
           <div class="flex gap-6 lg:gap-16 items-center">
             <div class="">
@@ -251,6 +258,18 @@
         </div>
       </div>      
     </transition>
+
+
+    <div id="navbar" class="fixed -bottom-4 z-40 right-11 md:right-11 hover:-bottom-2 focus:-bottom-2 transition-all duration-300 cursor-pointer hidden">
+      <button @click="scrollToTop()" class="transition-all duration-500">
+        <div class="bg-blue-500 transition-all duration-700 px-3 pb-5 pt-1 rounded-t-md">
+          <div class="flex gap-1 items-center text-sm text-white ">
+            <span class="mdi mdi-arrow-up-thick"></span>
+            <p class="">Наверх</p>            
+          </div>
+        </div>        
+      </button>
+    </div>
 
 
   </div>

@@ -73,7 +73,7 @@
           </div>
 
           <div class="flex items-end justify-between gap-2">
-            <div class="sm:flex md:grid grid-cols-1 gap-2">
+            <div class="flex md:grid grid-cols-1 gap-2">
               <div class="flex items-center gap-2">
                 <CompBtn cls="px-3 py-1.5" :product="props.product" />
                 <p class="text-xs">Сравнить</p>
@@ -102,10 +102,10 @@
     <div class="absolute bottom-0 right-0 z-10 bg-white dark:bg-gray-700 rounded-md">
       <div class="flex items-end justify-end h-full px-2 py-2">
         <div class="grid grid-cols-2 gap-6">
-          <div class="w-[80px] h-[80px] bg-yellow-500 rounded-full"></div>
-          <div class="w-[80px] h-[80px] bg-fuchsia-500/0 rounded-full"></div>
-          <div class="w-[80px] h-[80px] bg-red-500 rounded-full"></div>
-          <div class="w-[80px] h-[80px] bg-blue-500 rounded-full"></div>
+          <div class="w-[80px] h-[80px] bg-blue-500/10 rounded-full"></div>
+          <div class="w-[80px] h-[80px] bg-blue-500/0 rounded-full"></div>
+          <div class="w-[80px] h-[80px] bg-blue-500/20 rounded-full"></div>
+          <div class="w-[80px] h-[80px] bg-blue-500/40 rounded-full"></div>
         </div>
       </div>
     </div>
