@@ -262,7 +262,7 @@
 
     <div id="navbar" class="fixed -bottom-4 z-40 right-11 md:right-11 hover:-bottom-2 focus:-bottom-2 transition-all duration-300 cursor-pointer hidden">
       <button @click="scrollToTop()" class="transition-all duration-500">
-        <div class="bg-blue-500 transition-all duration-700 px-3 pb-5 pt-1 rounded-t-md">
+        <div class="bg-blue-600 transition-all duration-700 px-3 pb-5 pt-1 rounded-t-md">
           <div class="flex gap-1 items-center text-sm text-white ">
             <span class="mdi mdi-arrow-up-thick"></span>
             <p class="">Наверх</p>            
