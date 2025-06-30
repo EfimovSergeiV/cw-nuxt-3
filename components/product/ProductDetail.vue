@@ -48,7 +48,7 @@
                 
                 <div class="flex items-center justify-center w-full cursor-zoom-in" @click="productsStore.showProductImages(product.prod_img)">
                   <div class="flex gap-4">
-                    <div class="px-3 py-3">
+                    <div v-if="props.product.prod_img.length > 1" class="px-3 py-3">
                       <div v-for="image in props.product.prod_img.slice(0, 4)" :key="image.id" class="w-[80px] h-[80px] rounded-md bg-white flex items-center justify-center">
                         <img :src="image.image" class="" />
                       </div>
