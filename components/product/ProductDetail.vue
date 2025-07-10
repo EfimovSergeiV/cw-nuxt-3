@@ -2,18 +2,36 @@
   const productsStore = useProductsStore()
   const props = defineProps(['product', 'analogue', 'category',])
   const ctx = useNuxtApp()
-
+  const tmp_id = useCookie('tmp_id')
 
 
   const ozonEvent = () => {
     if (process.client) {
       ctx.$metrika.reachGoal('GOTO_OZON')
+
+      $fetch('/api/sendToMattermost', {
+        method: 'POST', 
+        body: {
+          uuid: tmp_id.value,
+          marketplace: 'OZON',
+          productName: props.product.name
+        }
+      }).catch((error) => null)
     }
   }
 
   const wbEvent = () => {
     if (process.client) {
       ctx.$metrika.reachGoal('GOTO_WILDBERRIS')
+
+      $fetch('/api/sendToMattermost', {
+        method: 'POST', 
+        body: {
+          uuid: tmp_id.value,
+          marketplace: 'WILDBERRIS',
+          productName: props.product.name
+        }
+      }).catch((error) => null)
     }
   }
 
