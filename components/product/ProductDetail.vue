@@ -164,12 +164,12 @@
 
               <div class="border border-gray-200 hover:border-gray-300 dark:border-gray-600 dark:hover:border-gray-500 bg-gray-100 dark:bg-gray-700 transition-all px-4 py-2 rounded-md shadow-md shadow-black/20">
                 
-                <div class="flex justify-between items-center my-2">
+                <div class="grid grid-cols-1 md:flex justify-between gap-4 items-center my-2">
                   
                   <div class="">
                     <div v-if="props.product.only_price" class="flex gap-1 items-center justify-end">
-                      <p class="text-3xl font-bold dark:text-gray-300">{{ props.product.only_price.toLocaleString() }}</p>
-                      <p class="text-base dark:text-gray-300 px-1">руб.</p>
+                      <p class="text-2xl md:text-3xl font-bold dark:text-gray-300">{{ props.product.only_price.toLocaleString() }}</p>
+                      <p class="text-base md:text-base dark:text-gray-300 px-1">руб.</p>
                     </div>                  
                     <p v-else class="text-sm font-bold dark:text-gray-300">Стоимость по запросу</p>
                   </div>
