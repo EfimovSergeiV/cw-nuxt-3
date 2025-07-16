@@ -71,7 +71,7 @@
         <div class="min-h-[7rem] py-2">
           <transition name="fade" mode="out-in">
             <div v-if="shopStore.selectedCity" class="bg-white dark:bg-gray-800 px-4 py-2 rounded-md border border-gray-100 dark:border-gray-700">
-              <transition-group name="list" tag="div" class="flex flex-wrap items-center justify-between gap-x-8 gap-y-2">
+              <transition-group name="fade" tag="div" class="flex flex-wrap items-center justify-between gap-x-8 gap-y-2">
                 <div v-for="shop in getShops(shopStore.selectedCity)" :key="shop.id" :id="shop.id" class="">
                   <button @click="selectShop(shop)" class="group text-left text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-all duration-700">
                     <p class="text-sm "> {{ shop.adress.replace(`${shopStore.selectedCity},`, '') }}</p>

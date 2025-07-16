@@ -22,9 +22,9 @@
   ]
 
   const phoneValidate = computed(() => {
-    const re = /^(?:\+7|7|8)[-\s]?\d{3}[-\s]?\d{3}[-\s]?\d{2}[-\s]?\d{2}$/
+    // const re = /^(?:\+7|7|8)[-\s]?\d{3}[-\s]?\d{3}[-\s]?\d{2}[-\s]?\d{2}$/
     if (clientStore.client.phone) {
-      return clientStore.client.phone.search(re) !== -1
+      return true
     } else {
       return false
     }
@@ -109,7 +109,8 @@
 
   const sendOrder = async () => {
     sendOrderBtn.value = true
-    if ((phoneValidate.value || emailValidate.value) && (selectedShop.value || clientStore.client.delivery_adress) ) {
+
+    if ((phoneValidate.value || emailValidate.value) && (selectedShop.value || clientStore.client.delivery_adress) && productsStore.cart.length > 0) {
       
       /// HotFix
       if(clientStore.client.delivery) {
@@ -509,7 +510,7 @@
                 </div>
               </div>
               <div class="">
-                <label for="message" class="block mt-2 mb-1 text-xs font-medium text-gray-900 dark:text-gray-400">Номер телефона: {{ clientStore.client.phone }}</label>
+                <label for="message" class="block mt-2 mb-1 text-xs font-medium text-gray-900 dark:text-gray-400">Номер телефона:</label>
                 <div class="relative">
                   <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                     <p class="mdi mdi-phone"></p>
