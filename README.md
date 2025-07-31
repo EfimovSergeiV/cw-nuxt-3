@@ -175,3 +175,204 @@ npm install @mdi/font
     </div>
   </div>
 ```
+
+### Migration to Nuxt4
+###### Strucrure
+
+```zsh
+├── app
+│   ├── app.vue
+│   ├── assets
+│   │   └── css
+│   │       ├── fonts
+│   │       │   ├── Play
+│   │       │   │   ├── OFL.txt
+│   │       │   │   ├── Play-Bold.ttf
+│   │       │   │   └── Play-Regular.ttf
+│   │       │   └── Ruslan-Display
+│   │       │       ├── OFL.txt
+│   │       │       └── RuslanDisplay-Regular.ttf
+│   │       ├── images
+│   │       │   ├── footer-bg.png
+│   │       │   ├── footer-bg.webp
+│   │       │   ├── footer-dark-bg.png
+│   │       │   ├── footer-dark-bg.webp
+│   │       │   ├── lite-footer-bg.png
+│   │       │   ├── mw-one-bg.jpg
+│   │       │   ├── mw-one-bg.png
+│   │       │   ├── mw-one-bg.webp
+│   │       │   ├── mw-third-bg.jpg
+│   │       │   ├── mw-two-bg.jpg
+│   │       │   ├── mw-two-bg.webp
+│   │       │   └── source.png
+│   │       ├── main.css
+│   │       └── tailwind.css
+│   ├── components
+│   │   ├── AppFooter.vue
+│   │   ├── AppHeader.vue
+│   │   ├── BreadCrumbs.vue
+│   │   ├── CartBtnSmall.vue
+│   │   ├── CartBtn.vue
+│   │   ├── CartForm.vue
+│   │   ├── CartModal.vue
+│   │   ├── Categories.vue
+│   │   ├── CompBtn.vue
+│   │   ├── CorouselBrands.vue
+│   │   ├── ErrBackEnd.vue
+│   │   ├── ESAB.vue
+│   │   ├── ExtSearch.vue
+│   │   ├── Filters.vue
+│   │   ├── LikeBtn.vue
+│   │   ├── LocationModal.vue
+│   │   ├── LoginModal.vue
+│   │   ├── MainSection.vue
+│   │   ├── MainWelder.vue
+│   │   ├── OrderModal.vue
+│   │   ├── Pagination.vue
+│   │   ├── product
+│   │   │   ├── ProductDescription.vue
+│   │   │   ├── ProductDetail.vue
+│   │   │   ├── ProductExt.vue
+│   │   │   ├── ProductParams.vue
+│   │   │   ├── ProductRelated.vue
+│   │   │   └── ProductReview.vue
+│   │   ├── ProductCardLS.vue
+│   │   ├── ProductCard.vue
+│   │   ├── ProductImageModal.vue
+│   │   ├── ProductSmall.vue
+│   │   ├── Products.vue
+│   │   ├── Recommend.vue
+│   │   ├── RegisterModal.vue
+│   │   ├── RequestPrice.vue
+│   │   ├── Reviews.vue
+│   │   ├── ShopMaps.vue
+│   │   ├── SwiperControls.vue
+│   │   ├── Toasts.vue
+│   │   ├── TopSlider.vue
+│   │   ├── UserData.vue
+│   │   └── WriteUsModal.vue
+│   ├── error.vue
+│   ├── layouts
+│   │   └── default.vue
+│   ├── pages
+│   │   ├── about.vue
+│   │   ├── banner.vue
+│   │   ├── cart.vue
+│   │   ├── compare.vue
+│   │   ├── cts.vue
+│   │   ├── ext
+│   │   │   ├── [id].vue
+│   │   │   └── search.vue
+│   │   ├── index.vue
+│   │   ├── like.vue
+│   │   ├── lk
+│   │   │   └── index.vue
+│   │   ├── login.vue
+│   │   ├── order.vue
+│   │   ├── policy.vue
+│   │   ├── prods.vue
+│   │   ├── product
+│   │   │   └── [id].vue
+│   │   └── reviews
+│   │       ├── [id].vue
+│   │       └── index.vue
+│   └── plugins
+│       ├── bg-scroll.js
+│       ├── maska.ts
+│       └── navbar.js
+├── assets
+│   └── css
+│       └── fonts
+├── cities.ts
+├── conf.ts
+├── ecosystem.config.js
+├── LICENSE
+├── nuxt.config.ts
+├── package.json
+├── package-lock.json
+├── pnpm-lock.yaml
+├── public
+│   ├── bnr
+│   │   ├── arbeitsschutz-schweissen.webp
+│   │   ├── autogentechnik.webp
+│   │   ├── banner_image-1.webp
+│   │   ├── Kreise-SH-hell4.webp
+│   │   ├── oberflaechenbearbeitung.webp
+│   │   ├── schweissbrenner.webp
+│   │   ├── schweisszubehoer.webp
+│   │   └── schweisszusatzwerkstoffe.webp
+│   ├── certs
+│   │   ├── aurora-2.webp
+│   │   ├── aurora-3.webp
+│   │   ├── cert-redius.webp
+│   │   ├── cert-svarog.webp
+│   │   ├── esab-cert.webp
+│   │   └── svarog-2.webp
+│   ├── esab-banner-one.webp
+│   ├── esab-logo.webp
+│   ├── esab-ok.webp
+│   ├── favicon.ico
+│   ├── handy-esab.webp
+│   ├── icons
+│   │   ├── cts.png
+│   │   ├── esab-sm.webp
+│   │   ├── mask-sm.webp
+│   │   └── search.png
+│   ├── images
+│   │   ├── blue-svar.webp
+│   │   └── vk-logo.webp
+│   ├── mapshops.webp
+│   ├── OneSignalSDKUpdaterWorker.js
+│   ├── OneSignalSDKWorker.js
+│   ├── ozon.webp
+│   ├── prods
+│   │   ├── list-10.xml
+│   │   ├── list-11.xml
+│   │   ├── list-12.xml
+│   │   ├── list-13.xml
+│   │   ├── list-14.xml
+│   │   ├── list-15.xml
+│   │   ├── list-16.xml
+│   │   ├── list-17.xml
+│   │   ├── list-18.xml
+│   │   ├── list-19.xml
+│   │   ├── list-1.xml
+│   │   ├── list-20.xml
+│   │   ├── list-21.xml
+│   │   ├── list-22.xml
+│   │   ├── list-23.xml
+│   │   ├── list-24.xml
+│   │   ├── list-25.xml
+│   │   ├── list-26.xml
+│   │   ├── list-27.xml
+│   │   ├── list-28.xml
+│   │   ├── list-29.xml
+│   │   ├── list-2.xml
+│   │   ├── list-30.xml
+│   │   ├── list-3.xml
+│   │   ├── list-4.xml
+│   │   ├── list-5.xml
+│   │   ├── list-6.xml
+│   │   ├── list-7.xml
+│   │   ├── list-8.xml
+│   │   └── list-9.xml
+│   ├── robots.txt
+│   ├── rogue-banner.webp
+│   ├── sitemap.xml
+│   ├── telegr-logo.webp
+│   ├── viber-logo.webp
+│   ├── wb.webp
+│   ├── WhatsApp-logo.webp
+│   └── ws-esab.webp
+├── README.md
+├── server
+│   ├── api
+│   │   ├── auth
+│   │   │   └── [...].ts
+│   │   └── sendToMattermost.js
+│   └── tsconfig.json
+├── stores
+│   └── shop.ts
+├── tailwind.config.js
+└── tsconfig.json
+```
