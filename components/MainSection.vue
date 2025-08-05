@@ -13,7 +13,7 @@
 
 
       <div class="w-full">
-        <div v-if="latest" class="grid grid-cols-2 gap-4 h-full content-stretch">
+        <div v-if="latest" class="grid grid-cols-2 gap-2 h-full content-stretch">
           <div v-for="product in latest.slice(0, 4)" :key="product.id">
 
             <div class="bg-white w-full h-full rounded-md">
@@ -32,14 +32,14 @@
                     <div class="flex gap-2 px-2 lg:px-4">
                       <img :src="product.preview_image" :alt="product.name" class="h-14 md:h-16" />
                       <div class="flex items-center justify-start w-full">
-                        <p v-if="product.only_price" class="text-gray-600 font-bold text-sm md:text-xl">{{ product.only_price.toLocaleString() }} <span class=" text-xs md:text-sm">руб.</span></p>  
+                        <p v-if="product.only_price" class="text-gray-600 font-bold text-xs md:text-xl">{{ product.only_price.toLocaleString() }} <span class=" text-[10px] md:text-sm">руб.</span></p>  
                         <p v-else class="text-gray-700 font-bold text-xs">Стоимость по запросу</p>
                       </div>
                     </div>
                   </div>
                               
                   <div class="flex items-center justify-end pb-1 px-4 min-h-[36px]">
-                    <p class="text-xs font-semibold text-gray-600 dark:text-gray-700 text-right">{{ product.name }}</p>
+                    <p class="text-[8px] md:text-xs font-semibold text-gray-600 dark:text-gray-700 text-right">{{ product.name }}</p>
                   </div>
                 </nuxt-link>
               </div>

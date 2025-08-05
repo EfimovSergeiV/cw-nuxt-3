@@ -10,12 +10,12 @@
             
             <div class="grid grid-cols-1 gap-2">
 
-              <div class="flex gap-2">
-                <p class="text-base md:text-xl font-semibold uppercase shadow-2xl text-red-500">Становись профессионалом</p>
-                <p class="text-base md:text-xl font-bold uppercase shadow-2xl text-gray-700 dark:text-gray-100 ">с нами!</p>
+              <div class="flex gap-1 md:gap-2">
+                <p class="text-sm md:text-xl font-semibold uppercase shadow-2xl text-red-500">Становись профессионалом</p>
+                <p class="text-sm md:text-xl font-bold uppercase shadow-2xl text-gray-700 dark:text-gray-100 ">с нами!</p>
               </div>
               
-              <nuxt-link :to="{ name: 'cts'}" class="text-gray-700 hover:text-gray-900 dark:text-gray-300 hover:dark:text-gray-100 transition-all text-sm">Перейти в каталог</nuxt-link>
+              <nuxt-link :to="{ name: 'cts'}" class="text-gray-700 hover:text-gray-900 dark:text-gray-300 hover:dark:text-gray-100 transition-all text-[10px] md:text-sm">Перейти в каталог</nuxt-link>
             </div>
             
           </div>

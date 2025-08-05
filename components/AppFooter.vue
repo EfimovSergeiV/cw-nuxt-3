@@ -81,15 +81,15 @@
       </div>
 
 
-      <div class="absolute bottom-0 right-0 z-10 bg-white dark:bg-gray-700 rounded-md">
+      <div class="absolute bottom-0 left-0 z-10 bg-white dark:bg-gray-700 rounded-md">
         <div class="flex items-end justify-end h-full px-2 py-2">
           <div class="grid grid-cols-3 gap-x-12 gap-y-2">
-            <div class="w-[120px] h-[60px] md:w-[260px] md:h-[120px] bg-blue-500/60 rounded-full"></div>
-            <div class="w-[120px] h-[60px] md:w-[240px] md:h-[120px] bg-blue-500/40 rounded-full"></div>
-            <div class="w-[120px] h-[60px] md:w-[260px] md:h-[120px] bg-blue-500/40 rounded-full"></div>
-            <div class="w-[120px] h-[60px] md:w-[240px] md:h-[120px] bg-blue-500/40 rounded-full"></div>
-            <div class="w-[120px] h-[60px] md:w-[240px] md:h-[120px] bg-white/0 rounded-full"></div>
-            <div class="w-[120px] h-[60px] md:w-[240px] md:h-[120px] bg-blue-500/40 rounded-full"></div>
+            <div class="w-[60px] h-[60px] md:w-[260px] md:h-[120px] bg-blue-500/60 rounded-full"></div>
+            <div class="w-[60px] h-[60px] md:w-[240px] md:h-[120px] bg-blue-500/40 rounded-full"></div>
+            <div class="w-[60px] h-[60px] md:w-[260px] md:h-[120px] bg-blue-500/40 rounded-full"></div>
+            <div class="w-[60px] h-[60px] md:w-[240px] md:h-[120px] bg-blue-500/40 rounded-full"></div>
+            <div class="w-[60px] h-[60px] md:w-[240px] md:h-[120px] bg-white/0 rounded-full"></div>
+            <div class="w-[60px] h-[60px] md:w-[240px] md:h-[120px] bg-blue-500/40 rounded-full"></div>
           </div>
         </div>
       </div>
