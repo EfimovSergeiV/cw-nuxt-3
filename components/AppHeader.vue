@@ -139,7 +139,7 @@
             <div class="flex items-center justify-end">
               <div class="py-2 md:max-w-[345px]">
                 <nuxt-link :to="{ name: 'index' }">
-                  <img src="/images/blue-svar.webp" alt="main-welder-logo" class="max-h-[6rem] md:max-h-[4rem]" />
+                  <img src="/images/ablue-svar.webp" alt="main-welder-logo" class="max-h-[6rem] md:max-h-[4rem]" />
                 </nuxt-link>
                 <div class="flex flex-col py-2">
                   <div class="flex items-center justify-end">
