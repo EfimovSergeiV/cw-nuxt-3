@@ -4,7 +4,7 @@ module.exports = {
       name: 'MainWelderRU',
       port: '3001',
       exec_mode: 'cluster',
-      instances: 'max',
+      instances:  1, /// 'max',
       script: './.output/server/index.mjs'
     }
   ]
