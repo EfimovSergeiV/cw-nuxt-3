@@ -8,6 +8,12 @@
   const notificationsStore = useNotificationsStore()
   const shopStore = useShopStore()
 
+  // для аналоговой проверки
+  const enABC = ref(
+    [
+      "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
+    ]
+  )
 
   const fields = [
       { keyword:"legaladress", placeholder:"Россия, Москва, 117312, ул. Вавилова, д. 123", title:"Юридический адрес"},
@@ -46,7 +52,6 @@
 
 
   // Ecommerce
-
   const removeProduct = (product) => {
 
     let ecommerceData = {

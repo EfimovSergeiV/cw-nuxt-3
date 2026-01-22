@@ -1,17 +1,21 @@
-<script setup>
+<script setup> 
   const gtag = useGtag()
   const ctx = useNuxtApp()
   const config = useRuntimeConfig()
   const route = useRoute()
   const tmp_id = useCookie('tmp_id')
 
+
+
   const { data: product } = await useFetch(`${ config.public.baseURL }c/prod/${route.params.id}`)
-  const { data: analogue } =  await useFetch(`${ config.public.baseURL }c/anlgs/?ct=${ product.value.category.id }`)
-  const { data: related } =  await useFetch(`${ config.public.baseURL }c/rel/`, { query: { "ct": product.value.related }})
-  const { data: breadcrumbs } = await useFetch(`${ config.public.baseURL }c/breadcrumb/?ct=${ product.value.category.id }`)
   const { data: recommends } = await useFetch(`${ config.public.baseURL }c/recommend/`)
-  const { data: reviews } = await useFetch(`${ config.public.baseURL }o/reviews/${ product.value.id }/`)
   
+
+  const { data: analogue } =  await useFetch(`${ config.public.baseURL }c/anlgs/?ct=${ product.value?.category.id }`)
+  const { data: related } =  await useFetch(`${ config.public.baseURL }c/rel/`, { query: { "ct": product.value?.related }})
+  const { data: breadcrumbs } = await useFetch(`${ config.public.baseURL }c/breadcrumb/?ct=${ product.value?.category.id }`)
+  const { data: reviews } = await useFetch(`${ config.public.baseURL }o/reviews/${ product.value?.id }/`)    
+
   const hide_recommend = (related.value.length > 1) ? true : false
   
 
@@ -56,12 +60,11 @@
   const ratingValue = ref(0)
   const reviewCount = ref(0)
 
-  if ( reviews.value.length > 0 ) {
+  if ( reviews.value?.length > 0 ) {
     const sum = reviews.value.reduce((acc, item) => acc + item.rating, 0)
     ratingValue.value = Math.ceil(sum / reviews.value.length)
     reviewCount.value = reviews.value.length
   }
-
 
 
   if ( product.value.id && reviews.value.length > 0 ) {
@@ -143,16 +146,28 @@
     status.value = ''
   }
 
+
   useSeoMeta({
-    title: `${ product.value.name } ${status.value}`,
-    description: `${ product.value.name } купить онлайн`,
-    keywords: `${ product.value.name }, Главный Сварщик - сварочное оборудование, оборудование для сварки, купить электроды, купить проволоку, купить источник, купить сварочный инвертор`,
+    title: product.value ? product.value.name + " " + status.value : "Товар не найден",
+    description: product.value ? product.value.description.slice(0, 340) + "..." : "Товар не найден",
+    keywords:  product.value ? product.value.name + ", оборудование для сварки, купить электроды, купить проволоку, купить источник, купить сварочный инвертор, MMA, MIG/MAG, TIG, сварка" : "Товар не найден",
     ogLocale: 'ru_RU',
-    ogTitle: `${ product.value.name }`,
-    ogDescription: `${ product.value.description }`,
-    ogImage: `${ product.value.preview_image }`,
-    twitterCard: `${ product.value.preview_image }`,
+    ogTitle: `${ product.value?.name }`,
+    ogDescription: `${ product.value?.description.slice(0, 340) + "..." }`,
+    ogImage: `${ product.value?.preview_image }`,
+    twitterCard: `${ product.value?.preview_image }`,
   })
+
+  // useSeoMeta({
+  //   title: `${ product.value ? product.value.name + " " + status.value : "Товар не найден" }`,
+  //   description: `${ product.value ? product.value.name : "Товар не найден" }`,
+  //   keywords: `${ product.value?.name }: Главный Сварщик - сварочное оборудование, оборудование для сварки, купить электроды, купить проволоку, купить источник, купить сварочный инвертор`,
+  //   ogLocale: 'ru_RU',
+  //   ogTitle: `${ product.value?.name }`,
+  //   ogDescription: `${ product.value?.description }`,
+  //   ogImage: `${ product.value?.preview_image }`,
+  //   twitterCard: `${ product.value?.preview_image }`,
+  // })
 
 
   /// Ecommerce
@@ -165,17 +180,19 @@
         "detail": {
           "products": [
             {
-              "id": product.value.id,
-              "name" : product.value.name,
-              "price": product.value.only_price,
-              "brand": brand.value,
-              "category": product.value.category.name,
+              "id": product.value?.id,
+              "name" : product.value?.name,
+              "price": product.value?.only_price,
+              "brand": brand?.value,
+              "category": product.value?.category.name,
             }
           ]
         }
       }
     }
-    window.dataLayer.push(ecommerceData)
+    if (product.value) {
+      window.dataLayer.push(ecommerceData)      
+    }
   })
   
 
@@ -187,7 +204,7 @@
 
     <AppHeader />
 
-    <div v-if="product.id" class="">
+    <div v-if="product?.id" class="">
       
       <BreadCrumbs :breadcrumbs="breadcrumbs" />
       <ProductDetail :product="product" :analogue="analogue" :category="product.category.name" />
@@ -211,7 +228,7 @@
         <div class="flex items-center justify-center">
           <div class="text-center">
             <h1 class="text-4xl font-bold text-gray-800 dark:text-gray-200">Товар не найден</h1>
-            <p class="text-lg text-gray-600 dark:text-gray-400">Попробуйте вернуться на <nuxt-link to="/" class="text-blue-500 hover:underline">главную страницу</nuxt-link></p>
+            <p class="text-lg text-gray-600 dark:text-gray-400 mt-4">Попробуйте вернуться на <nuxt-link to="/" class="text-blue-500 hover:underline">главную страницу</nuxt-link></p>
           </div>        
         </div>
       </div>
