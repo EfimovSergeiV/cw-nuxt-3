@@ -77,10 +77,10 @@
               <div class="">
                 <div class="flex flex-col items-center justify-center py-2">
 
-                  <div class="">
+                  <div class="mt-4">
                     <h1 class="text-xl text-center">{{ descriptionData }}</h1>  
                   </div>
-                  <div class="py-1 max-w-4xl">
+                  <div class="py-4 max-w-4xl">
                     <h2 class="text-base text-gray-600 dark:text-gray-400 text-center">
                       Наши магазины – это место, где профессионалы и энтузиасты приходят за лучшими решениями для сварочных работ. Сварка - это искусство, и мы знаем, как сделать его доступным и эффективным для каждого.
                     </h2>
@@ -144,17 +144,16 @@
                 Мы являемся официальным дистрибьютором ведущих брендов сварочного оборудования, и всегда готовы предложить вам широкий выбор продуктов, которые обеспечат вашу эффективную и качественную работу. Наши специалисты всегда готовы проконсультировать вас и помочь выбрать именно то, что вам нужно.
               </p>
             </div>
-            <div class="">
+            
+            <!-- <div class="hidden">
               <div class="flex flex-wrap gap-4 py-4">
                 <div class="" v-for="cert in ['/certs/aurora-2.webp', '/certs/aurora-3.webp', '/certs/cert-redius.webp', '/certs/cert-svarog.webp', '/certs/esab-cert.webp', '/certs/svarog-2.webp']">
                   <img @click="activeCert = cert" :src="cert" class="w-36 cursor-pointer" />
                 </div>
               </div>
-              <div class="">
-                
-              </div>
+              <div class=""></div>
+            </div> -->
 
-            </div>
             <div class="py-8 grid grid-cols-1 gap-2">
               <p class="text-center">
                 Если вы не нашли то, что Вам нужно - <a href="mailto:zakaz@glsvar.ru" target="_blank" class="font-semibold text-gray-800 dark:text-gray-200 border-b border-gray-800 dark:border-gray-200">свяжитесь с нами</a> и мы найдем этот товар специально для Вас!
